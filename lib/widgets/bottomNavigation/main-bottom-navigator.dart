@@ -5,15 +5,16 @@ import 'package:acta/widgets/bottomNavigation/navigation-items.dart';
 import 'package:acta/screens/home-screen.dart';
 import 'package:acta/screens/search-by-source-screen.dart';
 
+@immutable
 class MainBottomNavigator extends StatelessWidget {
-  final int initialIndex;
-
   MainBottomNavigator({this.initialIndex});
 
-  _navigateToTab(BuildContext context, int index) {
-    Navigator.push(
+  final int initialIndex;
+
+  void _navigateToTab(BuildContext context, int index) {
+    Navigator.push<dynamic>(
       context,
-      MaterialPageRoute(builder: (context) => _findTabToNavigate(index)),
+      MaterialPageRoute<dynamic>(builder: (BuildContext context) => _findTabToNavigate(index)),
     );
   }
 

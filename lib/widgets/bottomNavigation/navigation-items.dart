@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-final List<BottomNavigationBarItem> navigationBarItems = [
+final List<BottomNavigationBarItem> navigationBarItems = <BottomNavigationBarItem>[
   BottomNavigationBarItem(
     icon: Icon(Icons.home),
-    title: Text("Home"),
+    title: Text('Home'),
   ),
   BottomNavigationBarItem(
     icon: Icon(Icons.search),
-    title: Text("Sources"),
+    title: Text('Sources'),
   ),
   BottomNavigationBarItem(
     icon: Icon(Icons.text_format),
-    title: Text("Term"),
+    title: Text('Term'),
   ),
   BottomNavigationBarItem(
     icon: Icon(Icons.merge_type),
-    title: Text("Types"),
+    title: Text('Types'),
   ),
 ];
