@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 import 'package:acta/widgets/bottomNavigation/navigation-items.dart';
 import 'package:acta/screens/home-screen.dart';
@@ -37,11 +38,13 @@ class MainBottomNavigator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      onTap: (int index) => _navigateToTab(context, index),
-      type: BottomNavigationBarType.fixed,
-      currentIndex: initialIndex,
+    return CurvedNavigationBar(
+      index: initialIndex,
       items: navigationBarItems,
+      height: 56,
+      color: Theme.of(context).accentColor,
+      backgroundColor: Colors.brown[50],
+      onTap: (int index) => _navigateToTab(context, index),
     );
   }
 }

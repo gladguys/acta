@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
 
-final List<BottomNavigationBarItem> navigationBarItems = <BottomNavigationBarItem>[
-  BottomNavigationBarItem(
-    icon: Icon(Icons.home),
-    title: Text('Home'),
+final List<Widget> navigationBarItems = [
+  Icon(
+    Icons.home,
+    size: 32,
+    color: Colors.white,
+    // title: Text("Home"),
   ),
-  BottomNavigationBarItem(
-    icon: Icon(Icons.search),
-    title: Text('Source'),
+  Icon(
+    Icons.library_books,
+    size: 32,
+    color: Colors.white,
+    // title: Text("Sources"),
   ),
-  BottomNavigationBarItem(
-    icon: Icon(Icons.text_format),
-    title: Text('Term'),
+  Icon(
+    Icons.label,
+    size: 32,
+    color: Colors.white,
+    // title: Text("Term"),
   ),
-  BottomNavigationBarItem(
-    icon: Icon(Icons.casino),
-    title: Text('Topic'),
+  Icon(
+    Icons.layers,
+    size: 32,
+    color: Colors.white,
+    // title: Text("Types"),
   ),
 ];

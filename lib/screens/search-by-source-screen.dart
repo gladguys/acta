@@ -11,6 +11,6 @@ class SearchBySourceScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ATBaseScreen(title: 'My search screen', body: _buildSearchBySourceScreen(), initialTab: 1,);
+    return ATBaseScreen(title: 'Sources', body: _buildSearchBySourceScreen(), initialTab: 1,);
   }
 }

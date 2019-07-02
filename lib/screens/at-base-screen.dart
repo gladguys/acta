@@ -14,8 +14,18 @@ class ATBaseScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.brown[50],
       appBar: AppBar(
-        title: Center(child: Text(title),),
+        title: Text(
+          title,
+          style: TextStyle(
+            fontFamily: 'Italianno',
+            fontSize: 36.0,
+            fontWeight: FontWeight.bold
+          ),
+        ),
+        centerTitle: true,
+        elevation: 0,
       ),
       body: body,
       bottomNavigationBar: MainBottomNavigator(
