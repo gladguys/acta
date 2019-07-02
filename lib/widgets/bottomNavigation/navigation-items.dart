@@ -8,19 +8,19 @@ final List<Widget> navigationBarItems = [
     // title: Text("Home"),
   ),
   Icon(
-    Icons.search,
+    Icons.library_books,
     size: 32,
     color: Colors.white,
     // title: Text("Sources"),
   ),
   Icon(
-    Icons.text_format,
+    Icons.label,
     size: 32,
     color: Colors.white,
     // title: Text("Term"),
   ),
   Icon(
-    Icons.merge_type,
+    Icons.layers,
     size: 32,
     color: Colors.white,
     // title: Text("Types"),

@@ -10,6 +10,6 @@ class SearchByTopicScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ATBaseScreen(title: 'My SearchByTopic screen', body: _buildSearchByTopicScreen(), initialTab: 3,);
+    return ATBaseScreen(title: 'Topic', body: _buildSearchByTopicScreen(), initialTab: 3,);
   }
 }

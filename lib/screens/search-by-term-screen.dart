@@ -10,6 +10,6 @@ class SearchByTermScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ATBaseScreen(title: 'My SearchByTerm screen', body: _buildSearchByTermScreen(), initialTab: 2,);
+    return ATBaseScreen(title: 'Terms', body: _buildSearchByTermScreen(), initialTab: 2,);
   }
 }
