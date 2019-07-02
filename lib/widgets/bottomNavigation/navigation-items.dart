@@ -7,14 +7,14 @@ final List<BottomNavigationBarItem> navigationBarItems = <BottomNavigationBarIte
   ),
   BottomNavigationBarItem(
     icon: Icon(Icons.search),
-    title: Text('Sources'),
+    title: Text('Source'),
   ),
   BottomNavigationBarItem(
     icon: Icon(Icons.text_format),
     title: Text('Term'),
   ),
   BottomNavigationBarItem(
-    icon: Icon(Icons.merge_type),
-    title: Text('Types'),
+    icon: Icon(Icons.casino),
+    title: Text('Topic'),
   ),
 ];

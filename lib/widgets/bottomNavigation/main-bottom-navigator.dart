@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:acta/widgets/bottomNavigation/navigation-items.dart';
 import 'package:acta/screens/home-screen.dart';
 import 'package:acta/screens/search-by-source-screen.dart';
+import 'package:acta/screens/search-by-term-screen.dart';
+import 'package:acta/screens/search-by-topic-screen.dart';
 
 @immutable
 class MainBottomNavigator extends StatelessWidget {
@@ -24,6 +26,10 @@ class MainBottomNavigator extends StatelessWidget {
         return HomeScreen();
       case 1:
         return SearchBySourceScreen();
+      case 2:
+        return SearchByTermScreen();
+      case 3:
+        return SearchByTopicScreen();
       default:
         return HomeScreen();
     }

@@ -15,7 +15,7 @@ class ATBaseScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Center(child: Text(title),),
       ),
       body: body,
       bottomNavigationBar: MainBottomNavigator(
