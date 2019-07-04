@@ -1,8 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:global_configuration/global_configuration.dart';
 
 import './screens/home-screen.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  _loadApp();
+}
+
+Future<void> _loadApp() async {
+  await _loadConfig();
+  runApp(MyApp());
+}
+
+Future<void> _loadConfig() async {
+  await GlobalConfiguration().loadFromAsset('app_settings');
+}
 
 class MyApp extends StatelessWidget {
   @override
