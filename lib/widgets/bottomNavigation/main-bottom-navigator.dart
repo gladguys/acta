@@ -17,7 +17,9 @@ class MainBottomNavigator extends StatelessWidget {
   void _navigateToTab(BuildContext context, int index) {
     Navigator.push<dynamic>(
       context,
-      MaterialPageRoute<dynamic>(builder: (BuildContext context) => _findTabToNavigate(index)),
+      MaterialPageRoute<dynamic>(
+        builder: (BuildContext context) => _findTabToNavigate(index),
+      ),
     );
   }
 
