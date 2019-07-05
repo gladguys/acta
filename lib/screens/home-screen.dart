@@ -85,7 +85,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ATBaseScreen(
-      title: 'Home',
+      title: 'Trending News',
       body: _buildHomeScreen(),
       initialTab: 0,
     );
