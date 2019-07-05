@@ -1,4 +1,4 @@
-import './source.dart';
+import './news-source.dart';
 
 class ArticleResponse {
   ArticleResponse(
@@ -12,7 +12,7 @@ class ArticleResponse {
 
   factory ArticleResponse.fromJson(Map<String, dynamic> parsedJson) {
     return ArticleResponse(
-      source: Source.fromJson(parsedJson['source']),
+      source: NewsSource.fromJson(parsedJson['source']),
       author: parsedJson['author'],
       title: parsedJson['title'],
       url: parsedJson['url'],
@@ -22,7 +22,7 @@ class ArticleResponse {
     );
   }
 
-  final Source source;
+  final NewsSource source;
   final String author;
   final String title;
   final String url;
