@@ -13,6 +13,10 @@ class NewsProvider {
     return _repository.getTopHeadlinesFromSource(sourceId);
   }
 
+  Future<NewsResponse> getNewsByCategory(String categoryId) async {
+    return _repository.getNewsByCategory(categoryId);
+  }
+
   Future<SourcesResponse> getAllSources() async {
     return _repository.getAllSources();
   }

@@ -20,6 +20,12 @@ class NewsRepository {
     return NewsResponse.fromJson(response.data);
   }
 
+  Future<NewsResponse> getNewsByCategory(String categoryId) async {
+    final Response response = await _dio.get<Map<String, dynamic>>(
+        '$TOP_HEADLINES?$CATEGORY=$categoryId&$COUNTRY=us');
+    return NewsResponse.fromJson(response.data);
+  }
+
   Future<SourcesResponse> getAllSources() async {
     final Response response =
         await _dio.get<Map<String, dynamic>>('$ALL_SOURCES?$COUNTRY=us');
