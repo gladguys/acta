@@ -20,4 +20,8 @@ class NewsProvider {
   Future<SourcesResponse> getAllSources() async {
     return _repository.getAllSources();
   }
+
+  Future<NewsResponse> getNewsByTerm(String term) async {
+    return _repository.getNewsByTerm(term);
+  }
 }

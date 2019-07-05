@@ -31,4 +31,9 @@ class NewsRepository {
         await _dio.get<Map<String, dynamic>>('$ALL_SOURCES?$COUNTRY=us');
     return SourcesResponse.fromJson(response.data);
   }
+
+  Future<NewsResponse> getNewsByTerm(String term) async {
+    final Response response = await _dio.get<Map<String, dynamic>>('$EVERYTHING?q=$term');
+    return NewsResponse.fromJson(response.data);
+  }
 }

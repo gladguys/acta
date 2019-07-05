@@ -1,15 +1,108 @@
+import 'package:acta/models/news-response.dart';
 import 'package:acta/screens/at-base-screen.dart';
+import 'package:acta/widgets/news-cards-list.dart';
+import 'package:acta/providers/news_provider.dart';
 import 'package:flutter/material.dart';
 
-class SearchByTermScreen extends StatelessWidget {
-  Widget _buildSearchByTermScreen() {
-    return Center(
-      child: Text('My SearchByTerm screen'),
+class SearchByTermScreen extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _SearchByTermState();
+  }
+}
+
+class _SearchByTermState extends State<SearchByTermScreen> {
+  String term;
+  final NewsProvider _provider = NewsProvider();
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _termController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    term = '';
+  }
+
+  @override
+  void dispose() {
+    _termController.dispose();
+    super.dispose();
+  }
+
+  Widget _buildNewsByTerm() {
+    return FutureBuilder<NewsResponse>(
+      future: _provider.getNewsByTerm(term),
+      builder: (BuildContext context, AsyncSnapshot<NewsResponse> snapshot) {
+        if (snapshot.hasData) {
+          return NewsCardsList(news: snapshot.data);
+        } else if (snapshot.hasError) {
+          return Text('${snapshot.error}');
+        }
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      },
     );
+  }
+
+  Widget _buildTermTextField() {
+    return TextFormField(
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Enter some term to search';
+        }
+      },
+      controller: _termController,
+    );
+  }
+
+  Widget _buildSearchButton() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      child: RaisedButton(
+        onPressed: () {
+          if (_formKey.currentState.validate()) {
+            setState(() {
+              term = _termController.text;
+            });
+          }
+        },
+        child: Text('Search'),
+      ),
+    );
+  }
+
+  Widget _buildSearchByTermResult() {
+    return term == '' ? Container() : _buildNewsByTerm();
+  }
+
+  Widget _buildForm() {
+    return Form(
+      key: _formKey,
+      child: Container(
+        padding: EdgeInsets.all(12.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            _buildTermTextField(),
+            _buildSearchButton(),
+            _buildSearchByTermResult(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSearchByTermScreen() {
+    return SingleChildScrollView(reverse: true, child: _buildForm());
   }
 
   @override
   Widget build(BuildContext context) {
-    return ATBaseScreen(title: 'Terms', body: _buildSearchByTermScreen(), initialTab: 2,);
+    return ATBaseScreen(
+      title: 'Terms',
+      body: _buildSearchByTermScreen(),
+      initialTab: 2,
+    );
   }
 }
