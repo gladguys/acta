@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:global_configuration/global_configuration.dart';
+
 import './API.dart';
 
 class DioBuilder {
@@ -12,6 +14,7 @@ class DioBuilder {
     baseUrl: API_BASE_URL,
     connectTimeout: 5000,
     receiveTimeout: 100000,
+    headers: {'X-Api-Key': GlobalConfiguration().getString('api_key')},
   ));
 
   static Dio getDio() {
