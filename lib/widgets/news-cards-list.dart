@@ -13,21 +13,21 @@ class NewsCardsList extends StatelessWidget {
   Widget _buildNews(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(12.0),
-      child: ListView(children: _buildCardsList(context, news)),
+      child: _buildCardsList(context),
     );
   }
 
-  List<Card> _buildCardsList(BuildContext context, NewsResponse newsResponse) {
-    final List<Card> cards = [];
-    final List<ArticleResponse> articlesWithInfo = newsResponse.articles
-        .where((article) => article.content != null)
-        .toList();
+  Widget _buildCardsList(BuildContext context) {
+    final List<ArticleResponse> articles =
+        news.articles.where((article) => article.content != null).toList();
 
-    for (ArticleResponse article in articlesWithInfo) {
-      cards.add(_buildArticleCard(context, article));
-    }
-
-    return cards;
+    return ListView.builder(
+      scrollDirection: Axis.vertical,
+      shrinkWrap: true,
+      itemCount: articles.length,
+      itemBuilder: (context, index) =>
+          _buildArticleCard(context, articles[index]),
+    );
   }
 
   Widget _buildArticleCard(BuildContext context, ArticleResponse article) {
