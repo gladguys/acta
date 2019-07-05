@@ -1,17 +1,19 @@
+import 'package:acta/models/news-response.dart';
 import 'package:acta/widgets/news-cards-list.dart';
 import 'package:flutter/material.dart';
-import 'package:acta/models/news-response.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:acta/providers/news_provider.dart';
-
 import 'at-base-screen.dart';
 
-class HomeScreen extends StatelessWidget {
-  final NewsProvider _provider = NewsProvider();
+class NewsBySourceScreen extends StatelessWidget {
+  NewsBySourceScreen({@required this.id, @required this.name});
 
-  Widget _buildHomeScreen() {
+  final NewsProvider _provider = NewsProvider();
+  final String id;
+  final String name;
+
+  Widget _buildNewsBySourceScreen() {
     return FutureBuilder<NewsResponse>(
-      future: _provider.getTopHeadlines(),
+      future: _provider.getTopHeadlinesFromSource(id),
       builder: (BuildContext context, AsyncSnapshot<NewsResponse> snapshot) {
         if (snapshot.hasData) {
           return NewsCardsList(news: snapshot.data);
@@ -28,9 +30,9 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ATBaseScreen(
-      title: 'Trending News',
-      body: _buildHomeScreen(),
-      initialTab: 0,
+      title: 'Trending News: $name',
+      body: _buildNewsBySourceScreen(),
+      initialTab: 1,
     );
   }
 }
