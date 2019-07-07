@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 final List<Widget> navigationBarItems = [
   Icon(
@@ -8,13 +9,13 @@ final List<Widget> navigationBarItems = [
     // title: Text("Home"),
   ),
   Icon(
-    Icons.library_books,
+    MdiIcons.newspaper,
     size: 32,
     color: Colors.white,
     // title: Text("Sources"),
   ),
   Icon(
-    Icons.label,
+    MdiIcons.formatLetterCase,
     size: 32,
     color: Colors.white,
     // title: Text("Term"),
