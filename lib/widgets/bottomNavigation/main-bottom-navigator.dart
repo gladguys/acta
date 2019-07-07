@@ -15,7 +15,7 @@ class MainBottomNavigator extends StatelessWidget {
   final int initialIndex;
 
   void _navigateToTab(BuildContext context, int index) {
-    Navigator.push<dynamic>(
+    Navigator.pushReplacement(
       context,
       MaterialPageRoute<dynamic>(
         builder: (BuildContext context) => _findTabToNavigate(index),
@@ -45,7 +45,7 @@ class MainBottomNavigator extends StatelessWidget {
       items: navigationBarItems,
       height: 56,
       color: Theme.of(context).accentColor,
-      backgroundColor: Colors.brown[50],
+      backgroundColor: Colors.transparent,
       onTap: (int index) => _navigateToTab(context, index),
     );
   }
