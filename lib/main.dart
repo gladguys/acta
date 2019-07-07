@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Acta',
       theme: ThemeData(
         primaryColor: Colors.brown[100],
         accentColor: Colors.brown[800],

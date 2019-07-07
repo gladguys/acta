@@ -5,10 +5,11 @@ import '../widgets/bottomNavigation/main-bottom-navigator.dart';
 
 class ATBaseScreen extends StatelessWidget {
   ATBaseScreen(
-      {@required this.title, @required this.body, this.initialTab = 0});
+      {@required this.title, @required this.body, this.actions, this.initialTab = 0});
 
   final String title;
   final Widget body;
+  final List<Widget> actions;
   final int initialTab;
 
   @override
@@ -26,6 +27,7 @@ class ATBaseScreen extends StatelessWidget {
         ),
         centerTitle: true,
         elevation: 0,
+        actions: actions,
       ),
       body: body,
       bottomNavigationBar: MainBottomNavigator(
