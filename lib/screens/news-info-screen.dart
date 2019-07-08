@@ -34,8 +34,11 @@ class NewsInfoScreen extends StatelessWidget {
   }
 
   Widget _buildImage() {
+    print('Published: ' + article.publishedAt.toString());
+    print('Author: ' + article.author);
+    print('Title: ' + article.title);
     return Hero(
-      tag: article.publishedAt,
+      tag: '${article.publishedAt.toString()?? '' }${article.author ?? article.title}',
       child: ATNetworkImage(imageUrl: article.urlToImage),
     );
   }

@@ -107,7 +107,7 @@ class NewsCardsList extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(16.0),
           child: Hero(
-            tag: article.publishedAt,
+            tag: '${article.publishedAt.toString()?? '' }${article.author ?? article.title}',
             child: ATNetworkImage(imageUrl: article.urlToImage),
           ),
         ),

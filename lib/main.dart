@@ -14,6 +14,7 @@ Future<void> _loadApp() async {
 
 Future<void> _loadConfig() async {
   await GlobalConfiguration().loadFromAsset('app_settings');
+  GlobalConfiguration().setValue('country', 'us');
 }
 
 class MyApp extends StatelessWidget {
