@@ -6,22 +6,36 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:acta/models/news-response.dart';
 import 'package:acta/models/article-response.dart';
+import 'package:acta/enums/view_type.dart';
 import 'package:acta/screens/news-info-screen.dart';
 import 'package:acta/widgets/at-network-image.dart';
+import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
 class NewsCardsList extends StatelessWidget {
-  NewsCardsList({this.news, this.viewType});
+  NewsCardsList(
+      {@required this.news, @required this.viewType, this.newsRefresher});
 
   final NewsResponse news;
-  final int viewType;
+  final ViewType viewType;
+  final Function newsRefresher;
 
   Widget _buildNews(BuildContext context) {
     final List<ArticleResponse> articles =
         news.articles.where((article) => article.content != null).toList();
 
-    return viewType == 0
-      ? _buildCardsGrid(context, articles)
-      : _buildCardsList(context, articles);
+    if (newsRefresher != null) {
+      return LiquidPullToRefresh(
+          onRefresh: newsRefresher,
+          child: _buildNewsWithType(context, articles));
+    }
+    return _buildNewsWithType(context, articles);
+  }
+
+  Widget _buildNewsWithType(
+      BuildContext context, List<ArticleResponse> articles) {
+    return viewType == ViewType.grid
+        ? _buildCardsGrid(context, articles)
+        : _buildCardsList(context, articles);
   }
 
   Widget _buildCardsList(BuildContext context, List<ArticleResponse> articles) {
@@ -38,37 +52,36 @@ class NewsCardsList extends StatelessWidget {
     return StaggeredGridView.countBuilder(
       crossAxisCount: 4,
       itemCount: articles.length,
-      itemBuilder: (BuildContext context, int index) => 
+      itemBuilder: (BuildContext context, int index) =>
           _buildArticleCardForGrid(context, articles[index]),
-      staggeredTileBuilder: (int index) =>
-          StaggeredTile.fit(2),
+      staggeredTileBuilder: (int index) => StaggeredTile.fit(2),
       mainAxisSpacing: 4.0,
       crossAxisSpacing: 4.0,
     );
   }
 
-  Widget _buildArticleCardForList(BuildContext context, ArticleResponse article) {
+  Widget _buildArticleCardForList(
+      BuildContext context, ArticleResponse article) {
     return Padding(
       padding: EdgeInsets.all(8.0),
       child: Card(
         color: Colors.brown[100],
         clipBehavior: Clip.antiAlias,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(16.0))
-        ),
-        child: _actionsClickCard(context, article)
-      )
+            borderRadius: BorderRadius.all(Radius.circular(16.0))),
+        child: _actionsClickCard(context, article),
+      ),
     );
   }
 
-  Widget _buildArticleCardForGrid(BuildContext context, ArticleResponse article) {
+  Widget _buildArticleCardForGrid(
+      BuildContext context, ArticleResponse article) {
     return Card(
       color: Colors.brown[50],
       elevation: 3,
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(16.0))
-        ),
-      child: _actionsClickCard(context, article)
+          borderRadius: BorderRadius.all(Radius.circular(16.0))),
+      child: _actionsClickCard(context, article),
     );
   }
 
@@ -95,8 +108,8 @@ class NewsCardsList extends StatelessWidget {
           child: Hero(
             tag: article.publishedAt,
             child: ATNetworkImage(imageUrl: article.urlToImage),
-          )
-        )
+          ),
+        ),
       );
     } else {
       _widget = Container();
@@ -113,9 +126,10 @@ class NewsCardsList extends StatelessWidget {
         padding: EdgeInsets.all(8.0),
         child: Text(
           article.title != null ? article.title : '',
-          textAlign: viewType == 0 ? TextAlign.justify : TextAlign.center,
-          style: TextStyle(fontSize: viewType == 0 ? 14.0 : 16.0),
-        )
+          textAlign:
+              viewType == ViewType.grid ? TextAlign.justify : TextAlign.center,
+          style: TextStyle(fontSize: viewType == ViewType.grid ? 14.0 : 16.0),
+        ),
       );
     } else {
       _widget = Padding(
@@ -123,8 +137,8 @@ class NewsCardsList extends StatelessWidget {
         child: Text(
           article.title != null ? article.title : '',
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: viewType == 0 ? 18.0 : 20.0),
-        )
+          style: TextStyle(fontSize: viewType == ViewType.grid ? 18.0 : 20.0),
+        ),
       );
     }
 
