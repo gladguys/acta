@@ -4,6 +4,7 @@ import 'package:acta/screens/news-by-category-screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:acta/utils/navigation.dart';
 
 class SearchByCategoryScreen extends StatelessWidget {
   final List<Category> categories = [
@@ -12,8 +13,7 @@ class SearchByCategoryScreen extends StatelessWidget {
         id: 'entertainment', name: 'Entertainment', icon: Icon(Icons.mood)),
     Category(id: 'general', name: 'General', icon: Icon(Icons.grade)),
     Category(id: 'health', name: 'Health', icon: Icon(MdiIcons.hospital)),
-    Category(
-        id: 'science', name: 'Science', icon: Icon(MdiIcons.mathSin)),
+    Category(id: 'science', name: 'Science', icon: Icon(MdiIcons.mathSin)),
     Category(id: 'sports', name: 'Sports', icon: Icon(MdiIcons.soccer)),
     Category(id: 'technology', name: 'Technology', icon: Icon(Icons.computer))
   ];
@@ -40,12 +40,9 @@ class SearchByCategoryScreen extends StatelessWidget {
   }
 
   void _navigateToNewsByCategory(BuildContext context, Category category) {
-    Navigator.push<dynamic>(
-      context,
-      MaterialPageRoute<dynamic>(
-        builder: (BuildContext context) =>
-            NewsByCategoryScreen(id: category.id, name: category.name),
-      ),
+    Navigation.navigateFromInside(
+      context: context,
+      screen: NewsByCategoryScreen(id: category.id, name: category.name),
     );
   }
 

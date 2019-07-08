@@ -10,6 +10,7 @@ import 'package:acta/enums/view_type.dart';
 import 'package:acta/screens/news-info-screen.dart';
 import 'package:acta/widgets/at-network-image.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
+import 'package:acta/utils/navigation.dart';
 
 class NewsCardsList extends StatelessWidget {
   NewsCardsList(
@@ -146,11 +147,9 @@ class NewsCardsList extends StatelessWidget {
   }
 
   void _navigateToNewsInfo(BuildContext context, ArticleResponse article) {
-    Navigator.push<dynamic>(
-      context,
-      MaterialPageRoute<dynamic>(
-        builder: (BuildContext context) => NewsInfoScreen(article: article),
-      ),
+    Navigation.navigateFromInside(
+      context: context,
+      screen: NewsInfoScreen(article: article)
     );
   }
 
