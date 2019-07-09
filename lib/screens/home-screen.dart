@@ -1,4 +1,7 @@
+import 'package:acta/enums/view_type.dart';
 import 'package:acta/widgets/news-cards-list.dart';
+import 'package:country_pickers/country.dart';
+import 'package:country_pickers/country_pickers.dart';
 import 'package:flutter/material.dart';
 import 'package:acta/models/news-response.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,20 +18,28 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final NewsProvider _provider = NewsProvider();
-  int _viewType;
+  ViewType _viewType;
 
   @override
   void initState() {
     super.initState();
-    _viewType = 0;
+    _viewType = ViewType.grid;
+  }
+
+  Future<NewsResponse> _getTopHeadlines() {
+    return _provider.getTopHeadlines();
   }
 
   Widget _buildHomeScreen() {
     return FutureBuilder<NewsResponse>(
-      future: _provider.getTopHeadlines(),
+      future: _getTopHeadlines(),
       builder: (BuildContext context, AsyncSnapshot<NewsResponse> snapshot) {
         if (snapshot.hasData) {
-          return NewsCardsList(news: snapshot.data, viewType: _viewType);
+          return NewsCardsList(
+            news: snapshot.data,
+            viewType: _viewType,
+            newsRefresher: _getTopHeadlines,
+          );
         } else if (snapshot.hasError) {
           return Text('${snapshot.error}');
         }
@@ -45,14 +56,16 @@ class _HomeScreenState extends State<HomeScreen> {
       title: 'Trending News',
       actions: <Widget>[
         IconButton(
-          icon: Icon(_viewType == 0 ? Icons.view_agenda : Icons.dashboard),
-          color: Colors.brown[300],
-          onPressed: () {
-            setState(() {
-              _viewType = _viewType == 0 ? 1 : 0;
-            });
-          }
-        )
+            icon: Icon(_viewType == ViewType.grid
+                ? Icons.view_agenda
+                : Icons.dashboard),
+            color: Colors.brown[300],
+            onPressed: () {
+              setState(() {
+                _viewType =
+                    _viewType == ViewType.grid ? ViewType.list : ViewType.grid;
+              });
+            })
       ],
       body: _buildHomeScreen(),
       initialTab: 0,

@@ -1,10 +1,12 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+
 import 'package:acta/models/source-response.dart';
 import 'package:acta/models/sources-response.dart';
 import 'package:acta/screens/at-base-screen.dart';
 import 'package:acta/screens/news-by-source-screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:acta/providers/news_provider.dart';
-import 'package:flutter/material.dart';
+import 'package:acta/utils/navigation.dart';
 
 class SearchBySourceScreen extends StatelessWidget {
   final NewsProvider _provider = NewsProvider();
@@ -48,13 +50,11 @@ class SearchBySourceScreen extends StatelessWidget {
   }
 
   void _navigateToNewsBySource(BuildContext context, SourceResponse source) {
-    Navigator.push<dynamic>(
-      context,
-      MaterialPageRoute<dynamic>(
-        builder: (BuildContext context) => NewsBySourceScreen(
-              id: source.id,
-              name: source.name,
-            ),
+    Navigation.navigateFromInside(
+      context: context,
+      screen: NewsBySourceScreen(
+        id: source.id,
+        name: source.name,
       ),
     );
   }

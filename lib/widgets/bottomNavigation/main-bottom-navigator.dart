@@ -7,6 +7,7 @@ import 'package:acta/screens/home-screen.dart';
 import 'package:acta/screens/search-by-source-screen.dart';
 import 'package:acta/screens/search-by-term-screen.dart';
 import 'package:acta/screens/search-by-category-screen.dart';
+import 'package:acta/utils/navigation.dart';
 
 @immutable
 class MainBottomNavigator extends StatelessWidget {
@@ -15,11 +16,9 @@ class MainBottomNavigator extends StatelessWidget {
   final int initialIndex;
 
   void _navigateToTab(BuildContext context, int index) {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute<dynamic>(
-        builder: (BuildContext context) => _findTabToNavigate(index),
-      ),
+    Navigation.navigateFromMenu(
+      context: context,
+      screen: _findTabToNavigate(index),
     );
   }
 
