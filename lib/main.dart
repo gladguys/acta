@@ -1,7 +1,9 @@
+import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:global_configuration/global_configuration.dart';
 
 import './screens/home-screen.dart';
+import 'blocs/news_bloc.dart';
 
 void main() {
   _loadApp();
@@ -20,13 +22,19 @@ Future<void> _loadConfig() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Acta',
-      theme: ThemeData(
-        primaryColor: Colors.brown[100],
-        accentColor: Colors.brown[800],
+    return BlocProvider(
+      child: MaterialApp(
+        title: 'Acta',
+        theme: ThemeData(
+          primaryColor: Colors.brown[100],
+          accentColor: Colors.brown[800],
+        ),
+        home: HomeScreen(),
       ),
-      home: HomeScreen(),
+      blocs: [
+        //add yours BLoCs controlles
+        Bloc((i) => NewsBloc()),
+      ],
     );
   }
 }
