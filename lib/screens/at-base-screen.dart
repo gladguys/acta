@@ -1,5 +1,4 @@
 import 'package:acta/blocs/news_bloc.dart';
-import 'package:acta/providers/news_provider.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:country_pickers/country.dart';
 import 'package:flutter/cupertino.dart';
@@ -28,22 +27,38 @@ class ATBaseScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.brown[50],
-      appBar: AppBar(
-        leading: _buildCountryPicker(context),
-        title: Text(
-          title,
-          style: TextStyle(
-              fontFamily: 'Italianno',
-              fontSize: 36.0,
-              fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
-        elevation: 0,
-        actions: actions,
-      ),
+      appBar: _buildAppBar(context),
       body: body,
       bottomNavigationBar: MainBottomNavigator(
         initialIndex: initialTab,
+      ),
+    );
+  }
+
+  Widget _buildAppBar(BuildContext context) {
+    return AppBar(
+      title: _buildAppBarTitle(context),
+      centerTitle: true,
+      elevation: 0,
+      actions: actions,
+    );
+  }
+
+  Widget _buildAppBarTitle(BuildContext context) {
+    return Container(
+      width: 300,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          _buildCountryPicker(context),
+          Text(
+            title,
+            style: TextStyle(
+                fontFamily: 'Italianno',
+                fontSize: 36.0,
+                fontWeight: FontWeight.bold),
+          ),
+        ],
       ),
     );
   }
@@ -52,10 +67,11 @@ class ATBaseScreen extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(left: 2.0),
       child: CountryPickerDropdown(
-          itemFilter: _filterCountry,
-          initialValue: GlobalConfiguration().get('country'),
-          itemBuilder: _buildDropdownItem,
-          onValuePicked: (Country country) => _updateCountry(context, country)),
+        itemFilter: _filterCountry,
+        initialValue: GlobalConfiguration().get('country'),
+        itemBuilder: _buildDropdownItem,
+        onValuePicked: (Country country) => _updateCountry(context, country),
+      ),
     );
   }
 
