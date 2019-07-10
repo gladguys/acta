@@ -1,3 +1,6 @@
+import 'package:acta/blocs/news_bloc.dart';
+import 'package:acta/providers/news_provider.dart';
+import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:country_pickers/country.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +16,8 @@ class ATBaseScreen extends StatelessWidget {
       @required this.body,
       this.actions,
       this.initialTab = 0});
+
+  final NewsBloc bloc = BlocProvider.getBloc<NewsBloc>();
 
   final String title;
   final Widget body;
@@ -54,9 +59,9 @@ class ATBaseScreen extends StatelessWidget {
     );
   }
 
-  void _updateCountry(BuildContext context, Country country) {
+  Future<void> _updateCountry(BuildContext context, Country country) async {
     GlobalConfiguration().setValue('country', country.isoCode.toLowerCase());
-    build(context);
+    bloc.updateCountry();
   }
 
   bool _filterCountry(Country country) {

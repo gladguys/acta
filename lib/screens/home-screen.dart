@@ -1,7 +1,7 @@
+import 'package:acta/blocs/news_bloc.dart';
 import 'package:acta/enums/view_type.dart';
 import 'package:acta/widgets/news-cards-list.dart';
-import 'package:country_pickers/country.dart';
-import 'package:country_pickers/country_pickers.dart';
+import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:acta/models/news-response.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,6 +17,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final NewsBloc bloc = BlocProvider.getBloc<NewsBloc>();
   final NewsProvider _provider = NewsProvider();
   ViewType _viewType;
 
@@ -26,27 +27,40 @@ class _HomeScreenState extends State<HomeScreen> {
     _viewType = ViewType.grid;
   }
 
-  Future<NewsResponse> _getTopHeadlines() {
-    return _provider.getTopHeadlines();
+  Future<void> _getTopHeadlines() {
+    return _provider.getTopHeadlines().then((news) => bloc.refreshNews(news));
   }
 
   Widget _buildHomeScreen() {
-    return FutureBuilder<NewsResponse>(
-      future: _getTopHeadlines(),
-      builder: (BuildContext context, AsyncSnapshot<NewsResponse> snapshot) {
-        if (snapshot.hasData) {
-          return NewsCardsList(
-            news: snapshot.data,
-            viewType: _viewType,
-            newsRefresher: _getTopHeadlines,
+    return StreamBuilder<bool>(
+      stream: bloc.newsObservable,
+      initialData: true,
+      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) => _buildScreenFromStream(context, snapshot),
+    );
+  }
+
+  Widget _buildScreenFromStream(BuildContext context, AsyncSnapshot<bool> snapshot) {
+    if (snapshot.hasData) {
+      return FutureBuilder(
+        future: _provider.getTopHeadlines(),
+        builder: (BuildContext context, AsyncSnapshot<NewsResponse> futureSnapshot) {
+          if (futureSnapshot.hasData) {
+            return NewsCardsList(
+              news: futureSnapshot.data,
+              viewType: _viewType,
+              newsRefresher: _getTopHeadlines,
+            );
+          }
+          return Center(
+            child: CircularProgressIndicator(),
           );
-        } else if (snapshot.hasError) {
-          return Text('${snapshot.error}');
-        }
-        return Center(
-          child: CircularProgressIndicator(),
-        );
-      },
+        },
+      );
+    } else if (snapshot.hasError) {
+      return Text('${snapshot.error}');
+    }
+    return Center(
+      child: CircularProgressIndicator(),
     );
   }
 
