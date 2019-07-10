@@ -30,7 +30,7 @@ class NewsBySourceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ATBaseScreen(
-      title: 'Trending News: $name',
+      title: name,
       body: _buildNewsBySourceScreen(),
       initialTab: 1,
     );

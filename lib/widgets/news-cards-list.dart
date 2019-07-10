@@ -69,7 +69,10 @@ class NewsCardsList extends StatelessWidget {
         color: Colors.brown[100],
         clipBehavior: Clip.antiAlias,
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(16.0))),
+          borderRadius: BorderRadius.all(
+            Radius.circular(16.0),
+          ),
+        ),
         child: _actionsClickCard(context, article),
       ),
     );
@@ -81,7 +84,10 @@ class NewsCardsList extends StatelessWidget {
       color: Colors.brown[50],
       elevation: 3,
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(16.0))),
+        borderRadius: BorderRadius.all(
+          Radius.circular(16.0),
+        ),
+      ),
       child: _actionsClickCard(context, article),
     );
   }
@@ -107,8 +113,9 @@ class NewsCardsList extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(16.0),
           child: Hero(
-            tag: '${article.publishedAt.toString()?? '' }${article.author ?? article.title}',
-            child: ATNetworkImage(imageUrl: article.urlToImage),
+            tag:
+                '${article.publishedAt.toString() ?? ''}${article.author ?? article.title}',
+            child: _buildShimmerImage(article),
           ),
         ),
       );
@@ -117,6 +124,16 @@ class NewsCardsList extends StatelessWidget {
     }
 
     return _widget;
+  }
+
+  Widget _buildShimmerImage(ArticleResponse article) {
+    return viewType == ViewType.grid
+        ? ATNetworkImage(imageUrl: article.urlToImage)
+        : ATNetworkImage(
+            imageUrl: article.urlToImage,
+            width: 380,
+            height: 180,
+          );
   }
 
   Widget _buildTextOfCard(ArticleResponse article) {
@@ -148,9 +165,7 @@ class NewsCardsList extends StatelessWidget {
 
   void _navigateToNewsInfo(BuildContext context, ArticleResponse article) {
     Navigation.navigateFromInside(
-      context: context,
-      screen: NewsInfoScreen(article: article)
-    );
+        context: context, screen: NewsInfoScreen(article: article));
   }
 
   @override
