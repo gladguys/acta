@@ -24,10 +24,6 @@ class NewsRepository {
 
   Future<NewsResponse> getNewsByCategory(String categoryId) async {
     final String country = GlobalConfiguration().get('country');
-    print(country);
-    print(country);
-    print(country);
-    print(country);
     final Response response = await _dio.get<Map<String, dynamic>>(
         '$TOP_HEADLINES?$CATEGORY=$categoryId&?$COUNTRY=$country');
     return NewsResponse.fromJson(response.data);
@@ -36,7 +32,7 @@ class NewsRepository {
   Future<SourcesResponse> getAllSources() async {
     final String country = GlobalConfiguration().get('country');
     final Response response =
-        await _dio.get<Map<String, dynamic>>('$ALL_SOURCES??$COUNTRY=$country');
+        await _dio.get<Map<String, dynamic>>('$ALL_SOURCES?$COUNTRY=$country');
     return SourcesResponse.fromJson(response.data);
   }
 

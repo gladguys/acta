@@ -35,34 +35,32 @@ class _HomeScreenState extends State<HomeScreen> {
     return StreamBuilder<bool>(
       stream: bloc.newsObservable,
       initialData: true,
-      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-        if (snapshot.hasData) {
-          return getHomeScreenFutureBuilder();
-        } else if (snapshot.hasError) {
-          return Text('${snapshot.error}');
-        }
-        return Center(
-          child: CircularProgressIndicator(),
-        );
-      },
+      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) => _buildScreenFromStream(context, snapshot),
     );
   }
 
-  Widget getHomeScreenFutureBuilder() {
-    return FutureBuilder(
-      future: _provider.getTopHeadlines(),
-      builder: (BuildContext context, AsyncSnapshot<NewsResponse> futureSnapshot) {
-        if (futureSnapshot.hasData) {
-          return NewsCardsList(
-            news: futureSnapshot.data,
-            viewType: _viewType,
-            newsRefresher: _getTopHeadlines,
+  Widget _buildScreenFromStream(BuildContext context, AsyncSnapshot<bool> snapshot) {
+    if (snapshot.hasData) {
+      return FutureBuilder(
+        future: _provider.getTopHeadlines(),
+        builder: (BuildContext context, AsyncSnapshot<NewsResponse> futureSnapshot) {
+          if (futureSnapshot.hasData) {
+            return NewsCardsList(
+              news: futureSnapshot.data,
+              viewType: _viewType,
+              newsRefresher: _getTopHeadlines,
+            );
+          }
+          return Center(
+            child: CircularProgressIndicator(),
           );
-        }
-        return Center(
-          child: CircularProgressIndicator(),
-        );
-      },
+        },
+      );
+    } else if (snapshot.hasError) {
+      return Text('${snapshot.error}');
+    }
+    return Center(
+      child: CircularProgressIndicator(),
     );
   }
 

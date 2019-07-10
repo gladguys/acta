@@ -1,3 +1,5 @@
+import 'package:acta/blocs/news_bloc.dart';
+import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -9,21 +11,38 @@ import 'package:acta/providers/news_provider.dart';
 import 'package:acta/utils/navigation.dart';
 
 class SearchBySourceScreen extends StatelessWidget {
+  final NewsBloc bloc = BlocProvider.getBloc<NewsBloc>();
   final NewsProvider _provider = NewsProvider();
 
   Widget _buildSearchBySourceScreen() {
-    return FutureBuilder<SourcesResponse>(
-      future: _provider.getAllSources(),
-      builder: (BuildContext context, AsyncSnapshot<SourcesResponse> snapshot) {
-        if (snapshot.hasData) {
-          return _buildSourcesList(context, snapshot.data);
-        } else if (snapshot.hasError) {
-          return Text('${snapshot.error}');
-        }
-        return Center(
-          child: CircularProgressIndicator(),
-        );
-      },
+    return StreamBuilder(
+      stream: bloc.newsObservable,
+      initialData: true,
+      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) =>
+          _buildScreenFromStream(context, snapshot),
+    );
+  }
+
+  Widget _buildScreenFromStream(
+      BuildContext context, AsyncSnapshot<bool> snapshot) {
+    if (snapshot.hasData) {
+      return FutureBuilder<SourcesResponse>(
+        future: _provider.getAllSources(),
+        builder:
+            (BuildContext context, AsyncSnapshot<SourcesResponse> snapshot) {
+          if (snapshot.hasData) {
+            return _buildSourcesList(context, snapshot.data);
+          } else if (snapshot.hasError) {
+            return Text('${snapshot.error}');
+          }
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+      );
+    }
+    return Center(
+      child: CircularProgressIndicator(),
     );
   }
 
