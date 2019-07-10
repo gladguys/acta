@@ -16,16 +16,15 @@ class NewsRepository {
   }
 
   Future<NewsResponse> getTopHeadlinesFromSource(String sourceId) async {
-    final String country = GlobalConfiguration().get('country');
     final Response response = await _dio
-        .get<Map<String, dynamic>>('$TOP_HEADLINES?$SOURCES=$sourceId?$COUNTRY=$country');
+        .get<Map<String, dynamic>>('$TOP_HEADLINES?$SOURCES=$sourceId');
     return NewsResponse.fromJson(response.data);
   }
 
   Future<NewsResponse> getNewsByCategory(String categoryId) async {
     final String country = GlobalConfiguration().get('country');
     final Response response = await _dio.get<Map<String, dynamic>>(
-        '$TOP_HEADLINES?$CATEGORY=$categoryId&?$COUNTRY=$country');
+        '$TOP_HEADLINES?$CATEGORY=$categoryId&$COUNTRY=$country');
     return NewsResponse.fromJson(response.data);
   }
 
