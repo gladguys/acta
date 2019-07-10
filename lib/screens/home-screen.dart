@@ -24,7 +24,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    _getTopHeadlines();
     _viewType = ViewType.grid;
   }
 
@@ -33,18 +32,32 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildHomeScreen() {
-    return StreamBuilder<NewsResponse>(
+    return StreamBuilder<bool>(
       stream: bloc.newsObservable,
-      initialData: null,
-      builder: (BuildContext context, AsyncSnapshot<NewsResponse> snapshot) {
+      initialData: true,
+      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
         if (snapshot.hasData) {
+          return getHomeScreenFutureBuilder();
+        } else if (snapshot.hasError) {
+          return Text('${snapshot.error}');
+        }
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+  }
+
+  Widget getHomeScreenFutureBuilder() {
+    return FutureBuilder(
+      future: _provider.getTopHeadlines(),
+      builder: (BuildContext context, AsyncSnapshot<NewsResponse> futureSnapshot) {
+        if (futureSnapshot.hasData) {
           return NewsCardsList(
-            news: snapshot.data,
+            news: futureSnapshot.data,
             viewType: _viewType,
             newsRefresher: _getTopHeadlines,
           );
-        } else if (snapshot.hasError) {
-          return Text('${snapshot.error}');
         }
         return Center(
           child: CircularProgressIndicator(),

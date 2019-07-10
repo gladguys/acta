@@ -32,7 +32,6 @@ class MyApp extends StatelessWidget {
         home: HomeScreen(),
       ),
       blocs: [
-        //add yours BLoCs controlles
         Bloc((i) => NewsBloc()),
       ],
     );

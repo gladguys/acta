@@ -18,7 +18,6 @@ class ATBaseScreen extends StatelessWidget {
       this.initialTab = 0});
 
   final NewsBloc bloc = BlocProvider.getBloc<NewsBloc>();
-  final NewsProvider _provider = NewsProvider();
 
   final String title;
   final Widget body;
@@ -62,7 +61,7 @@ class ATBaseScreen extends StatelessWidget {
 
   Future<void> _updateCountry(BuildContext context, Country country) async {
     GlobalConfiguration().setValue('country', country.isoCode.toLowerCase());
-    bloc.refreshNews(await _provider.getTopHeadlines());
+    bloc.updateCountry();
   }
 
   bool _filterCountry(Country country) {

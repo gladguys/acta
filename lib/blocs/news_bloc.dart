@@ -1,23 +1,30 @@
 import 'dart:async';
+import 'package:acta/models/news-response.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:acta/models/news-response.dart';
 
 class NewsBloc extends BlocBase {
 
   NewsBloc();
 
-  final BehaviorSubject<NewsResponse> _newsSubject = BehaviorSubject<NewsResponse>.seeded(null);
+  final BehaviorSubject<bool> _newsCountrySubject = BehaviorSubject<bool>.seeded(true);
+  final BehaviorSubject<NewsResponse> _newsRefresherSubject = BehaviorSubject<NewsResponse>.seeded(null);
 
-  Stream<NewsResponse> get newsObservable => _newsSubject.stream;
+  Stream<bool> get newsObservable => _newsCountrySubject.stream;
+  Stream<NewsResponse> get newsRefresherObservable => _newsRefresherSubject.stream;
 
-  void refreshNews(NewsResponse news) {
-    _newsSubject.sink.add(news);
+  void updateCountry() {
+    _newsCountrySubject.sink.add(true);
+  }
+
+  void refreshNews(NewsResponse newsResponse) {
+    _newsRefresherSubject.add(newsResponse);
   }
 
   @override
   void dispose() {
-    _newsSubject.close();
+    _newsCountrySubject.close();
+    _newsRefresherSubject.close();
     super.dispose();
   }
 
