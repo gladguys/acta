@@ -35,15 +35,18 @@ class _HomeScreenState extends State<HomeScreen> {
     return StreamBuilder<bool>(
       stream: bloc.newsObservable,
       initialData: true,
-      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) => _buildScreenFromStream(context, snapshot),
+      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) =>
+          _buildScreenFromStream(context, snapshot),
     );
   }
 
-  Widget _buildScreenFromStream(BuildContext context, AsyncSnapshot<bool> snapshot) {
+  Widget _buildScreenFromStream(
+      BuildContext context, AsyncSnapshot<bool> snapshot) {
     if (snapshot.hasData) {
       return FutureBuilder(
         future: _provider.getTopHeadlines(),
-        builder: (BuildContext context, AsyncSnapshot<NewsResponse> futureSnapshot) {
+        builder:
+            (BuildContext context, AsyncSnapshot<NewsResponse> futureSnapshot) {
           if (futureSnapshot.hasData) {
             return NewsCardsList(
               news: futureSnapshot.data,
