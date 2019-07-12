@@ -1,4 +1,4 @@
-import './news-source.dart';
+import './news_source.dart';
 
 class ArticleResponse {
   ArticleResponse(

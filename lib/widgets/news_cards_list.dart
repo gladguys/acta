@@ -4,11 +4,11 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:acta/models/news-response.dart';
-import 'package:acta/models/article-response.dart';
+import 'package:acta/models/news_response.dart';
+import 'package:acta/models/article_response.dart';
 import 'package:acta/enums/view_type.dart';
-import 'package:acta/screens/news-info-screen.dart';
-import 'package:acta/widgets/at-network-image.dart';
+import 'package:acta/screens/news_info_screen.dart';
+import 'package:acta/widgets/at_network_image.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:acta/utils/navigation.dart';
 

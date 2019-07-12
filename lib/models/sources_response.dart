@@ -1,4 +1,4 @@
-import 'package:acta/models/source-response.dart';
+import 'package:acta/models/source_response.dart';
 
 class SourcesResponse {
   SourcesResponse({this.status, this.sources});

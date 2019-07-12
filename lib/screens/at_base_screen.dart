@@ -2,7 +2,7 @@ import 'package:acta/widgets/at_country_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/bottomNavigation/main-bottom-navigator.dart';
+import '../widgets/bottomNavigation/main_bottom_navigator.dart';
 
 class ATBaseScreen extends StatelessWidget {
   ATBaseScreen(

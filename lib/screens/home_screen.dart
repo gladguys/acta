@@ -1,13 +1,13 @@
 import 'package:acta/blocs/news_bloc.dart';
 import 'package:acta/enums/view_type.dart';
-import 'package:acta/widgets/news-cards-list.dart';
+import 'package:acta/widgets/news_cards_list.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
-import 'package:acta/models/news-response.dart';
+import 'package:acta/models/news_response.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:acta/providers/news_provider.dart';
 
-import 'at-base-screen.dart';
+import 'at_base_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override

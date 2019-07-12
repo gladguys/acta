@@ -1,4 +1,4 @@
-import 'package:acta/models/article-response.dart';
+import 'package:acta/models/article_response.dart';
 
 class NewsResponse {
   NewsResponse({this.status, this.totalResults, this.articles});

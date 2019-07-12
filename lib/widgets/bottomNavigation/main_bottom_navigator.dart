@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
-import 'package:acta/widgets/bottomNavigation/navigation-items.dart';
-import 'package:acta/screens/home-screen.dart';
-import 'package:acta/screens/search-by-source-screen.dart';
-import 'package:acta/screens/search-by-term-screen.dart';
-import 'package:acta/screens/search-by-category-screen.dart';
+import 'package:acta/widgets/bottomNavigation/navigation_items.dart';
+import 'package:acta/screens/home_screen.dart';
+import 'package:acta/screens/search_by_source_screen.dart';
+import 'package:acta/screens/search_by_term_screen.dart';
+import 'package:acta/screens/search_by_category_screen.dart';
 import 'package:acta/utils/navigation.dart';
 
 @immutable
