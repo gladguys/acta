@@ -4,14 +4,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ATNetworkImage extends StatelessWidget {
-  ATNetworkImage({this.imageUrl});
+  ATNetworkImage({@required this.imageUrl, this.width = 200, this.height = 100});
 
   final String imageUrl;
+  final double width;
+  final double height;
 
   Widget _buildNetworkImagePlaceholder() {
     return SizedBox(
-      width: 200.0,
-      height: 100.0,
+      width: width,
+      height: height,
       child: Shimmer.fromColors(
         baseColor: Color.fromRGBO(64, 64, 64, 0.5),
         highlightColor: Color.fromRGBO(166, 166, 166, 1.0),

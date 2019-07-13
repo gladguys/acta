@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:acta/models/news-response.dart';
+import 'package:acta/models/news_response.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:rxdart/rxdart.dart';
 

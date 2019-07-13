@@ -1,5 +1,5 @@
-import 'package:acta/models/news-response.dart';
-import 'package:acta/models/sources-response.dart';
+import 'package:acta/models/news_response.dart';
+import 'package:acta/models/sources_response.dart';
 import 'package:acta/repository/news_repository.dart';
 
 class NewsProvider {

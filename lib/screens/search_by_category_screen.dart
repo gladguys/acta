@@ -1,6 +1,6 @@
 import 'package:acta/models/category.dart';
-import 'package:acta/screens/at-base-screen.dart';
-import 'package:acta/screens/news-by-category-screen.dart';
+import 'package:acta/screens/at_base_screen.dart';
+import 'package:acta/screens/news_by_category_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';

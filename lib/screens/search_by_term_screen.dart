@@ -1,6 +1,6 @@
-import 'package:acta/models/news-response.dart';
-import 'package:acta/screens/at-base-screen.dart';
-import 'package:acta/widgets/news-cards-list.dart';
+import 'package:acta/models/news_response.dart';
+import 'package:acta/screens/at_base_screen.dart';
+import 'package:acta/widgets/news_cards_list.dart';
 import 'package:acta/providers/news_provider.dart';
 import 'package:flutter/material.dart';
 

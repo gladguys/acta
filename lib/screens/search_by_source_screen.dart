@@ -3,10 +3,10 @@ import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'package:acta/models/source-response.dart';
-import 'package:acta/models/sources-response.dart';
-import 'package:acta/screens/at-base-screen.dart';
-import 'package:acta/screens/news-by-source-screen.dart';
+import 'package:acta/models/source_response.dart';
+import 'package:acta/models/sources_response.dart';
+import 'package:acta/screens/at_base_screen.dart';
+import 'package:acta/screens/news_by_source_screen.dart';
 import 'package:acta/providers/news_provider.dart';
 import 'package:acta/utils/navigation.dart';
 
