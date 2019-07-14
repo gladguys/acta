@@ -32,7 +32,10 @@ class ATBaseScreen extends StatelessWidget {
   Widget _buildAppBar(BuildContext context) {
     return AppBar(
       elevation: 0,
-      title: _buildAppBarTitle(context),
+      centerTitle: !withCountryPicker,
+      title: withCountryPicker 
+        ? _buildAppBarTitle(context)
+        : _buildAppBarTitleSimple(context),
       actions: actions,
     );
   }
@@ -40,20 +43,35 @@ class ATBaseScreen extends StatelessWidget {
   Widget _buildAppBarTitle(BuildContext context) {
     return Row(
       children: <Widget>[
-        withCountryPicker ? ATCountryPicker() : Container(),
-        Container(
-          width: MediaQuery.of(context).size.width - 135,
-          child: Text(
-            title,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontFamily: 'Italianno',
-              fontSize: 36.0,
-              fontWeight: FontWeight.bold,
-            ),
+        ATCountryPicker(),
+        Expanded(
+          child: Column(
+            children: <Widget>[
+              Text(
+                title,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'Italianno',
+                  fontSize: 44.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildAppBarTitleSimple(BuildContext context) {
+    return Text(
+      title,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontFamily: 'Italianno',
+        fontSize: 44.0,
+        fontWeight: FontWeight.bold,
+      ),
     );
   }
 }

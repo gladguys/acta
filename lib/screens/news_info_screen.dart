@@ -22,7 +22,7 @@ class NewsInfoScreen extends StatelessWidget {
 
   Widget _buildNewsInfoScreen() {
     return Container(
-      padding: EdgeInsets.all(16.0),
+      padding: EdgeInsets.fromLTRB(16.0, 0, 16.0, 16.0),
       child: ListView(
         children: <Widget>[
           _buildTitle(),
@@ -58,7 +58,7 @@ class NewsInfoScreen extends StatelessWidget {
   Widget _buildTitle() {
     return Text(
       article.title ?? article.title,
-      style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+      style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
     );
   }
 

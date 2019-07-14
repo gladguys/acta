@@ -29,13 +29,13 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return ATBaseScreen(
-      title: 'Trending News',
+      title: 'Acta',
       actions: <Widget>[
         IconButton(
             icon: Icon(_viewType == ViewType.grid
                 ? Icons.view_agenda
                 : Icons.dashboard),
-            color: Colors.brown[300],
+            color: Colors.brown[200],
             onPressed: () {
               setState(() {
                 _viewType =
@@ -53,11 +53,14 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildHomeScreen() {
-    return StreamBuilder<bool>(
-      stream: bloc.newsObservable,
-      initialData: true,
-      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) =>
-          _buildScreenFromStream(context, snapshot),
+    return Padding(
+      padding: EdgeInsets.only(left: 8.0, right: 8.0),
+      child: StreamBuilder<bool>(
+        stream: bloc.newsObservable,
+        initialData: true,
+        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) =>
+            _buildScreenFromStream(context, snapshot),
+      ),
     );
   }
 

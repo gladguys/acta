@@ -61,25 +61,21 @@ class NewsCardsList extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) =>
           _buildArticleCardForGrid(context, articles[index]),
       staggeredTileBuilder: (int index) => StaggeredTile.fit(2),
-      mainAxisSpacing: 4.0,
+      mainAxisSpacing: 8.0,
       crossAxisSpacing: 4.0,
     );
   }
 
   Widget _buildArticleCardForList(
       BuildContext context, ArticleResponse article) {
-    return Padding(
-      padding: EdgeInsets.all(8.0),
-      child: Card(
-        color: Colors.brown[100],
-        clipBehavior: Clip.antiAlias,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(16.0),
-          ),
-        ),
-        child: _actionsClickCard(context, article),
+    return Card(
+      color: Colors.brown[50],
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.zero),
       ),
+      clipBehavior: Clip.antiAlias,
+      child: _actionsClickCard(context, article),
     );
   }
 
@@ -87,12 +83,8 @@ class NewsCardsList extends StatelessWidget {
       BuildContext context, ArticleResponse article) {
     return Card(
       color: Colors.brown[50],
-      elevation: 3,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(16.0),
-        ),
-      ),
+      elevation: 0,
+      margin: EdgeInsets.all(0),
       child: _actionsClickCard(context, article),
     );
   }
@@ -113,16 +105,9 @@ class NewsCardsList extends StatelessWidget {
     Widget _widget;
 
     if (article.urlToImage != null) {
-      _widget = Container(
-        margin: EdgeInsets.only(bottom: 4.0),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(16.0),
-          child: Hero(
-            tag:
-                '${article.publishedAt.toString() ?? ''}${article.author ?? article.title}',
-            child: _buildShimmerImage(article),
-          ),
-        ),
+      _widget = Hero(
+        tag: '${article.publishedAt.toString() ?? ''}${article.author ?? article.title}',
+        child: _buildShimmerImage(article),
       );
     } else {
       _widget = Container();
