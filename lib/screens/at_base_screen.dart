@@ -8,12 +8,14 @@ class ATBaseScreen extends StatelessWidget {
       {@required this.title,
       @required this.body,
       this.actions,
-      this.initialTab = 0});
+      this.initialTab = 0,
+      this.withCountryPicker = true});
 
   final String title;
   final Widget body;
   final List<Widget> actions;
   final int initialTab;
+  final bool withCountryPicker;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,7 @@ class ATBaseScreen extends StatelessWidget {
   Widget _buildAppBarTitle(BuildContext context) {
     return Row(
       children: <Widget>[
-        ATCountryPicker(),
+        withCountryPicker ? ATCountryPicker() : Container(),
         Container(
           width: MediaQuery.of(context).size.width - 135,
           child: Text(
