@@ -57,9 +57,7 @@ class _SearchByTermState extends State<SearchByTermScreen> {
   Widget _buildTermTextField() {
     return TextFormField(
       validator: (value) {
-        if (value.isEmpty) {
-          return 'Enter some term to search';
-        }
+        return value.isEmpty ? 'Enter some term to search' : '';
       },
       controller: _termController,
     );

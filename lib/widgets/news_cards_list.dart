@@ -14,7 +14,7 @@ import 'package:acta/screens/news_info_screen.dart';
 
 class NewsCardsList extends StatelessWidget {
   NewsCardsList(
-      {@required this.news, @required this.viewType, this.newsRefresher});
+      {@required this.news, this.viewType, this.newsRefresher});
 
   final NewsResponse news;
   final ViewType viewType;
