@@ -1,10 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:acta/models/category.dart';
+import 'package:acta/utils/navigation.dart';
 import 'package:acta/screens/at_base_screen.dart';
 import 'package:acta/screens/news_by_category_screen.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:acta/utils/navigation.dart';
 
 class SearchByCategoryScreen extends StatelessWidget {
   final List<Category> categories = [
@@ -17,6 +17,15 @@ class SearchByCategoryScreen extends StatelessWidget {
     Category(id: 'sports', name: 'Sports', icon: Icon(MdiIcons.soccer)),
     Category(id: 'technology', name: 'Technology', icon: Icon(Icons.computer))
   ];
+
+  @override
+  Widget build(BuildContext context) {
+    return ATBaseScreen(
+      title: 'Category',
+      body: _buildSearchByCategoryScreen(),
+      initialTab: 3,
+    );
+  }
 
   Widget _buildSearchByCategoryScreen() {
     return ListView.builder(
@@ -43,15 +52,6 @@ class SearchByCategoryScreen extends StatelessWidget {
     Navigation.navigateFromInside(
       context: context,
       screen: NewsByCategoryScreen(id: category.id, name: category.name),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ATBaseScreen(
-      title: 'Category',
-      body: _buildSearchByCategoryScreen(),
-      initialTab: 3,
     );
   }
 }

@@ -1,14 +1,23 @@
-import 'package:acta/models/article_response.dart';
 import 'package:flutter/material.dart';
-import 'package:acta/widgets/at_network_image.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:acta/models/article_response.dart';
+import 'package:acta/widgets/at_network_image.dart';
 import 'at_base_screen.dart';
 
 class NewsInfoScreen extends StatelessWidget {
   NewsInfoScreen({@required this.article});
 
   final ArticleResponse article;
+
+  @override
+  Widget build(BuildContext context) {
+    return ATBaseScreen(
+      title: 'News Info',
+      body: _buildNewsInfoScreen(),
+      initialTab: 0,
+    );
+  }
 
   Future<void> _launchURL() async {
     final String url = article.url;
@@ -83,15 +92,6 @@ class NewsInfoScreen extends StatelessWidget {
           _buildLaunchUrlButton(),
         ],
       ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ATBaseScreen(
-      title: 'News Info',
-      body: _buildNewsInfoScreen(),
-      initialTab: 0,
     );
   }
 }

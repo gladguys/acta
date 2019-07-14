@@ -1,8 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:acta/models/news_response.dart';
+import 'package:acta/providers/news_provider.dart';
 import 'package:acta/screens/at_base_screen.dart';
 import 'package:acta/widgets/news_cards_list.dart';
-import 'package:acta/providers/news_provider.dart';
-import 'package:flutter/material.dart';
 
 class SearchByTermScreen extends StatefulWidget {
   @override
@@ -27,6 +27,15 @@ class _SearchByTermState extends State<SearchByTermScreen> {
   void dispose() {
     _termController.dispose();
     super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ATBaseScreen(
+      title: 'Terms',
+      body: _buildSearchByTermScreen(),
+      initialTab: 2,
+    );
   }
 
   Widget _buildNewsByTerm() {
@@ -95,14 +104,5 @@ class _SearchByTermState extends State<SearchByTermScreen> {
 
   Widget _buildSearchByTermScreen() {
     return SingleChildScrollView(reverse: true, child: _buildForm());
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ATBaseScreen(
-      title: 'Terms',
-      body: _buildSearchByTermScreen(),
-      initialTab: 2,
-    );
   }
 }

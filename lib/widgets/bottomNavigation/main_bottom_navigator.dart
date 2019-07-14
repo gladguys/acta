@@ -15,10 +15,23 @@ class MainBottomNavigator extends StatelessWidget {
 
   final int initialIndex;
 
+  @override
+  Widget build(BuildContext context) {
+    return CurvedNavigationBar(
+      index: initialIndex,
+      items: navigationBarItems,
+      height: 56,
+      color: Theme.of(context).accentColor,
+      backgroundColor: Colors.transparent,
+      onTap: (int index) => _navigateToTab(context, index),
+    );
+  }
+
   void _navigateToTab(BuildContext context, int index) {
     Navigation.navigateFromMenu(
       context: context,
       screen: _findTabToNavigate(index),
+      replace: true,
     );
   }
 
@@ -35,17 +48,5 @@ class MainBottomNavigator extends StatelessWidget {
       default:
         return HomeScreen();
     }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return CurvedNavigationBar(
-      index: initialIndex,
-      items: navigationBarItems,
-      height: 56,
-      color: Theme.of(context).accentColor,
-      backgroundColor: Colors.transparent,
-      onTap: (int index) => _navigateToTab(context, index),
-    );
   }
 }

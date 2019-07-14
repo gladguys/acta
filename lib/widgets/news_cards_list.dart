@@ -4,13 +4,13 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:acta/models/news_response.dart';
 import 'package:acta/models/article_response.dart';
 import 'package:acta/enums/view_type.dart';
-import 'package:acta/screens/news_info_screen.dart';
 import 'package:acta/widgets/at_network_image.dart';
-import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:acta/utils/navigation.dart';
+import 'package:acta/screens/news_info_screen.dart';
 
 class NewsCardsList extends StatelessWidget {
   NewsCardsList(
@@ -19,6 +19,11 @@ class NewsCardsList extends StatelessWidget {
   final NewsResponse news;
   final ViewType viewType;
   final Function newsRefresher;
+
+  @override
+  Widget build(BuildContext context) {
+    return _buildNews(context);
+  }
 
   Widget _buildNews(BuildContext context) {
     final List<ArticleResponse> articles =
@@ -166,10 +171,5 @@ class NewsCardsList extends StatelessWidget {
   void _navigateToNewsInfo(BuildContext context, ArticleResponse article) {
     Navigation.navigateFromInside(
         context: context, screen: NewsInfoScreen(article: article));
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return _buildNews(context);
   }
 }
