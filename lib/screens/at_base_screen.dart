@@ -1,7 +1,6 @@
-import 'package:acta/widgets/at_country_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter/cupertino.dart';
+import 'package:acta/widgets/at_country_picker.dart';
 import '../widgets/bottomNavigation/main_bottom_navigator.dart';
 
 class ATBaseScreen extends StatelessWidget {
@@ -30,29 +29,29 @@ class ATBaseScreen extends StatelessWidget {
 
   Widget _buildAppBar(BuildContext context) {
     return AppBar(
-      title: _buildAppBarTitle(context),
-      centerTitle: true,
       elevation: 0,
+      title: _buildAppBarTitle(context),
       actions: actions,
     );
   }
 
   Widget _buildAppBarTitle(BuildContext context) {
-    return Container(
-      width: 300,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          ATCountryPicker(),
-          Text(
+    return Row(
+      children: <Widget>[
+        ATCountryPicker(),
+        Container(
+          width: MediaQuery.of(context).size.width - 135,
+          child: Text(
             title,
+            textAlign: TextAlign.center,
             style: TextStyle(
-                fontFamily: 'Italianno',
-                fontSize: 36.0,
-                fontWeight: FontWeight.bold),
+              fontFamily: 'Italianno',
+              fontSize: 36.0,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
