@@ -11,6 +11,15 @@ class NewsBySourceScreen extends StatelessWidget {
   final String id;
   final String name;
 
+  @override
+  Widget build(BuildContext context) {
+    return ATBaseScreen(
+      title: name,
+      body: _buildNewsBySourceScreen(),
+      initialTab: 1,
+    );
+  }
+
   Widget _buildNewsBySourceScreen() {
     return FutureBuilder<NewsResponse>(
       future: _provider.getTopHeadlinesFromSource(id),
@@ -24,15 +33,6 @@ class NewsBySourceScreen extends StatelessWidget {
           child: CircularProgressIndicator(),
         );
       },
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ATBaseScreen(
-      title: name,
-      body: _buildNewsBySourceScreen(),
-      initialTab: 1,
     );
   }
 }

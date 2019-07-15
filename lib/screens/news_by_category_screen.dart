@@ -1,7 +1,7 @@
-import 'package:acta/models/news_response.dart';
-import 'package:acta/widgets/news_cards_list.dart';
 import 'package:flutter/material.dart';
 import 'package:acta/providers/news_provider.dart';
+import 'package:acta/models/news_response.dart';
+import 'package:acta/widgets/news_cards_list.dart';
 import 'at_base_screen.dart';
 
 class NewsByCategoryScreen extends StatelessWidget {
@@ -10,6 +10,15 @@ class NewsByCategoryScreen extends StatelessWidget {
   final NewsProvider _provider = NewsProvider();
   final String id;
   final String name;
+
+  @override
+  Widget build(BuildContext context) {
+    return ATBaseScreen(
+      title: 'Category: $name',
+      body: _buildNewsByCategoryScreen(),
+      initialTab: 3,
+    );
+  }
 
   Widget _buildNewsByCategoryScreen() {
     return FutureBuilder<NewsResponse>(
@@ -24,15 +33,6 @@ class NewsByCategoryScreen extends StatelessWidget {
           child: CircularProgressIndicator(),
         );
       },
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ATBaseScreen(
-      title: 'Category: $name',
-      body: _buildNewsByCategoryScreen(),
-      initialTab: 3,
     );
   }
 }

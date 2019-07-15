@@ -4,21 +4,26 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:acta/models/news_response.dart';
 import 'package:acta/models/article_response.dart';
 import 'package:acta/enums/view_type.dart';
-import 'package:acta/screens/news_info_screen.dart';
 import 'package:acta/widgets/at_network_image.dart';
-import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:acta/utils/navigation.dart';
+import 'package:acta/screens/news_info_screen.dart';
 
 class NewsCardsList extends StatelessWidget {
   NewsCardsList(
-      {@required this.news, @required this.viewType, this.newsRefresher});
+      {@required this.news, this.viewType, this.newsRefresher});
 
   final NewsResponse news;
   final ViewType viewType;
   final Function newsRefresher;
+
+  @override
+  Widget build(BuildContext context) {
+    return _buildNews(context);
+  }
 
   Widget _buildNews(BuildContext context) {
     final List<ArticleResponse> articles =
@@ -56,25 +61,21 @@ class NewsCardsList extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) =>
           _buildArticleCardForGrid(context, articles[index]),
       staggeredTileBuilder: (int index) => StaggeredTile.fit(2),
-      mainAxisSpacing: 4.0,
+      mainAxisSpacing: 8.0,
       crossAxisSpacing: 4.0,
     );
   }
 
   Widget _buildArticleCardForList(
       BuildContext context, ArticleResponse article) {
-    return Padding(
-      padding: EdgeInsets.all(8.0),
-      child: Card(
-        color: Colors.brown[100],
-        clipBehavior: Clip.antiAlias,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(16.0),
-          ),
-        ),
-        child: _actionsClickCard(context, article),
+    return Card(
+      color: Colors.brown[50],
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.zero),
       ),
+      clipBehavior: Clip.antiAlias,
+      child: _actionsClickCard(context, article),
     );
   }
 
@@ -82,12 +83,8 @@ class NewsCardsList extends StatelessWidget {
       BuildContext context, ArticleResponse article) {
     return Card(
       color: Colors.brown[50],
-      elevation: 3,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(16.0),
-        ),
-      ),
+      elevation: 0,
+      margin: EdgeInsets.all(0),
       child: _actionsClickCard(context, article),
     );
   }
@@ -108,16 +105,9 @@ class NewsCardsList extends StatelessWidget {
     Widget _widget;
 
     if (article.urlToImage != null) {
-      _widget = Container(
-        margin: EdgeInsets.only(bottom: 4.0),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(16.0),
-          child: Hero(
-            tag:
-                '${article.publishedAt.toString() ?? ''}${article.author ?? article.title}',
-            child: _buildShimmerImage(article),
-          ),
-        ),
+      _widget = Hero(
+        tag: '${article.publishedAt.toString() ?? ''}${article.author ?? article.title}',
+        child: _buildShimmerImage(article),
       );
     } else {
       _widget = Container();
@@ -166,10 +156,5 @@ class NewsCardsList extends StatelessWidget {
   void _navigateToNewsInfo(BuildContext context, ArticleResponse article) {
     Navigation.navigateFromInside(
         context: context, screen: NewsInfoScreen(article: article));
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return _buildNews(context);
   }
 }

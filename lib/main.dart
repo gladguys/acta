@@ -1,14 +1,11 @@
-import 'package:acta/main_app.dart';
-import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:global_configuration/global_configuration.dart';
+import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:catcher/catcher_plugin.dart';
-
+import 'package:acta/main_app.dart';
 import 'blocs/news_bloc.dart';
 
-void main() {
-  _loadApp();
-}
+void main() => _loadApp();
 
 Future<void> _loadApp() async {
   await _loadConfig();

@@ -6,24 +6,20 @@ final List<Widget> navigationBarItems = [
     Icons.home,
     size: 32,
     color: Colors.white,
-    // title: Text("Home"),
   ),
   Icon(
     MdiIcons.newspaper,
     size: 32,
     color: Colors.white,
-    // title: Text("Sources"),
   ),
   Icon(
     MdiIcons.formatLetterCase,
     size: 32,
     color: Colors.white,
-    // title: Text("Term"),
   ),
   Icon(
     Icons.layers,
     size: 32,
     color: Colors.white,
-    // title: Text("Types"),
   ),
 ];

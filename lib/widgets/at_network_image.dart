@@ -10,6 +10,15 @@ class ATNetworkImage extends StatelessWidget {
   final double width;
   final double height;
 
+  @override
+  Widget build(BuildContext context) {
+    return CachedNetworkImage(
+      imageUrl: imageUrl,
+      placeholder: (context, url) => _buildNetworkImagePlaceholder(),
+      errorWidget: (context, url, error) => Icon(Icons.error),
+    );
+  }
+
   Widget _buildNetworkImagePlaceholder() {
     return SizedBox(
       width: width,
@@ -23,15 +32,6 @@ class ATNetworkImage extends StatelessWidget {
           color: Color.fromRGBO(217, 217, 217, 0.5),
         )
       ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return CachedNetworkImage(
-      imageUrl: imageUrl,
-      placeholder: (context, url) => _buildNetworkImagePlaceholder(),
-      errorWidget: (context, url, error) => Icon(Icons.error),
     );
   }
 }

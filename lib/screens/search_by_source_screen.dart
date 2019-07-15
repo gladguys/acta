@@ -1,18 +1,26 @@
-import 'package:acta/blocs/news_bloc.dart';
-import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-
+import 'package:bloc_pattern/bloc_pattern.dart';
+import 'package:acta/blocs/news_bloc.dart';
 import 'package:acta/models/source_response.dart';
 import 'package:acta/models/sources_response.dart';
-import 'package:acta/screens/at_base_screen.dart';
-import 'package:acta/screens/news_by_source_screen.dart';
 import 'package:acta/providers/news_provider.dart';
 import 'package:acta/utils/navigation.dart';
+import 'package:acta/screens/at_base_screen.dart';
+import 'package:acta/screens/news_by_source_screen.dart';
 
 class SearchBySourceScreen extends StatelessWidget {
   final NewsBloc bloc = BlocProvider.getBloc<NewsBloc>();
   final NewsProvider _provider = NewsProvider();
+
+  @override
+  Widget build(BuildContext context) {
+    return ATBaseScreen(
+      title: 'Sources',
+      body: _buildSearchBySourceScreen(),
+      initialTab: 1,
+    );
+  }
 
   Widget _buildSearchBySourceScreen() {
     return StreamBuilder(
@@ -75,15 +83,6 @@ class SearchBySourceScreen extends StatelessWidget {
         id: source.id,
         name: source.name,
       ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ATBaseScreen(
-      title: 'Sources',
-      body: _buildSearchBySourceScreen(),
-      initialTab: 1,
     );
   }
 }

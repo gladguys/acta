@@ -1,7 +1,6 @@
-import 'package:acta/widgets/at_country_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter/cupertino.dart';
+import 'package:acta/widgets/at_country_picker.dart';
 import '../widgets/bottomNavigation/main_bottom_navigator.dart';
 
 class ATBaseScreen extends StatelessWidget {
@@ -9,12 +8,14 @@ class ATBaseScreen extends StatelessWidget {
       {@required this.title,
       @required this.body,
       this.actions,
-      this.initialTab = 0});
+      this.initialTab = 0,
+      this.withCountryPicker = true});
 
   final String title;
   final Widget body;
   final List<Widget> actions;
   final int initialTab;
+  final bool withCountryPicker;
 
   @override
   Widget build(BuildContext context) {
@@ -30,28 +31,46 @@ class ATBaseScreen extends StatelessWidget {
 
   Widget _buildAppBar(BuildContext context) {
     return AppBar(
-      title: _buildAppBarTitle(context),
-      centerTitle: true,
       elevation: 0,
+      centerTitle: !withCountryPicker,
+      title: withCountryPicker 
+        ? _buildAppBarTitle(context)
+        : _buildAppBarTitleSimple(context),
       actions: actions,
     );
   }
 
   Widget _buildAppBarTitle(BuildContext context) {
-    return Container(
-      width: 300,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          ATCountryPicker(),
-          Text(
-            title,
-            style: TextStyle(
-                fontFamily: 'Italianno',
-                fontSize: 36.0,
-                fontWeight: FontWeight.bold),
+    return Row(
+      children: <Widget>[
+        ATCountryPicker(),
+        Expanded(
+          child: Column(
+            children: <Widget>[
+              Text(
+                title,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'Italianno',
+                  fontSize: 44.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildAppBarTitleSimple(BuildContext context) {
+    return Text(
+      title,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontFamily: 'Italianno',
+        fontSize: 44.0,
+        fontWeight: FontWeight.bold,
       ),
     );
   }

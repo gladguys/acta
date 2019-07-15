@@ -1,12 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:acta/blocs/news_bloc.dart';
 import 'package:acta/enums/view_type.dart';
 import 'package:acta/widgets/news_cards_list.dart';
-import 'package:bloc_pattern/bloc_pattern.dart';
-import 'package:flutter/material.dart';
 import 'package:acta/models/news_response.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:acta/providers/news_provider.dart';
-
 import 'at_base_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -27,16 +26,41 @@ class _HomeScreenState extends State<HomeScreen> {
     _viewType = ViewType.grid;
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return ATBaseScreen(
+      title: 'Acta',
+      actions: <Widget>[
+        IconButton(
+            icon: Icon(_viewType == ViewType.grid
+                ? Icons.view_agenda
+                : Icons.dashboard),
+            color: Colors.brown[200],
+            onPressed: () {
+              setState(() {
+                _viewType =
+                    _viewType == ViewType.grid ? ViewType.list : ViewType.grid;
+              });
+            })
+      ],
+      body: _buildHomeScreen(),
+      initialTab: 0,
+    );
+  }
+
   Future<void> _getTopHeadlines() {
     return _provider.getTopHeadlines().then((news) => bloc.refreshNews(news));
   }
 
   Widget _buildHomeScreen() {
-    return StreamBuilder<bool>(
-      stream: bloc.newsObservable,
-      initialData: true,
-      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) =>
-          _buildScreenFromStream(context, snapshot),
+    return Padding(
+      padding: EdgeInsets.only(left: 8.0, right: 8.0),
+      child: StreamBuilder<bool>(
+        stream: bloc.newsObservable,
+        initialData: true,
+        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) =>
+            _buildScreenFromStream(context, snapshot),
+      ),
     );
   }
 
@@ -64,28 +88,6 @@ class _HomeScreenState extends State<HomeScreen> {
     }
     return Center(
       child: CircularProgressIndicator(),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ATBaseScreen(
-      title: 'Trending News',
-      actions: <Widget>[
-        IconButton(
-            icon: Icon(_viewType == ViewType.grid
-                ? Icons.view_agenda
-                : Icons.dashboard),
-            color: Colors.brown[300],
-            onPressed: () {
-              setState(() {
-                _viewType =
-                    _viewType == ViewType.grid ? ViewType.list : ViewType.grid;
-              });
-            })
-      ],
-      body: _buildHomeScreen(),
-      initialTab: 0,
     );
   }
 }
