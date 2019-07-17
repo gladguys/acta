@@ -7,7 +7,7 @@ import 'at_base_screen.dart';
 class NewsByCategoryScreen extends StatelessWidget {
   NewsByCategoryScreen({@required this.id, @required this.name});
 
-  final NewsProvider _provider = NewsProvider();
+  final _provider = NewsProvider();
   final String id;
   final String name;
 

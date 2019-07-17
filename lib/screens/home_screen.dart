@@ -16,8 +16,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final NewsBloc bloc = BlocProvider.getBloc<NewsBloc>();
-  final NewsProvider _provider = NewsProvider();
+  final _bloc = BlocProvider.getBloc<NewsBloc>();
+  final _provider = NewsProvider();
   ViewType _viewType;
 
   @override
@@ -49,14 +49,14 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _getTopHeadlines() {
-    return _provider.getTopHeadlines().then((news) => bloc.refreshNews(news));
+    return _provider.getTopHeadlines().then((news) => _bloc.refreshNews(news));
   }
 
   Widget _buildHomeScreen() {
     return Padding(
       padding: EdgeInsets.only(left: 8.0, right: 8.0),
       child: StreamBuilder<bool>(
-        stream: bloc.newsObservable,
+        stream: _bloc.newsObservable,
         initialData: true,
         builder: (BuildContext context, AsyncSnapshot<bool> snapshot) =>
             _buildScreenFromStream(context, snapshot),

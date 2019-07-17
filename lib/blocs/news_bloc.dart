@@ -7,8 +7,8 @@ class NewsBloc extends BlocBase {
 
   NewsBloc();
 
-  final BehaviorSubject<bool> _newsCountrySubject = BehaviorSubject<bool>.seeded(true);
-  final BehaviorSubject<NewsResponse> _newsRefresherSubject = BehaviorSubject<NewsResponse>.seeded(null);
+  final _newsCountrySubject = BehaviorSubject<bool>.seeded(true);
+  final _newsRefresherSubject = BehaviorSubject<NewsResponse>.seeded(null);
 
   Stream<bool> get newsObservable => _newsCountrySubject.stream;
   Stream<NewsResponse> get newsRefresherObservable => _newsRefresherSubject.stream;

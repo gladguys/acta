@@ -3,7 +3,7 @@ import 'package:acta/models/sources_response.dart';
 import 'package:acta/repository/news_repository.dart';
 
 class NewsProvider {
-  final NewsRepository _repository = NewsRepository();
+  final _repository = NewsRepository();
 
   Future<NewsResponse> getTopHeadlines() async {
     return _repository.getTopHeadlines();

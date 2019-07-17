@@ -29,7 +29,6 @@ class Navigation {
       @required Widget screen,
       @required PageTransitionType transitionType,
       bool replace = false}) {
-
     assert(context != null);
     assert(screen != null);
     assert(replace != null);

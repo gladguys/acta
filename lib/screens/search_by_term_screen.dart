@@ -13,9 +13,9 @@ class SearchByTermScreen extends StatefulWidget {
 
 class _SearchByTermState extends State<SearchByTermScreen> {
   String term;
-  final NewsProvider _provider = NewsProvider();
+  final _provider = NewsProvider();
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _termController = TextEditingController();
+  final _termController = TextEditingController();
 
   @override
   void initState() {

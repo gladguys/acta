@@ -10,8 +10,8 @@ import 'package:acta/screens/at_base_screen.dart';
 import 'package:acta/screens/news_by_source_screen.dart';
 
 class SearchBySourceScreen extends StatelessWidget {
-  final NewsBloc bloc = BlocProvider.getBloc<NewsBloc>();
-  final NewsProvider _provider = NewsProvider();
+  final _bloc = BlocProvider.getBloc<NewsBloc>();
+  final _provider = NewsProvider();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class SearchBySourceScreen extends StatelessWidget {
 
   Widget _buildSearchBySourceScreen() {
     return StreamBuilder(
-      stream: bloc.newsObservable,
+      stream: _bloc.newsObservable,
       initialData: true,
       builder: (BuildContext context, AsyncSnapshot<bool> snapshot) =>
           _buildScreenFromStream(context, snapshot),

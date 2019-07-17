@@ -8,7 +8,7 @@ import 'package:acta/blocs/news_bloc.dart';
 import 'package:acta/utils/supported_countries.dart';
 
 class ATCountryPicker extends StatelessWidget {
-  final NewsBloc bloc = BlocProvider.getBloc<NewsBloc>();
+  final _bloc = BlocProvider.getBloc<NewsBloc>();
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class ATCountryPicker extends StatelessWidget {
 
   Future<void> _updateCountry(BuildContext context, Country country) async {
     GlobalConfiguration().setValue('country', country.isoCode.toLowerCase());
-    bloc.updateCountry();
+    _bloc.updateCountry();
   }
 
   bool _filterCountry(Country country) {
