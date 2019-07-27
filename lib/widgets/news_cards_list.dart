@@ -7,17 +7,15 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:acta/models/news_response.dart';
 import 'package:acta/models/article_response.dart';
-import 'package:acta/enums/view_type.dart';
 import 'package:acta/widgets/at_network_image.dart';
 import 'package:acta/utils/navigation.dart';
 import 'package:acta/screens/news_info_screen.dart';
 
 class NewsCardsList extends StatelessWidget {
   NewsCardsList(
-      {@required this.news, this.viewType, this.newsRefresher});
+      {@required this.news, this.newsRefresher});
 
   final NewsResponse news;
-  final ViewType viewType;
   final Function newsRefresher;
 
   @override
@@ -32,26 +30,9 @@ class NewsCardsList extends StatelessWidget {
     if (newsRefresher != null) {
       return LiquidPullToRefresh(
           onRefresh: newsRefresher,
-          child: _buildNewsWithType(context, articles));
+          child: _buildCardsGrid(context, articles));
     }
-    return _buildNewsWithType(context, articles);
-  }
-
-  Widget _buildNewsWithType(
-      BuildContext context, List<ArticleResponse> articles) {
-    return viewType == ViewType.grid
-        ? _buildCardsGrid(context, articles)
-        : _buildCardsList(context, articles);
-  }
-
-  Widget _buildCardsList(BuildContext context, List<ArticleResponse> articles) {
-    return ListView.builder(
-      scrollDirection: Axis.vertical,
-      shrinkWrap: true,
-      itemCount: articles.length,
-      itemBuilder: (context, index) =>
-          _buildArticleCardForList(context, articles[index]),
-    );
+    return _buildCardsGrid(context, articles);
   }
 
   Widget _buildCardsGrid(BuildContext context, List<ArticleResponse> articles) {
@@ -63,19 +44,6 @@ class NewsCardsList extends StatelessWidget {
       staggeredTileBuilder: (int index) => StaggeredTile.fit(2),
       mainAxisSpacing: 8.0,
       crossAxisSpacing: 4.0,
-    );
-  }
-
-  Widget _buildArticleCardForList(
-      BuildContext context, ArticleResponse article) {
-    return Card(
-      color: Colors.brown[50],
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.zero),
-      ),
-      clipBehavior: Clip.antiAlias,
-      child: _actionsClickCard(context, article),
     );
   }
 
@@ -117,13 +85,7 @@ class NewsCardsList extends StatelessWidget {
   }
 
   Widget _buildShimmerImage(ArticleResponse article) {
-    return viewType == ViewType.grid
-        ? ATNetworkImage(imageUrl: article.urlToImage)
-        : ATNetworkImage(
-            imageUrl: article.urlToImage,
-            width: 380,
-            height: 180,
-          );
+    return ATNetworkImage(imageUrl: article.urlToImage);
   }
 
   Widget _buildTextOfCard(ArticleResponse article) {
@@ -134,9 +96,8 @@ class NewsCardsList extends StatelessWidget {
         padding: EdgeInsets.all(8.0),
         child: Text(
           article.title != null ? article.title : '',
-          textAlign:
-              viewType == ViewType.grid ? TextAlign.justify : TextAlign.center,
-          style: TextStyle(fontSize: viewType == ViewType.grid ? 14.0 : 16.0),
+          textAlign: TextAlign.justify,
+          style: TextStyle(fontSize: 14.0),
         ),
       );
     } else {
@@ -145,7 +106,7 @@ class NewsCardsList extends StatelessWidget {
         child: Text(
           article.title != null ? article.title : '',
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: viewType == ViewType.grid ? 18.0 : 20.0),
+          style: TextStyle(fontSize: 18.0),
         ),
       );
     }

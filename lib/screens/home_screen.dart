@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
+import 'package:acta/widgets/at_country_picker.dart';
 import 'package:acta/blocs/news_bloc.dart';
-import 'package:acta/enums/view_type.dart';
 import 'package:acta/widgets/news_cards_list.dart';
 import 'package:acta/models/news_response.dart';
 import 'package:acta/providers/news_provider.dart';
@@ -18,33 +18,16 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final _bloc = BlocProvider.getBloc<NewsBloc>();
   final _provider = NewsProvider();
-  ViewType _viewType;
-
-  @override
-  void initState() {
-    super.initState();
-    _viewType = ViewType.grid;
-  }
 
   @override
   Widget build(BuildContext context) {
     return ATBaseScreen(
       title: 'Acta',
-      actions: <Widget>[
-        IconButton(
-            icon: Icon(_viewType == ViewType.grid
-                ? Icons.view_agenda
-                : Icons.dashboard),
-            color: Colors.brown[200],
-            onPressed: () {
-              setState(() {
-                _viewType =
-                    _viewType == ViewType.grid ? ViewType.list : ViewType.grid;
-              });
-            })
-      ],
       body: _buildHomeScreen(),
       initialTab: 0,
+      actions: <Widget>[
+        ATCountryPicker(),
+      ],
     );
   }
 
@@ -74,7 +57,6 @@ class _HomeScreenState extends State<HomeScreen> {
           if (futureSnapshot.hasData) {
             return NewsCardsList(
               news: futureSnapshot.data,
-              viewType: _viewType,
               newsRefresher: _getTopHeadlines,
             );
           }
