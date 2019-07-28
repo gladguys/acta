@@ -8,6 +8,7 @@ class MainApp extends Widget {
   Element createElement() {
     return MaterialApp(
       title: 'Acta',
+      debugShowCheckedModeBanner: false,
       navigatorKey: Catcher.navigatorKey,
       theme: atTheme,
       home: HomeScreen(),

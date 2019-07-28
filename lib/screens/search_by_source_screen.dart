@@ -8,6 +8,7 @@ import 'package:acta/providers/news_provider.dart';
 import 'package:acta/utils/navigation.dart';
 import 'package:acta/screens/at_base_screen.dart';
 import 'package:acta/screens/news_by_source_screen.dart';
+import 'package:acta/widgets/at_country_picker.dart';
 
 class SearchBySourceScreen extends StatelessWidget {
   final _bloc = BlocProvider.getBloc<NewsBloc>();
@@ -16,9 +17,12 @@ class SearchBySourceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ATBaseScreen(
-      title: 'Sources',
+      subtitle: 'Sources',
       body: _buildSearchBySourceScreen(),
       initialTab: 1,
+      actions: <Widget>[
+        ATCountryPicker(),
+      ],
     );
   }
 
@@ -67,7 +71,13 @@ class SearchBySourceScreen extends StatelessWidget {
     return Column(
       children: <Widget>[
         ListTile(
-          title: Text('${source.name}'),
+          title: Text(
+            '${source.name}',
+            style: TextStyle(
+              fontSize: 18.0,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
           subtitle: Text('${source.description}'),
           onTap: () => _navigateToNewsBySource(context, source),
         ),
