@@ -32,7 +32,7 @@ class _SearchByTermState extends State<SearchByTermScreen> {
   @override
   Widget build(BuildContext context) {
     return ATBaseScreen(
-      title: 'Terms',
+      subtitle: 'Terms',
       body: _buildSearchByTermScreen(),
       initialTab: 2,
     );
@@ -55,18 +55,68 @@ class _SearchByTermState extends State<SearchByTermScreen> {
   }
 
   Widget _buildTermTextField() {
-    return TextFormField(
-      validator: (value) {
-        return value.isEmpty ? 'Enter some term to search' : '';
-      },
-      controller: _termController,
+    return Container(
+      width: 300.0,
+      margin: EdgeInsets.only(right: 8.0),
+      child: TextFormField(
+        style: TextStyle(fontSize: 20.0),
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(
+            horizontal: 24.0,
+            vertical: 20.0,
+          ),
+          hintText: 'Search here...',
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(32.0),
+            ),
+            borderSide: BorderSide(
+              color: Theme.of(context).accentColor,
+              width: 2.0,
+            ),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(32.0),
+            ),
+            borderSide: BorderSide(
+              color: Theme.of(context).accentColor,
+              width: 2.0,
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(32.0),
+            ),
+            borderSide: BorderSide(
+              color: Theme.of(context).accentColor,
+              width: 3.0,
+            ),
+          ),
+        ),
+        validator: (value) {
+          if (value.isEmpty)
+            return 'Enter some term to search';
+        },
+        controller: _termController,
+      ),
     );
   }
 
   Widget _buildSearchButton() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16.0),
+    return Container(
+      width: 60.0,
       child: RaisedButton(
+        color: Theme.of(context).accentColor,
+        padding: EdgeInsets.symmetric(vertical: 15.0),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(32.0),
+        ),
+        child: Icon(
+          Icons.search,
+          color: Theme.of(context).primaryColor,
+          size: 32.0,
+        ),
         onPressed: () {
           if (_formKey.currentState.validate()) {
             setState(() {
@@ -74,7 +124,6 @@ class _SearchByTermState extends State<SearchByTermScreen> {
             });
           }
         },
-        child: Text('Search'),
       ),
     );
   }
@@ -87,12 +136,17 @@ class _SearchByTermState extends State<SearchByTermScreen> {
     return Form(
       key: _formKey,
       child: Container(
-        padding: EdgeInsets.all(12.0),
+        padding: EdgeInsets.all(8.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            _buildTermTextField(),
-            _buildSearchButton(),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                _buildTermTextField(),
+                _buildSearchButton(),
+              ],
+            ),
             _buildSearchByTermResult(),
           ],
         ),
