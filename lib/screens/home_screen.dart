@@ -1,3 +1,5 @@
+import 'package:acta/widgets/at_waiting.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
@@ -32,20 +34,28 @@ class _HomeScreenState extends State<HomeScreen> {
       title: 'Acta',
       actions: <Widget>[
         IconButton(
-            icon: Icon(_viewType == ViewType.grid
-                ? Icons.view_agenda
-                : Icons.dashboard),
-            color: Colors.brown[200],
-            onPressed: () {
-              setState(() {
-                _viewType =
-                    _viewType == ViewType.grid ? ViewType.list : ViewType.grid;
-              });
-            })
+          icon: Icon(
+              _viewType == ViewType.grid ? Icons.view_agenda : Icons.dashboard),
+          color: Colors.brown[200],
+          onPressed: () {
+            setState(() {
+              _viewType =
+                  _viewType == ViewType.grid ? ViewType.list : ViewType.grid;
+            });
+          },
+        ),
+        IconButton(
+          icon: Icon(Icons.exit_to_app),
+          onPressed: _logoutApp,
+        )
       ],
       body: _buildHomeScreen(),
       initialTab: 0,
     );
+  }
+
+  Future<void> _logoutApp() async {
+    await FirebaseAuth.instance.signOut();
   }
 
   Future<void> _getTopHeadlines() {
@@ -78,16 +88,12 @@ class _HomeScreenState extends State<HomeScreen> {
               newsRefresher: _getTopHeadlines,
             );
           }
-          return Center(
-            child: CircularProgressIndicator(),
-          );
+          return ATWaiting();
         },
       );
     } else if (snapshot.hasError) {
       return Text('${snapshot.error}');
     }
-    return Center(
-      child: CircularProgressIndicator(),
-    );
+    return ATWaiting();
   }
 }

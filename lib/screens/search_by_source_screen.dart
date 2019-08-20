@@ -1,3 +1,4 @@
+import 'package:acta/widgets/at_waiting.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
@@ -43,15 +44,11 @@ class SearchBySourceScreen extends StatelessWidget {
           } else if (snapshot.hasError) {
             return Text('${snapshot.error}');
           }
-          return Center(
-            child: CircularProgressIndicator(),
-          );
+          return ATWaiting();
         },
       );
     }
-    return Center(
-      child: CircularProgressIndicator(),
-    );
+    return ATWaiting();
   }
 
   Widget _buildSourcesList(
