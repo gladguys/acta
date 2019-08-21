@@ -1,7 +1,8 @@
+import 'package:acta/blocs/configs_bloc.dart';
+import 'package:acta/blocs/preferences_bloc.dart';
 import 'package:acta/screens/auth/sign_in_screen.dart';
 import 'package:acta/screens/auth/sign_up_screen.dart';
-import 'package:acta/screens/home_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 
 enum AuthMode { SIGN_IN, SIGN_UP }
@@ -12,32 +13,21 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
+  final _configsBloc = BlocProvider.getBloc<ConfigsBloc>();
   AuthMode authMode;
 
   @override
   void initState() {
     authMode = AuthMode.SIGN_IN;
+    _configsBloc.initConfigs();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<FirebaseUser>(
-        stream: FirebaseAuth.instance.onAuthStateChanged,
-        builder: (BuildContext context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return  SignInScreen(toggler: toggleScreens);
-          } else {
-            if (snapshot.hasData) {
-              return HomeScreen();
-            }
-            return SignInScreen(toggler: toggleScreens);
-          }
-        }
-    );
-    /*return authMode == AuthMode.SIGN_IN
+    return authMode == AuthMode.SIGN_IN
         ? SignInScreen(toggler: toggleScreens)
-        : SignUpScreen(toggler: toggleScreens);*/
+        : SignUpScreen(toggler: toggleScreens);
   }
 
   void toggleScreens() {

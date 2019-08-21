@@ -1,7 +1,9 @@
-import 'package:acta/blocs/logged_user_bloc.dart';
+import 'package:acta/blocs/configs_bloc.dart';
+import 'package:acta/blocs/user_bloc.dart';
 import 'package:acta/blocs/sign_in_screen_bloc.dart';
 import 'package:acta/screens/auth/auth_validations.dart';
 import 'package:acta/screens/home_screen.dart';
+import 'package:acta/screens/intro_screen.dart';
 import 'package:acta/utils/firebase_errors_helper.dart';
 import 'package:acta/utils/navigation.dart';
 import 'package:acta/widgets/at_waiting.dart';
@@ -20,12 +22,12 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   final Map<String, String> _signInInfo = {};
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  FocusNode passwordFocusNode = FocusNode();
   bool isAuthenticating;
   String errorMessage;
 
-  final SignInScreenBloc _signInScreenBloc =
-      BlocProvider.getBloc<SignInScreenBloc>();
-  final LoggedUserBloc _loggedUserBloc = BlocProvider.getBloc<LoggedUserBloc>();
+  final _signInScreenBloc = BlocProvider.getBloc<SignInScreenBloc>();
+  final _userBloc = BlocProvider.getBloc<UserBloc>();
 
   @override
   void initState() {
@@ -55,6 +57,9 @@ class _SignInScreenState extends State<SignInScreen> {
                         keyboardType: TextInputType.emailAddress,
                         onSaved: (String email) => _signInInfo['email'] = email,
                         validator: AuthValidations.emailValidator,
+                        textInputAction: TextInputAction.next,
+                        onEditingComplete: () => FocusScope.of(context)
+                            .requestFocus(passwordFocusNode),
                       ),
                       SizedBox(
                         height: 10.0,
@@ -68,6 +73,9 @@ class _SignInScreenState extends State<SignInScreen> {
                             _signInInfo['password'] = password,
                         validator: AuthValidations.passwordValidator,
                         obscureText: true,
+                        focusNode: passwordFocusNode,
+                        textInputAction: TextInputAction.done,
+                        onEditingComplete: () => _signInUser(context),
                       ),
                       SizedBox(
                         height: 10.0,
@@ -103,15 +111,29 @@ class _SignInScreenState extends State<SignInScreen> {
       setState(() => isAuthenticating = true);
       final userData = await _signInScreenBloc.signInUser(
           _signInInfo['email'], _signInInfo['password']);
-      setState(() => isAuthenticating = false);
 
       if (!userData['hasError']) {
-        _loggedUserBloc.setLoggedUser(userData['user']);
-        Navigation.navigateFromInside(context: context, screen: HomeScreen());
+        _userBloc.setLoggedUser(userData['user']);
+        if (ConfigsBloc.isFirstLoginDone) {
+          Navigation.navigateFromInside(
+              context: context, screen: HomeScreen(), replace: true);
+        } else {
+          Navigation.navigateFromInside(
+              context: context, screen: IntroScreen());
+        }
       } else {
-        setState(() => errorMessage =
-            FirebaseSignInErrorsHelper.getMessage(userData['code']));
+        setState(() {
+          errorMessage =
+              FirebaseSignInErrorsHelper.getMessage(userData['code']);
+          isAuthenticating = false;
+        });
       }
     }
+  }
+
+  @override
+  void dispose() {
+    passwordFocusNode.dispose();
+    super.dispose();
   }
 }

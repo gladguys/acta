@@ -9,13 +9,15 @@ class ATBaseScreen extends StatelessWidget {
       @required this.body,
       this.actions,
       this.initialTab = 0,
-      this.withCountryPicker = true});
+      this.withCountryPicker = true,
+      this.withbBottomNavigationBar = true});
 
   final String title;
   final Widget body;
   final List<Widget> actions;
   final int initialTab;
   final bool withCountryPicker;
+  final bool withbBottomNavigationBar;
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +25,11 @@ class ATBaseScreen extends StatelessWidget {
       backgroundColor: Colors.brown[50],
       appBar: _buildAppBar(context),
       body: body,
-      bottomNavigationBar: MainBottomNavigator(
-        initialIndex: initialTab,
-      ),
+      bottomNavigationBar: withbBottomNavigationBar
+          ? MainBottomNavigator(
+              initialIndex: initialTab,
+            )
+          : null,
     );
   }
 
@@ -33,9 +37,9 @@ class ATBaseScreen extends StatelessWidget {
     return AppBar(
       elevation: 0,
       centerTitle: !withCountryPicker,
-      title: withCountryPicker 
-        ? _buildAppBarTitle(context)
-        : _buildAppBarTitleSimple(context),
+      title: withCountryPicker
+          ? _buildAppBarTitle(context)
+          : _buildAppBarTitleSimple(context),
       actions: actions,
     );
   }

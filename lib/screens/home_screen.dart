@@ -1,5 +1,6 @@
+import 'package:acta/blocs/user_bloc.dart';
+import 'package:acta/utils/navigation.dart';
 import 'package:acta/widgets/at_waiting.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
@@ -12,15 +13,15 @@ import 'at_base_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    return _HomeScreenState();
-  }
+  State<StatefulWidget> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final _bloc = BlocProvider.getBloc<NewsBloc>();
   final _provider = NewsProvider();
   ViewType _viewType;
+
+  final _newsBloc = BlocProvider.getBloc<NewsBloc>();
+  final _userBloc = BlocProvider.getBloc<UserBloc>();
 
   @override
   void initState() {
@@ -46,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         IconButton(
           icon: Icon(Icons.exit_to_app),
-          onPressed: _logoutApp,
+          onPressed: () => _logoutApp(context),
         )
       ],
       body: _buildHomeScreen(),
@@ -54,19 +55,20 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Future<void> _logoutApp() async {
-    await FirebaseAuth.instance.signOut();
+  Future<void> _logoutApp(BuildContext context) async {
+    _userBloc.logoutUser();
+    Navigation.exitAppNavigation(context);
   }
 
   Future<void> _getTopHeadlines() {
-    return _provider.getTopHeadlines().then((news) => _bloc.refreshNews(news));
+    return _provider.getTopHeadlines().then((news) => _newsBloc.refreshNews(news));
   }
 
   Widget _buildHomeScreen() {
     return Padding(
       padding: EdgeInsets.only(left: 8.0, right: 8.0),
       child: StreamBuilder<bool>(
-        stream: _bloc.newsObservable,
+        stream: _newsBloc.newsObservable,
         initialData: true,
         builder: (BuildContext context, AsyncSnapshot<bool> snapshot) =>
             _buildScreenFromStream(context, snapshot),
