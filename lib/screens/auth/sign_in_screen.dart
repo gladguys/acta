@@ -1,6 +1,7 @@
 import 'package:acta/blocs/configs_bloc.dart';
-import 'package:acta/blocs/user_bloc.dart';
 import 'package:acta/blocs/sign_in_screen_bloc.dart';
+import 'package:acta/i18n/at_labels.dart';
+import 'package:acta/i18n/at_messages.dart';
 import 'package:acta/screens/auth/auth_validations.dart';
 import 'package:acta/screens/home_screen.dart';
 import 'package:acta/screens/intro_screen.dart';
@@ -81,12 +82,12 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                       RaisedButton.icon(
                         icon: Icon(Icons.transit_enterexit),
-                        label: Text('Login'),
+                        label: Text(ATLabels.LOGIN),
                         onPressed: () => _signInUser(context),
                       ),
                       _buildAuthErrorMessage(),
                       FlatButton(
-                        child: Text('Create an account'),
+                        child: Text(ATMessages.CREATE_ACCOUNT),
                         onPressed: widget.toggler,
                       ),
                     ],

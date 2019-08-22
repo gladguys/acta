@@ -1,3 +1,4 @@
+import 'package:acta/i18n/at_labels.dart';
 import 'package:acta/screens/auth/auth_screen.dart';
 import 'package:acta/screens/home_screen.dart';
 import 'package:acta/theme/at_theme.dart';
@@ -14,7 +15,7 @@ class MainApp extends StatelessWidget {
       builder: (_, AsyncSnapshot<bool> snapshot) {
         if (snapshot.hasData) {
           return MaterialApp(
-            title: 'Acta',
+            title: ATLabels.ACTA,
             navigatorKey: Catcher.navigatorKey,
             theme: atTheme,
             home: snapshot.data ? HomeScreen() : AuthScreen(),

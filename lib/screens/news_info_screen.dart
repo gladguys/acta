@@ -1,3 +1,5 @@
+import 'package:acta/i18n/at_labels.dart';
+import 'package:acta/i18n/at_messages.dart';
 import 'package:acta/utils/navigation.dart';
 import 'package:acta/widgets/at_webview_container.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +16,7 @@ class NewsInfoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ATBaseScreen(
-      title: 'Acta',
+      title: ATLabels.ACTA,
       body: _buildNewsInfoScreen(context),
       initialTab: 0,
     );
@@ -96,7 +98,7 @@ class NewsInfoScreen extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(8.0))
       ),
-      child: Text('See full content'),
+      child: Text(ATMessages.SEE_FULL_CONTENT),
       onPressed: () => _launchURL(context),
     );
   }

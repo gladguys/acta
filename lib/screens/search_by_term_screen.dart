@@ -1,3 +1,4 @@
+import 'package:acta/i18n/at_labels.dart';
 import 'package:acta/widgets/at_waiting.dart';
 import 'package:flutter/material.dart';
 import 'package:acta/models/news_response.dart';
@@ -73,7 +74,7 @@ class _SearchByTermState extends State<SearchByTermScreen> {
             });
           }
         },
-        child: Text('Search'),
+        child: Text(ATLabels.SEARCH),
       ),
     );
   }
