@@ -27,7 +27,6 @@ class _SignInScreenState extends State<SignInScreen> {
   String errorMessage;
 
   final _signInScreenBloc = BlocProvider.getBloc<SignInScreenBloc>();
-  final _userBloc = BlocProvider.getBloc<UserBloc>();
 
   @override
   void initState() {
@@ -113,7 +112,6 @@ class _SignInScreenState extends State<SignInScreen> {
           _signInInfo['email'], _signInInfo['password']);
 
       if (!userData['hasError']) {
-        _userBloc.setLoggedUser(userData['user']);
         if (ConfigsBloc.isFirstLoginDone) {
           Navigation.navigateFromInside(
               context: context, screen: HomeScreen(), replace: true);

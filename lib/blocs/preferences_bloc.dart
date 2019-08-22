@@ -5,6 +5,6 @@ class PreferencesBloc extends BlocBase {
 
   Future<void> setIsFirstLoginDone() async {
     final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    sharedPreferences.setBool('isFirstLoginDone', true);
+    await sharedPreferences.setBool('isFirstLoginDone', true);
   }
 }

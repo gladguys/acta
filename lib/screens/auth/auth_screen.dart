@@ -1,5 +1,4 @@
 import 'package:acta/blocs/configs_bloc.dart';
-import 'package:acta/blocs/preferences_bloc.dart';
 import 'package:acta/screens/auth/sign_in_screen.dart';
 import 'package:acta/screens/auth/sign_up_screen.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';

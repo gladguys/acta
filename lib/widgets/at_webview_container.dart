@@ -29,7 +29,6 @@ class _ATWebViewContainerState extends State<ATWebViewContainer> {
           ),
         ],
       ),
-      withCountryPicker: false,
     );
   }
 }

@@ -66,7 +66,6 @@ class IntroScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('yeyeeee');
     return Scaffold(
       body: IntroViewsFlutter(
         [page, page2, page3],
