@@ -1,6 +1,7 @@
+import 'package:acta/utils/navigation.dart';
+import 'package:acta/widgets/at_webview_container.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:acta/models/article_response.dart';
 import 'package:acta/widgets/at_network_image.dart';
 import 'at_base_screen.dart';
@@ -14,13 +15,13 @@ class NewsInfoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ATBaseScreen(
       title: 'Acta',
-      body: _buildNewsInfoScreen(),
+      body: _buildNewsInfoScreen(context),
       initialTab: 0,
       withCountryPicker: false,
     );
   }
 
-  Widget _buildNewsInfoScreen() {
+  Widget _buildNewsInfoScreen(BuildContext context) {
     return Container(
       padding: EdgeInsets.fromLTRB(16.0, 0, 16.0, 16.0),
       child: ListView(
@@ -33,31 +34,27 @@ class NewsInfoScreen extends StatelessWidget {
           _buildDefaultSpacing(),
           _buildContent(),
           _buildDefaultSpacing(height: 24.0),
-          _buildBottom(),
+          _buildBottom(context),
         ],
       ),
     );
   }
 
-  Future<void> _launchURL() async {
+  Future<void> _launchURL(BuildContext context) async {
     final String url = article.url;
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
+    Navigation.navigateFromInside(context: context, screen: ATWebViewContainer(url: url));
   }
 
   Widget _buildSource() {
     return Text(
-      'Source: '+article.source.name ?? article.source.name,
+      'Source: ${article.source.name}',
       style: TextStyle(fontWeight: FontWeight.w500),
     );
   }
 
   Widget _buildTitle() {
     return Text(
-      article.title ?? article.title,
+      article.title ?? '',
       style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
     );
   }
@@ -83,17 +80,17 @@ class NewsInfoScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildBottom() {
+  Widget _buildBottom(BuildContext context) {
     return Column(
       children: <Widget>[
         _buildSource(),
         _buildDefaultSpacing(),
-        _buildLaunchUrlButton(),
+        _buildLaunchUrlButton(context),
       ],
     );
   }
 
-  Widget _buildLaunchUrlButton() {
+  Widget _buildLaunchUrlButton(BuildContext context) {
     return RaisedButton(
       color: Colors.brown[700],
       textColor: Colors.white,
@@ -101,7 +98,7 @@ class NewsInfoScreen extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(8.0))
       ),
       child: Text('See full content'),
-      onPressed: _launchURL,
+      onPressed: () => _launchURL(context),
     );
   }
 

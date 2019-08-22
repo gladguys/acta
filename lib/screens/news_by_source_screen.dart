@@ -1,4 +1,5 @@
 import 'package:acta/models/news_response.dart';
+import 'package:acta/widgets/at_waiting.dart';
 import 'package:acta/widgets/news_cards_list.dart';
 import 'package:flutter/material.dart';
 import 'package:acta/providers/news_provider.dart';
@@ -29,9 +30,7 @@ class NewsBySourceScreen extends StatelessWidget {
         } else if (snapshot.hasError) {
           return Text('${snapshot.error}');
         }
-        return Center(
-          child: CircularProgressIndicator(),
-        );
+        return ATWaiting();
       },
     );
   }

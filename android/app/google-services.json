@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "65516814440",
+    "firebase_url": "https://gladguys-acta.firebaseio.com",
+    "project_id": "gladguys-acta",
+    "storage_bucket": "gladguys-acta.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:65516814440:android:cb7bc83e251c20d4",
+        "android_client_info": {
+          "package_name": "com.example.acta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "65516814440-gou53qe0u3aubk2j2a4jidknf6921mgj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNspai-81QSP49QD9fseHnkQ5xGwUzrJ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "65516814440-gou53qe0u3aubk2j2a4jidknf6921mgj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

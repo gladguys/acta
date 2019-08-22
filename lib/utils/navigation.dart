@@ -1,3 +1,4 @@
+import 'package:acta/screens/auth/auth_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -22,6 +23,17 @@ class Navigation {
         screen: screen,
         replace: replace,
         transitionType: PageTransitionType.downToUp);
+  }
+
+  static void exitAppNavigation(BuildContext context) {
+    Navigator.pushReplacement(
+      context,
+      PageTransition(
+        type: PageTransitionType.fade,
+        child: AuthScreen(),
+        duration: Duration(seconds: 1),
+      ),
+    );
   }
 
   static void _navigate(

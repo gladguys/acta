@@ -1,3 +1,4 @@
+import 'package:animated_card/animated_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -68,24 +69,30 @@ class NewsCardsList extends StatelessWidget {
 
   Widget _buildArticleCardForList(
       BuildContext context, ArticleResponse article) {
-    return Card(
-      color: Colors.brown[50],
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.zero),
+    return AnimatedCard(
+      child: Card(
+        color: Colors.brown[50],
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.zero),
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: _actionsClickCard(context, article),
       ),
-      clipBehavior: Clip.antiAlias,
-      child: _actionsClickCard(context, article),
+      duration: Duration(milliseconds: 300),
     );
   }
 
   Widget _buildArticleCardForGrid(
       BuildContext context, ArticleResponse article) {
-    return Card(
-      color: Colors.brown[50],
-      elevation: 0,
-      margin: EdgeInsets.all(0),
-      child: _actionsClickCard(context, article),
+    return AnimatedCard(
+      child: Card(
+        color: Colors.brown[50],
+        elevation: 0,
+        margin: EdgeInsets.all(0),
+        child: _actionsClickCard(context, article),
+      ),
+      duration: Duration(milliseconds: 300),
     );
   }
 
