@@ -1,3 +1,4 @@
+import 'package:acta/i18n/at_labels.dart';
 import 'package:acta/screens/at_base_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -17,7 +18,7 @@ class _ATWebViewContainerState extends State<ATWebViewContainer> {
   @override
   Widget build(BuildContext context) {
     return ATBaseScreen(
-      title: 'Acta',
+      title: ATLabels.ACTA,
       body: Column(
         children: [
           Expanded(

@@ -1,4 +1,6 @@
 import 'package:acta/blocs/sign_up_screen_bloc.dart';
+import 'package:acta/i18n/at_labels.dart';
+import 'package:acta/i18n/at_messages.dart';
 import 'package:acta/utils/firebase_errors_helper.dart';
 import 'package:acta/widgets/at_alert.dart';
 import 'package:acta/widgets/at_waiting.dart';
@@ -102,14 +104,14 @@ class _SignUpScreen extends State<SignUpScreen> {
                         children: <Widget>[
                           RaisedButton.icon(
                             icon: Icon(Icons.transit_enterexit),
-                            label: Text('Create'),
+                            label: Text(ATLabels.CREATE),
                             onPressed: () => _createUser(context),
                           ),
                           SizedBox(
                             width: 15.0,
                           ),
                           FlatButton(
-                            child: Text('I have an account'),
+                            child: Text(ATMessages.HAVE_ACCOUNT),
                             onPressed: widget.toggler,
                           ),
                         ],

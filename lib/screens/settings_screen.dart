@@ -1,4 +1,6 @@
 import 'package:acta/blocs/user_bloc.dart';
+import 'package:acta/i18n/at_labels.dart';
+import 'package:acta/i18n/at_messages.dart';
 import 'package:acta/screens/at_base_screen.dart';
 import 'package:acta/utils/navigation.dart';
 import 'package:acta/widgets/at_country_picker.dart';
@@ -11,7 +13,7 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ATBaseScreen(
-      title: 'Acta',
+      title: ATLabels.ACTA,
       body: Column(
         children: <Widget>[
           _buildCountryPickerInfo(context),
@@ -28,7 +30,7 @@ class SettingsScreen extends StatelessWidget {
           children: <Widget>[
             Row(
               children: <Widget>[
-                Text('Change country news'),
+                Text(ATMessages.CHANGE_COUNTRY_NEWS),
                 ATCountryPicker(),
               ],
             ),
@@ -39,7 +41,7 @@ class SettingsScreen extends StatelessWidget {
 
   Widget _buildLogoutButton(BuildContext context) {
     return RaisedButton(
-      child: Text('Logout'),
+      child: Text(ATLabels.LOGOUT),
       onPressed: () => _logoutApp(context),
     );
   }

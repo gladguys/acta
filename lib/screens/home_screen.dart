@@ -1,4 +1,4 @@
-import 'package:acta/blocs/user_bloc.dart';
+import 'package:acta/i18n/at_labels.dart';
 import 'package:acta/screens/settings_screen.dart';
 import 'package:acta/utils/navigation.dart';
 import 'package:acta/widgets/at_waiting.dart';
@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return ATBaseScreen(
-      title: 'Acta',
+      title: ATLabels.ACTA,
       actions: <Widget>[
         _buildSwitchViewTypeIcon(),
         _buildSettingsIcon(),
