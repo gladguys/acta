@@ -1,16 +1,38 @@
 import 'package:acta/screens/auth/auth_screen.dart';
+import 'package:acta/screens/home_screen.dart';
 import 'package:acta/theme/at_theme.dart';
+import 'package:acta/widgets/at_waiting.dart';
 import 'package:flutter/material.dart';
 import 'package:catcher/catcher_plugin.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class MainApp extends Widget {
+class MainApp extends StatelessWidget {
   @override
-  Element createElement() {
-    return MaterialApp(
-      title: 'Acta',
-      navigatorKey: Catcher.navigatorKey,
-      theme: atTheme,
-      home: AuthScreen(),
-    ).createElement();
+  Widget build(BuildContext context) {
+    return FutureBuilder<bool>(
+      future: _userHasValidToken(),
+      builder: (_, AsyncSnapshot<bool> snapshot) {
+        if (snapshot.hasData) {
+          return MaterialApp(
+            title: 'Acta',
+            navigatorKey: Catcher.navigatorKey,
+            theme: atTheme,
+            home: snapshot.data ? HomeScreen() : AuthScreen(),
+          );
+        }
+        return ATWaiting();
+      },
+    );
+  }
+
+  Future<bool> _userHasValidToken() async {
+    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    final dateString = sharedPreferences.getString('token-expire');
+    if (dateString == null) {
+      return false;
+    }
+
+    final DateTime tokenDate = DateTime.parse(dateString);
+    return DateTime.now().isBefore(tokenDate);
   }
 }

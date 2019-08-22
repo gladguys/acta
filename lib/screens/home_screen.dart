@@ -1,4 +1,5 @@
 import 'package:acta/blocs/user_bloc.dart';
+import 'package:acta/screens/settings_screen.dart';
 import 'package:acta/utils/navigation.dart';
 import 'package:acta/widgets/at_waiting.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,6 @@ class _HomeScreenState extends State<HomeScreen> {
   ViewType _viewType;
 
   final _newsBloc = BlocProvider.getBloc<NewsBloc>();
-  final _userBloc = BlocProvider.getBloc<UserBloc>();
 
   @override
   void initState() {
@@ -34,34 +34,43 @@ class _HomeScreenState extends State<HomeScreen> {
     return ATBaseScreen(
       title: 'Acta',
       actions: <Widget>[
-        IconButton(
-          icon: Icon(
-              _viewType == ViewType.grid ? Icons.view_agenda : Icons.dashboard),
-          color: Colors.brown[200],
-          onPressed: () {
-            setState(() {
-              _viewType =
-                  _viewType == ViewType.grid ? ViewType.list : ViewType.grid;
-            });
-          },
-        ),
-        IconButton(
-          icon: Icon(Icons.exit_to_app),
-          onPressed: () => _logoutApp(context),
-        )
+        _buildSwitchViewTypeIcon(),
+        _buildSettingsIcon(),
       ],
       body: _buildHomeScreen(),
       initialTab: 0,
     );
   }
 
-  Future<void> _logoutApp(BuildContext context) async {
-    _userBloc.logoutUser();
-    Navigation.exitAppNavigation(context);
+  Widget _buildSwitchViewTypeIcon() {
+    return IconButton(
+      icon: Icon(
+          _viewType == ViewType.grid ? Icons.view_agenda : Icons.dashboard),
+      color: Colors.brown[200],
+      onPressed: _changeViewType,
+    );
+  }
+
+  void _changeViewType() {
+    setState(() {
+      _viewType = _viewType == ViewType.grid ? ViewType.list : ViewType.grid;
+    });
+  }
+
+  Widget _buildSettingsIcon() {
+    return IconButton(
+      icon: Icon(Icons.settings),
+      onPressed: () => Navigation.navigateFromInside(
+        context: context,
+        screen: SettingsScreen(),
+      ),
+    );
   }
 
   Future<void> _getTopHeadlines() {
-    return _provider.getTopHeadlines().then((news) => _newsBloc.refreshNews(news));
+    return _provider
+        .getTopHeadlines()
+        .then((news) => _newsBloc.refreshNews(news));
   }
 
   Widget _buildHomeScreen() {

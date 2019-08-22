@@ -17,7 +17,6 @@ class NewsInfoScreen extends StatelessWidget {
       title: 'Acta',
       body: _buildNewsInfoScreen(context),
       initialTab: 0,
-      withCountryPicker: false,
     );
   }
 
