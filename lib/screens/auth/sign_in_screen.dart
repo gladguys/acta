@@ -37,64 +37,108 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   @override
+  void dispose() {
+    passwordFocusNode.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: isAuthenticating
-          ? ATWaiting()
-          : Container(
-              child: Form(
-                key: _formKey,
-                child: Padding(
-                  padding: EdgeInsets.all(32.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      TextFormField(
-                        decoration: InputDecoration(
-                          labelText: 'E-mail',
-                          border: OutlineInputBorder(),
-                        ),
-                        keyboardType: TextInputType.emailAddress,
-                        onSaved: (String email) => _signInInfo['email'] = email,
-                        validator: AuthValidations.emailValidator,
-                        textInputAction: TextInputAction.next,
-                        onEditingComplete: () => FocusScope.of(context)
-                            .requestFocus(passwordFocusNode),
-                      ),
-                      SizedBox(
-                        height: 10.0,
-                      ),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          labelText: 'Password',
-                          border: OutlineInputBorder(),
-                        ),
-                        onSaved: (String password) =>
-                            _signInInfo['password'] = password,
-                        validator: AuthValidations.passwordValidator,
-                        obscureText: true,
-                        focusNode: passwordFocusNode,
-                        textInputAction: TextInputAction.done,
-                        onEditingComplete: () => _signInUser(context),
-                      ),
-                      SizedBox(
-                        height: 10.0,
-                      ),
-                      RaisedButton.icon(
-                        icon: Icon(Icons.transit_enterexit),
-                        label: Text(ATLabels.LOGIN),
-                        onPressed: () => _signInUser(context),
-                      ),
-                      _buildAuthErrorMessage(),
-                      FlatButton(
-                        child: Text(ATMessages.CREATE_ACCOUNT),
-                        onPressed: widget.toggler,
-                      ),
-                    ],
-                  ),
+      backgroundColor: Colors.brown[50],
+      body: _buildBody(),
+    );
+  }
+
+  Widget _buildBody() {
+    return isAuthenticating
+        ? ATWaiting()
+        : Container(
+            child: Form(
+              key: _formKey,
+              child: Padding(
+                padding: EdgeInsets.all(32.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    _buildLogo(),
+                    _buildFields(),
+                    SizedBox(height: 24.0),
+                    _buildButtons(),
+                  ],
                 ),
               ),
             ),
+          );
+  }
+
+  Widget _buildLogo() {
+    return Text(
+      'Acta',
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontFamily: 'Italianno',
+        fontSize: 80.0,
+        fontWeight: FontWeight.bold,
+        color: Colors.brown[800],
+      ),
+    );
+  }
+
+  Widget _buildFields() {
+    return Column(
+      children: <Widget>[
+        _textFormField(
+          hintText: 'E-mail',
+          prefixIcon: Icons.mail,
+          textInputType: TextInputType.emailAddress,
+          onSaved: (String email) => _signInInfo['email'] = email,
+          validator: AuthValidations.emailValidator,
+          onEditingComplete: () =>
+              FocusScope.of(context).requestFocus(passwordFocusNode),
+        ),
+        SizedBox(height: 16.0),
+        _textFormField(
+          hintText: 'Password',
+          prefixIcon: Icons.lock,
+          onSaved: (String password) => _signInInfo['password'] = password,
+          validator: AuthValidations.passwordValidator,
+          obscureText: true,
+          focusNode: passwordFocusNode,
+          textInputAction: TextInputAction.done,
+          onEditingComplete: () => _signInUser(context),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildButtons() {
+    return Column(
+      children: <Widget>[
+        Container(
+          width: 200.0,
+          height: 40.0,
+          child: RaisedButton(
+            child: Text(ATLabels.LOGIN),
+            color: Colors.brown[800],
+            textColor: Colors.brown[50],
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(24.0),
+            ),
+            onPressed: () => _signInUser(context),
+          ),
+        ),
+        FlatButton(
+          textColor: Colors.brown[800],
+          child: Text(ATMessages.CREATE_ACCOUNT),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24.0),
+          ),
+          onPressed: widget.toggler,
+        ),
+        SizedBox(height: 16.0),
+        _buildAuthErrorMessage(),
+      ],
     );
   }
 
@@ -130,9 +174,47 @@ class _SignInScreenState extends State<SignInScreen> {
     }
   }
 
-  @override
-  void dispose() {
-    passwordFocusNode.dispose();
-    super.dispose();
+  Widget _textFormField({
+    String hintText,
+    IconData prefixIcon,
+    TextInputType textInputType,
+    TextInputAction textInputAction = TextInputAction.next,
+    bool obscureText = false,
+    FocusNode focusNode,
+    Function onSaved,
+    Function validator,
+    Function onEditingComplete,
+  }) {
+    return TextFormField(
+      style: TextStyle(color: Colors.brown[800]),
+      decoration: InputDecoration(
+        prefixIcon: Icon(prefixIcon, color: Colors.brown[800],),
+        hintText: hintText,
+        hintStyle: TextStyle(color: Colors.brown[800]),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.brown[800]),
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.brown[800], width: 2.0),
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.red[200]),
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.red[200], width: 2.0),
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+      ),
+      textInputAction: textInputAction,
+      keyboardType: textInputType,
+      obscureText: obscureText,
+      focusNode: focusNode,
+      onSaved: onSaved,
+      validator: validator,
+      onEditingComplete: onEditingComplete,
+    );
   }
 }
