@@ -90,6 +90,7 @@ class _SignInScreenState extends State<SignInScreen> {
       children: <Widget>[
         _textFormField(
           hintText: 'E-mail',
+          prefixIcon: Icons.mail,
           textInputType: TextInputType.emailAddress,
           onSaved: (String email) => _signInInfo['email'] = email,
           validator: AuthValidations.emailValidator,
@@ -99,6 +100,7 @@ class _SignInScreenState extends State<SignInScreen> {
         SizedBox(height: 16.0),
         _textFormField(
           hintText: 'Password',
+          prefixIcon: Icons.lock,
           onSaved: (String password) => _signInInfo['password'] = password,
           validator: AuthValidations.passwordValidator,
           obscureText: true,
@@ -126,7 +128,6 @@ class _SignInScreenState extends State<SignInScreen> {
             onPressed: () => _signInUser(context),
           ),
         ),
-        _buildAuthErrorMessage(),
         FlatButton(
           textColor: Colors.brown[800],
           child: Text(ATMessages.CREATE_ACCOUNT),
@@ -135,6 +136,8 @@ class _SignInScreenState extends State<SignInScreen> {
           ),
           onPressed: widget.toggler,
         ),
+        SizedBox(height: 16.0),
+        _buildAuthErrorMessage(),
       ],
     );
   }
@@ -173,6 +176,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
   Widget _textFormField({
     String hintText,
+    IconData prefixIcon,
     TextInputType textInputType,
     TextInputAction textInputAction = TextInputAction.next,
     bool obscureText = false,
@@ -182,16 +186,26 @@ class _SignInScreenState extends State<SignInScreen> {
     Function onEditingComplete,
   }) {
     return TextFormField(
-      textAlign: TextAlign.center,
+      style: TextStyle(color: Colors.brown[800]),
       decoration: InputDecoration(
+        prefixIcon: Icon(prefixIcon, color: Colors.brown[800],),
         hintText: hintText,
+        hintStyle: TextStyle(color: Colors.brown[800]),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.brown[800]),
-          borderRadius: BorderRadius.circular(32.0),
+          borderRadius: BorderRadius.circular(8.0),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.brown[800], width: 2.0),
-          borderRadius: BorderRadius.circular(32.0),
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.red[200]),
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.red[200], width: 2.0),
+          borderRadius: BorderRadius.circular(8.0),
         ),
       ),
       textInputAction: textInputAction,
