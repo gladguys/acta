@@ -1,5 +1,4 @@
 import 'package:acta/enums/source_logos.dart';
-import 'package:acta/widgets/at_source_logo_image.dart';
 import 'package:acta/widgets/at_waiting.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -70,7 +69,7 @@ class SearchBySourceScreen extends StatelessWidget {
           leading: Hero(
             tag: source.id,
             child: CircleAvatar(
-              backgroundImage: NetworkImage(
+              backgroundImage: CachedNetworkImageProvider(
                 SourcesLogo.getUrlById(source.id),
               ),
             ),
