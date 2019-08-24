@@ -1,3 +1,5 @@
+import 'package:acta/utils/at_utils.dart';
+
 import './news_source.dart';
 
 class ArticleResponse {
@@ -17,7 +19,7 @@ class ArticleResponse {
       title: parsedJson['title'],
       url: parsedJson['url'],
       urlToImage: parsedJson['urlToImage'],
-      publishedAt: DateTime.parse(parsedJson['publishedAt']),
+      publishedAt: DateTime.parse(ATUtils.ensureSafeDateString(parsedJson['publishedAt'])),
       content: parsedJson['content'],
     );
   }

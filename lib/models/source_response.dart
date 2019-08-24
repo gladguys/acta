@@ -26,4 +26,9 @@ class SourceResponse {
   final String category;
   final String language;
   final String country;
+
+  @override
+  String toString() {
+    return 'SourceResponse{id: $id, name: $name}';
+  }
 }

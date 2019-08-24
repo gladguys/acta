@@ -3,12 +3,13 @@ import 'package:flutter/cupertino.dart';
 import '../widgets/bottomNavigation/main_bottom_navigator.dart';
 
 class ATBaseScreen extends StatelessWidget {
-  ATBaseScreen(
-      {@required this.title,
-      @required this.body,
-      this.actions,
-      this.initialTab = 0,
-      this.withbBottomNavigationBar = true});
+  ATBaseScreen({
+    @required this.title,
+    @required this.body,
+    this.actions,
+    this.initialTab = 0,
+    this.withbBottomNavigationBar = true
+  });
 
   final String title;
   final Widget body;

@@ -13,11 +13,6 @@ final List<Widget> navigationBarItems = [
     color: Colors.white,
   ),
   Icon(
-    MdiIcons.formatLetterCase,
-    size: 32,
-    color: Colors.white,
-  ),
-  Icon(
     Icons.layers,
     size: 32,
     color: Colors.white,

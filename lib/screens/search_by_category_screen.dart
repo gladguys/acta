@@ -23,7 +23,7 @@ class SearchByCategoryScreen extends StatelessWidget {
     return ATBaseScreen(
       title: 'Category',
       body: _buildSearchByCategoryScreen(),
-      initialTab: 3,
+      initialTab: 2,
     );
   }
 
