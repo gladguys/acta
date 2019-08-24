@@ -1,3 +1,4 @@
+import 'package:acta/enums/source_logos.dart';
 import 'package:acta/models/news_response.dart';
 import 'package:acta/widgets/at_waiting.dart';
 import 'package:acta/widgets/news_cards_list.dart';
@@ -16,6 +17,16 @@ class NewsBySourceScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ATBaseScreen(
       title: name,
+      actions: <Widget>[
+        Hero(
+          tag: id,
+          child: Container(
+            width: 100,
+            height: 100,
+            child: Image.network(SourcesLogo.getUrlById(id)),
+          ),
+        ),
+      ],
       body: _buildNewsBySourceScreen(),
       initialTab: 1,
     );

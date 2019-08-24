@@ -1,4 +1,6 @@
+import 'package:acta/enums/source_logos.dart';
 import 'package:acta/widgets/at_waiting.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
@@ -64,7 +66,18 @@ class SearchBySourceScreen extends StatelessWidget {
     return Column(
       children: <Widget>[
         ListTile(
-          title: Text('${source.name}'),
+          leading: Hero(
+            tag: source.id,
+            child: CircleAvatar(
+              backgroundImage: CachedNetworkImageProvider(
+                SourcesLogo.getUrlById(source.id),
+              ),
+            ),
+          ),
+          title: Text(
+            '${source.name}',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
           subtitle: Text('${source.description}'),
           onTap: () => _navigateToNewsBySource(context, source),
         ),
