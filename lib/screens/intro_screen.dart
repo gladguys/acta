@@ -7,74 +7,115 @@ import 'package:intro_views_flutter/Models/page_view_model.dart';
 import 'package:intro_views_flutter/intro_views_flutter.dart';
 
 final page = PageViewModel(
-  pageColor: const Color(0xFF607D8B),
-  iconImageAssetPath: 'assets/images/taxi.png',
+  pageColor: Colors.brown[900],
+  bubbleBackgroundColor: Colors.brown[200],
+  textStyle: TextStyle(color: Colors.brown[50]),
   iconColor: null,
-  bubbleBackgroundColor: Colors.amberAccent,
+  title: Container(),
+  mainImage: Column(
+    children: <Widget>[
+      Text(
+        'Acta',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontFamily: 'Italianno',
+          fontSize: 64.0,
+          fontWeight: FontWeight.bold,
+          color: Colors.brown[50],
+        ),
+      ),
+      Image.asset(
+        'assets/images/taxi.png',
+        height: 250.0,
+        width: 250.0,
+        alignment: Alignment.center,
+      ),
+    ],
+  ),
   body: Text(
-    'Easy  cab  booking  at  your  doorstep  with  cashless  payment  system',
+    'Easy cab booking at your doorstep with cashless payment system',
   ),
-  title: Text('Cabs'),
-  mainImage: Image.asset(
-    'assets/images/taxi.png',
-    height: 285.0,
-    width: 285.0,
-    alignment: Alignment.center,
-  ),
-  textStyle: TextStyle(fontFamily: 'MyFont', color: Colors.white),
+  iconImageAssetPath: 'assets/images/taxi.png',
 );
 
 final page2 = PageViewModel(
-  pageColor: const Color(0xFF607D8B),
-  iconImageAssetPath: 'assets/images/taxi-driver.png',
+  pageColor: Colors.brown[700],
+  bubbleBackgroundColor: Colors.brown[200],
+  textStyle: TextStyle(color: Colors.brown[50]),
   iconColor: null,
-  bubbleBackgroundColor: Colors.amberAccent,
+  title: Container(),
+  mainImage: Column(
+    children: <Widget>[
+      Text(
+        'Acta',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontFamily: 'Italianno',
+          fontSize: 64.0,
+          fontWeight: FontWeight.bold,
+          color: Colors.brown[50],
+        ),
+      ),
+      Image.asset(
+        'assets/images/taxi.png',
+        height: 250.0,
+        width: 250.0,
+        alignment: Alignment.center,
+      ),
+    ],
+  ),
   body: Text(
-    'Easy  cab  booking  at  your  doorstep  with  cashless  payment  system',
+    'Easy cab booking at your doorstep with cashless payment system',
   ),
-  title: Text('Cabs'),
-  mainImage: Image.asset(
-    'assets/images/taxi.png',
-    height: 285.0,
-    width: 285.0,
-    alignment: Alignment.center,
-  ),
-  textStyle: TextStyle(fontFamily: 'MyFont', color: Colors.white),
+  iconImageAssetPath: 'assets/images/taxi-driver.png',
 );
 
 final page3 = PageViewModel(
-  pageColor: const Color(0xFF607D8B),
-  iconImageAssetPath: 'assets/images/hotel.png',
+  pageColor: Colors.brown[500],
+  bubbleBackgroundColor: Colors.brown[200],
+  textStyle: TextStyle(color: Colors.brown[50]),
   iconColor: null,
-  bubbleBackgroundColor: Colors.amberAccent,
+  title: Container(),
+  mainImage: Column(
+    children: <Widget>[
+      Text(
+        'Acta',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontFamily: 'Italianno',
+          fontSize: 64.0,
+          fontWeight: FontWeight.bold,
+          color: Colors.brown[50],
+        ),
+      ),
+      Image.asset(
+        'assets/images/taxi.png',
+        height: 250.0,
+        width: 250.0,
+        alignment: Alignment.center,
+      ),
+    ],
+  ),
   body: Text(
-    'Easy  cab  booking  at  your  doorstep  with  cashless  payment  system',
+    'Easy cab booking at your doorstep with cashless payment system',
   ),
-  title: Text('Cabs'),
-  mainImage: Image.asset(
-    'assets/images/taxi.png',
-    height: 285.0,
-    width: 285.0,
-    alignment: Alignment.center,
-  ),
-  textStyle: TextStyle(fontFamily: 'MyFont', color: Colors.white),
+  iconImageAssetPath: 'assets/images/taxi-driver.png',
 );
 
 class IntroScreen extends StatelessWidget {
-
   final _preferencesBloc = BlocProvider.getBloc<PreferencesBloc>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.brown[800],
       body: IntroViewsFlutter(
         [page, page2, page3],
         onTapDoneButton: () => _goToHomeScreen(context),
         showSkipButton: true,
         pageButtonTextStyles: TextStyle(
-          color: Colors.white,
+          color: Colors.brown[50],
           fontSize: 18.0,
-          fontFamily: 'Regular',
         ),
       ),
     );
