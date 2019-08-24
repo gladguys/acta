@@ -82,6 +82,6 @@ class IntroScreen extends StatelessWidget {
 
   void _goToHomeScreen(BuildContext context) {
     _preferencesBloc.setIsFirstLoginDone();
-    Navigation.navigateFromInside(context: context, screen: HomeScreen());
+    Navigation.navigateFromInside(context: context, screen: HomeScreen(), replace: true);
   }
 }

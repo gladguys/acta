@@ -7,6 +7,8 @@ import 'package:acta/screens/home_screen.dart';
 import 'package:acta/screens/intro_screen.dart';
 import 'package:acta/utils/firebase_errors_helper.dart';
 import 'package:acta/utils/navigation.dart';
+import 'package:acta/widgets/at_simple_text_logo.dart';
+import 'package:acta/widgets/at_text_form_field.dart';
 import 'package:acta/widgets/at_waiting.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +48,11 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.brown[50],
-      body: _buildBody(),
+      body: Center(
+        child: SingleChildScrollView(
+          child: _buildBody(),
+        ),
+      ),
     );
   }
 
@@ -61,7 +67,10 @@ class _SignInScreenState extends State<SignInScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    _buildLogo(),
+                    ATSimpleTextLogo(
+                      text: 'Acta',
+                      fontSize: 80.0,
+                    ),
                     _buildFields(),
                     SizedBox(height: 24.0),
                     _buildButtons(),
@@ -72,25 +81,13 @@ class _SignInScreenState extends State<SignInScreen> {
           );
   }
 
-  Widget _buildLogo() {
-    return Text(
-      'Acta',
-      textAlign: TextAlign.center,
-      style: TextStyle(
-        fontFamily: 'Italianno',
-        fontSize: 80.0,
-        fontWeight: FontWeight.bold,
-        color: Colors.brown[800],
-      ),
-    );
-  }
-
   Widget _buildFields() {
     return Column(
       children: <Widget>[
-        _textFormField(
+        ATTextFormField(
           hintText: 'E-mail',
           prefixIcon: Icons.mail,
+          isRequired: true,
           textInputType: TextInputType.emailAddress,
           onSaved: (String email) => _signInInfo['email'] = email,
           validator: AuthValidations.emailValidator,
@@ -98,9 +95,10 @@ class _SignInScreenState extends State<SignInScreen> {
               FocusScope.of(context).requestFocus(passwordFocusNode),
         ),
         SizedBox(height: 16.0),
-        _textFormField(
+        ATTextFormField(
           hintText: 'Password',
           prefixIcon: Icons.lock,
+          isRequired: true,
           onSaved: (String password) => _signInInfo['password'] = password,
           validator: AuthValidations.passwordValidator,
           obscureText: true,
@@ -162,7 +160,7 @@ class _SignInScreenState extends State<SignInScreen> {
               context: context, screen: HomeScreen(), replace: true);
         } else {
           Navigation.navigateFromInside(
-              context: context, screen: IntroScreen());
+              context: context, screen: IntroScreen(), replace: true);
         }
       } else {
         setState(() {
@@ -172,49 +170,5 @@ class _SignInScreenState extends State<SignInScreen> {
         });
       }
     }
-  }
-
-  Widget _textFormField({
-    String hintText,
-    IconData prefixIcon,
-    TextInputType textInputType,
-    TextInputAction textInputAction = TextInputAction.next,
-    bool obscureText = false,
-    FocusNode focusNode,
-    Function onSaved,
-    Function validator,
-    Function onEditingComplete,
-  }) {
-    return TextFormField(
-      style: TextStyle(color: Colors.brown[800]),
-      decoration: InputDecoration(
-        prefixIcon: Icon(prefixIcon, color: Colors.brown[800],),
-        hintText: hintText,
-        hintStyle: TextStyle(color: Colors.brown[800]),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.brown[800]),
-          borderRadius: BorderRadius.circular(8.0),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.brown[800], width: 2.0),
-          borderRadius: BorderRadius.circular(8.0),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.red[200]),
-          borderRadius: BorderRadius.circular(8.0),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.red[200], width: 2.0),
-          borderRadius: BorderRadius.circular(8.0),
-        ),
-      ),
-      textInputAction: textInputAction,
-      keyboardType: textInputType,
-      obscureText: obscureText,
-      focusNode: focusNode,
-      onSaved: onSaved,
-      validator: validator,
-      onEditingComplete: onEditingComplete,
-    );
   }
 }
