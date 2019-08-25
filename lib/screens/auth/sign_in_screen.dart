@@ -68,6 +68,8 @@ class _SignInScreenState extends State<SignInScreen> {
                   children: <Widget>[
                     ATSimpleTextLogo(
                       text: ATLabels.ACTA,
+                      duration: Duration(seconds: 3),
+                      isRepeatingAnimation: false,
                       fontSize: 80.0,
                     ),
                     _buildFields(),
