@@ -15,7 +15,8 @@ class NewsByCategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ATBaseScreen(
-      title: 'Category: $name',
+      title: 'Acta',
+      subtitle: 'Category: $name',
       body: _buildNewsByCategoryScreen(),
       initialTab: 3,
     );

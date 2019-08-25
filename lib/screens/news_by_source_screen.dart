@@ -16,7 +16,8 @@ class NewsBySourceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ATBaseScreen(
-      title: name,
+      title: 'Acta',
+      subtitle: name,
       actions: <Widget>[
         Hero(
           tag: id,
