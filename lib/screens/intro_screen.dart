@@ -1,4 +1,5 @@
 import 'package:acta/blocs/preferences_bloc.dart';
+import 'package:acta/i18n/at_labels.dart';
 import 'package:acta/screens/home_screen.dart';
 import 'package:acta/utils/navigation.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
@@ -15,7 +16,7 @@ final page = PageViewModel(
   mainImage: Column(
     children: <Widget>[
       Text(
-        'Acta',
+        ATLabels.ACTA,
         textAlign: TextAlign.center,
         style: TextStyle(
           fontFamily: 'Italianno',
@@ -47,7 +48,7 @@ final page2 = PageViewModel(
   mainImage: Column(
     children: <Widget>[
       Text(
-        'Acta',
+        ATLabels.ACTA,
         textAlign: TextAlign.center,
         style: TextStyle(
           fontFamily: 'Italianno',
@@ -79,7 +80,7 @@ final page3 = PageViewModel(
   mainImage: Column(
     children: <Widget>[
       Text(
-        'Acta',
+        ATLabels.ACTA,
         textAlign: TextAlign.center,
         style: TextStyle(
           fontFamily: 'Italianno',
@@ -123,6 +124,7 @@ class IntroScreen extends StatelessWidget {
 
   void _goToHomeScreen(BuildContext context) {
     _preferencesBloc.setIsFirstLoginDone();
-    Navigation.navigateFromInside(context: context, screen: HomeScreen(), replace: true);
+    Navigation.navigateFromInside(
+        context: context, screen: HomeScreen(), replace: true);
   }
 }

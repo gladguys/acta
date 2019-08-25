@@ -67,7 +67,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     ATSimpleTextLogo(
-                      text: 'Acta',
+                      text: ATLabels.ACTA,
                       fontSize: 80.0,
                     ),
                     _buildFields(),
