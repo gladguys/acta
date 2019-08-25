@@ -7,6 +7,7 @@ import 'package:acta/screens/home_screen.dart';
 import 'package:acta/screens/intro_screen.dart';
 import 'package:acta/utils/firebase_errors_helper.dart';
 import 'package:acta/utils/navigation.dart';
+import 'package:acta/widgets/at_alert.dart';
 import 'package:acta/widgets/at_simple_text_logo.dart';
 import 'package:acta/widgets/at_text_form_field.dart';
 import 'package:acta/widgets/at_waiting.dart';
@@ -27,14 +28,12 @@ class _SignInScreenState extends State<SignInScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   FocusNode passwordFocusNode = FocusNode();
   bool isAuthenticating;
-  String errorMessage;
 
   final _signInScreenBloc = BlocProvider.getBloc<SignInScreenBloc>();
 
   @override
   void initState() {
     isAuthenticating = false;
-    errorMessage = null;
     super.initState();
   }
 
@@ -134,14 +133,8 @@ class _SignInScreenState extends State<SignInScreen> {
           ),
           onPressed: widget.toggler,
         ),
-        SizedBox(height: 16.0),
-        _buildAuthErrorMessage(),
       ],
     );
-  }
-
-  Widget _buildAuthErrorMessage() {
-    return errorMessage != null ? Text(errorMessage) : Container();
   }
 
   Future<void> _signInUser(BuildContext context) async {
@@ -163,11 +156,9 @@ class _SignInScreenState extends State<SignInScreen> {
               context: context, screen: IntroScreen(), replace: true);
         }
       } else {
-        setState(() {
-          errorMessage =
-              FirebaseSignInErrorsHelper.getMessage(userData['code']);
-          isAuthenticating = false;
-        });
+        ATAlert.failure(
+            FirebaseSignInErrorsHelper.getMessage(userData['code']));
+        setState(() => isAuthenticating = false);
       }
     }
   }
