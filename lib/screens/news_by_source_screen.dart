@@ -1,9 +1,10 @@
 import 'package:acta/enums/source_logos.dart';
 import 'package:acta/models/news_response.dart';
+import 'package:acta/providers/news_provider.dart';
 import 'package:acta/widgets/at_waiting.dart';
 import 'package:acta/widgets/news_cards_list.dart';
 import 'package:flutter/material.dart';
-import 'package:acta/providers/news_provider.dart';
+
 import 'at_base_screen.dart';
 
 class NewsBySourceScreen extends StatelessWidget {
@@ -22,6 +23,7 @@ class NewsBySourceScreen extends StatelessWidget {
         Hero(
           tag: id,
           child: Container(
+            padding: EdgeInsets.only(top: 12.0),
             width: 100,
             height: 100,
             child: Image.network(SourcesLogo.getUrlById(id)),
