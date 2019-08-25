@@ -1,16 +1,16 @@
-import 'package:acta/enums/source_logos.dart';
-import 'package:acta/widgets/at_waiting.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:acta/blocs/news_bloc.dart';
+import 'package:acta/enums/source_logos.dart';
 import 'package:acta/models/source_response.dart';
 import 'package:acta/models/sources_response.dart';
 import 'package:acta/providers/news_provider.dart';
-import 'package:acta/utils/navigation.dart';
 import 'package:acta/screens/at_base_screen.dart';
 import 'package:acta/screens/news_by_source_screen.dart';
+import 'package:acta/utils/navigation.dart';
+import 'package:acta/widgets/at_waiting.dart';
+import 'package:bloc_pattern/bloc_pattern.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class SearchBySourceScreen extends StatelessWidget {
   final _bloc = BlocProvider.getBloc<NewsBloc>();
@@ -83,11 +83,6 @@ class SearchBySourceScreen extends StatelessWidget {
                 ),
               ),
             ),
-            // child: CircleAvatar(
-            //   backgroundImage: CachedNetworkImageProvider(
-            //     SourcesLogo.getUrlById(source.id),
-            //   ),
-            // ),
           ),
           title: Text(
             '${source.name}',
