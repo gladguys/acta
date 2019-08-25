@@ -19,7 +19,8 @@ class SearchBySourceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ATBaseScreen(
-      title: 'Sources',
+      title: 'Acta',
+      subtitle: 'Sources',
       body: _buildSearchBySourceScreen(),
       initialTab: 1,
     );
@@ -68,11 +69,25 @@ class SearchBySourceScreen extends StatelessWidget {
         ListTile(
           leading: Hero(
             tag: source.id,
-            child: CircleAvatar(
-              backgroundImage: CachedNetworkImageProvider(
-                SourcesLogo.getUrlById(source.id),
+            child: Container(
+              width: 54.0,
+              height: 54.0,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(27.0),
+                image: DecorationImage(
+                  image: CachedNetworkImageProvider(
+                    SourcesLogo.getUrlById(source.id),
+                  ),
+                  fit: BoxFit.contain,
+                ),
               ),
             ),
+            // child: CircleAvatar(
+            //   backgroundImage: CachedNetworkImageProvider(
+            //     SourcesLogo.getUrlById(source.id),
+            //   ),
+            // ),
           ),
           title: Text(
             '${source.name}',

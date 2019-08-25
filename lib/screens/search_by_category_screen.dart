@@ -21,7 +21,8 @@ class SearchByCategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ATBaseScreen(
-      title: 'Category',
+      title: 'Acta',
+      subtitle: 'Category',
       body: _buildSearchByCategoryScreen(),
       initialTab: 2,
     );
