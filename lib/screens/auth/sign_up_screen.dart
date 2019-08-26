@@ -61,6 +61,8 @@ class _SignUpScreen extends State<SignUpScreen> {
                   children: <Widget>[
                     ATSimpleTextLogo(
                       text: 'Register an account',
+                      duration: Duration(seconds: 1),
+                      isRepeatingAnimation: false,
                       fontSize: 60.0,
                     ),
                     _buildFields(),
