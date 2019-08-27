@@ -20,7 +20,7 @@ class NewsByCategoryScreen extends StatelessWidget {
       title: ATLabels.ACTA,
       subtitle: '${ATLabels.CATEGORY}: $name',
       body: _buildNewsByCategoryScreen(),
-      initialTab: 3,
+      initialTab: 2,
     );
   }
 
@@ -29,6 +29,7 @@ class NewsByCategoryScreen extends StatelessWidget {
       future: _provider.getNewsByCategory(id),
       builder: (BuildContext context, AsyncSnapshot<NewsResponse> snapshot) {
         if (snapshot.hasData) {
+          print(snapshot.data);
           return NewsCardsList(news: snapshot.data);
         } else if (snapshot.hasError) {
           return Text('${snapshot.error}');

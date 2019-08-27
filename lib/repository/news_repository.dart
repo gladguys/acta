@@ -1,8 +1,8 @@
 import 'package:acta/models/news_response.dart';
 import 'package:acta/models/sources_response.dart';
 import 'package:acta/repository/dio_builder.dart';
-import 'package:dio/dio.dart';
 import 'package:global_configuration/global_configuration.dart';
+
 import './API.dart';
 
 class NewsRepository {
