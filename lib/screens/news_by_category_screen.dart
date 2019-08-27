@@ -1,8 +1,10 @@
-import 'package:acta/widgets/at_waiting.dart';
-import 'package:flutter/material.dart';
-import 'package:acta/providers/news_provider.dart';
+import 'package:acta/i18n/at_labels.dart';
 import 'package:acta/models/news_response.dart';
+import 'package:acta/providers/news_provider.dart';
+import 'package:acta/widgets/at_waiting.dart';
 import 'package:acta/widgets/news_cards_list.dart';
+import 'package:flutter/material.dart';
+
 import 'at_base_screen.dart';
 
 class NewsByCategoryScreen extends StatelessWidget {
@@ -15,8 +17,8 @@ class NewsByCategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ATBaseScreen(
-      title: 'Acta',
-      subtitle: 'Category: $name',
+      title: ATLabels.ACTA,
+      subtitle: '${ATLabels.CATEGORY}: $name',
       body: _buildNewsByCategoryScreen(),
       initialTab: 3,
     );

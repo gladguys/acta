@@ -1,4 +1,5 @@
 import 'package:acta/blocs/preferences_bloc.dart';
+import 'package:acta/i18n/at_labels.dart';
 import 'package:acta/screens/home_screen.dart';
 import 'package:acta/utils/navigation.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
@@ -11,23 +12,27 @@ final page = PageViewModel(
   bubbleBackgroundColor: Colors.brown[200],
   textStyle: TextStyle(color: Colors.brown[50]),
   iconColor: null,
-  title: Container(),
-  mainImage: Column(
-    children: <Widget>[
-      Text(
-        'Acta',
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          fontFamily: 'Italianno',
-          fontSize: 64.0,
-          fontWeight: FontWeight.bold,
-          color: Colors.brown[50],
-        ),
+  title: Container(
+    padding: const EdgeInsets.only(top: 12.0),
+    child: Text(
+      ATLabels.ACTA,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontFamily: 'Italianno',
+        fontSize: 64.0,
+        fontWeight: FontWeight.bold,
+        color: Colors.brown[50],
       ),
+    ),
+  ),
+  mainImage: Column(
+    mainAxisSize: MainAxisSize.max,
+    children: <Widget>[
       Image.asset(
         'assets/images/taxi.png',
         height: 250.0,
         width: 250.0,
+        fit: BoxFit.contain,
         alignment: Alignment.center,
       ),
     ],
@@ -43,23 +48,27 @@ final page2 = PageViewModel(
   bubbleBackgroundColor: Colors.brown[200],
   textStyle: TextStyle(color: Colors.brown[50]),
   iconColor: null,
-  title: Container(),
-  mainImage: Column(
-    children: <Widget>[
-      Text(
-        'Acta',
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          fontFamily: 'Italianno',
-          fontSize: 64.0,
-          fontWeight: FontWeight.bold,
-          color: Colors.brown[50],
-        ),
+  title: Container(
+    padding: const EdgeInsets.only(top: 12.0),
+    child: Text(
+      ATLabels.ACTA,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontFamily: 'Italianno',
+        fontSize: 64.0,
+        fontWeight: FontWeight.bold,
+        color: Colors.brown[50],
       ),
+    ),
+  ),
+  mainImage: Column(
+    mainAxisSize: MainAxisSize.max,
+    children: <Widget>[
       Image.asset(
         'assets/images/taxi.png',
         height: 250.0,
         width: 250.0,
+        fit: BoxFit.contain,
         alignment: Alignment.center,
       ),
     ],
@@ -67,31 +76,35 @@ final page2 = PageViewModel(
   body: Text(
     'Easy cab booking at your doorstep with cashless payment system',
   ),
-  iconImageAssetPath: 'assets/images/taxi-driver.png',
+  iconImageAssetPath: 'assets/images/taxi.png',
 );
 
 final page3 = PageViewModel(
-  pageColor: Colors.brown[500],
+  pageColor: Colors.brown[600],
   bubbleBackgroundColor: Colors.brown[200],
   textStyle: TextStyle(color: Colors.brown[50]),
   iconColor: null,
-  title: Container(),
-  mainImage: Column(
-    children: <Widget>[
-      Text(
-        'Acta',
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          fontFamily: 'Italianno',
-          fontSize: 64.0,
-          fontWeight: FontWeight.bold,
-          color: Colors.brown[50],
-        ),
+  title: Container(
+    padding: const EdgeInsets.only(top: 12.0),
+    child: Text(
+      ATLabels.ACTA,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontFamily: 'Italianno',
+        fontSize: 64.0,
+        fontWeight: FontWeight.bold,
+        color: Colors.brown[50],
       ),
+    ),
+  ),
+  mainImage: Column(
+    mainAxisSize: MainAxisSize.max,
+    children: <Widget>[
       Image.asset(
         'assets/images/taxi.png',
         height: 250.0,
         width: 250.0,
+        fit: BoxFit.contain,
         alignment: Alignment.center,
       ),
     ],
@@ -99,7 +112,7 @@ final page3 = PageViewModel(
   body: Text(
     'Easy cab booking at your doorstep with cashless payment system',
   ),
-  iconImageAssetPath: 'assets/images/taxi-driver.png',
+  iconImageAssetPath: 'assets/images/taxi.png',
 );
 
 class IntroScreen extends StatelessWidget {
@@ -123,6 +136,7 @@ class IntroScreen extends StatelessWidget {
 
   void _goToHomeScreen(BuildContext context) {
     _preferencesBloc.setIsFirstLoginDone();
-    Navigation.navigateFromInside(context: context, screen: HomeScreen(), replace: true);
+    Navigation.navigateFromInside(
+        context: context, screen: HomeScreen(), replace: true);
   }
 }

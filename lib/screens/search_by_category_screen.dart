@@ -1,10 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:acta/i18n/at_labels.dart';
 import 'package:acta/models/category.dart';
-import 'package:acta/utils/navigation.dart';
 import 'package:acta/screens/at_base_screen.dart';
 import 'package:acta/screens/news_by_category_screen.dart';
+import 'package:acta/utils/navigation.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class SearchByCategoryScreen extends StatelessWidget {
   final List<Category> categories = [
@@ -21,7 +22,7 @@ class SearchByCategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ATBaseScreen(
-      title: 'Acta',
+      title: ATLabels.ACTA,
       subtitle: 'Category',
       body: _buildSearchByCategoryScreen(),
       initialTab: 2,

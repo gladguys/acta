@@ -1,13 +1,13 @@
 import 'package:acta/blocs/sign_up_screen_bloc.dart';
 import 'package:acta/i18n/at_labels.dart';
 import 'package:acta/i18n/at_messages.dart';
+import 'package:acta/screens/auth/auth_validations.dart';
 import 'package:acta/utils/firebase_errors_helper.dart';
 import 'package:acta/widgets/at_alert.dart';
 import 'package:acta/widgets/at_simple_text_logo.dart';
 import 'package:acta/widgets/at_text_form_field.dart';
 import 'package:acta/widgets/at_waiting.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
-import 'package:acta/screens/auth/auth_validations.dart';
 import 'package:flutter/material.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -26,7 +26,6 @@ class _SignUpScreen extends State<SignUpScreen> {
   FocusNode passwordFocusNode = FocusNode();
 
   bool isCreatingUser;
-  String errorMessage;
 
   final SignUpScreenBloc _signUpScreenBloc =
       BlocProvider.getBloc<SignUpScreenBloc>();
@@ -34,7 +33,6 @@ class _SignUpScreen extends State<SignUpScreen> {
   @override
   void initState() {
     isCreatingUser = false;
-    errorMessage = null;
     super.initState();
   }
 
@@ -63,12 +61,13 @@ class _SignUpScreen extends State<SignUpScreen> {
                   children: <Widget>[
                     ATSimpleTextLogo(
                       text: 'Register an account',
+                      duration: Duration(seconds: 1),
+                      isRepeatingAnimation: false,
                       fontSize: 60.0,
                     ),
                     _buildFields(),
                     SizedBox(height: 24.0),
                     _buildButtons(),
-                    _buildAuthErrorMessage(),
                   ],
                 ),
               ),
@@ -137,10 +136,6 @@ class _SignUpScreen extends State<SignUpScreen> {
     );
   }
 
-  Widget _buildAuthErrorMessage() {
-    return errorMessage != null ? Text(errorMessage) : Container();
-  }
-
   Future<void> _createUser(BuildContext context) async {
     final FormState form = _formKey.currentState;
     if (form.validate()) {
@@ -156,8 +151,9 @@ class _SignUpScreen extends State<SignUpScreen> {
         ATAlert.success('Account created!');
         widget.toggler();
       } else {
-        setState(() => errorMessage =
+        ATAlert.failure(
             FirebaseSignInErrorsHelper.getMessage(userData['code']));
+        setState(() => isCreatingUser = false);
       }
     }
   }

@@ -1,5 +1,6 @@
 import 'package:acta/blocs/news_bloc.dart';
 import 'package:acta/enums/source_logos.dart';
+import 'package:acta/i18n/at_labels.dart';
 import 'package:acta/models/source_response.dart';
 import 'package:acta/models/sources_response.dart';
 import 'package:acta/providers/news_provider.dart';
@@ -19,7 +20,7 @@ class SearchBySourceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ATBaseScreen(
-      title: 'Acta',
+      title: ATLabels.ACTA,
       subtitle: 'Sources',
       body: _buildSearchBySourceScreen(),
       initialTab: 1,
