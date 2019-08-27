@@ -14,34 +14,50 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ATBaseScreen(
       title: ATLabels.ACTA,
-      body: Column(
-        children: <Widget>[
-          _buildCountryPickerInfo(context),
-        ],
-      ),
+      subtitle: ATLabels.SETTINGS,
+      body: _buildBody(context),
       withbBottomNavigationBar: false,
     );
   }
 
-  Widget _buildCountryPickerInfo(BuildContext context) {
+  Widget _buildBody(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Text(ATMessages.CHANGE_COUNTRY_NEWS),
-                ATCountryPicker(),
-              ],
-            ),
-            _buildLogoutButton(context),
-          ],
-        ));
+      padding: EdgeInsets.fromLTRB(16.0, 32.0, 16.0, 16.0),
+      child: Column(
+        children: <Widget>[
+          _buildCountryPickerInfo(context),
+          Divider(
+            height: 40.0,
+            color: Colors.brown[200],
+          ),
+          _buildLogoutButton(context),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCountryPickerInfo(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.only(right: 8.0),
+          child: Text(ATMessages.CHANGE_COUNTRY_NEWS + ':'),
+        ),
+        ATCountryPicker(),
+      ],
+    );
   }
 
   Widget _buildLogoutButton(BuildContext context) {
-    return RaisedButton(
-      child: Text(ATLabels.LOGOUT),
+    return RaisedButton.icon(
+      color: Colors.brown[700],
+      textColor: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+      ),
+      icon: Icon(Icons.exit_to_app),
+      label: Text(ATLabels.LOGOUT),
       onPressed: () => _logoutApp(context),
     );
   }

@@ -54,7 +54,7 @@ class ATBaseScreen extends StatelessWidget {
         child: Text(
           subtitle,
           style: TextStyle(
-            fontSize: 18.0,
+            fontSize: 17.0,
             fontWeight: FontWeight.bold,
             color: Colors.brown[400],
           ),

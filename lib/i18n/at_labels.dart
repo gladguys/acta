@@ -6,4 +6,5 @@ class ATLabels {
   static const LOGIN = 'Login';
   static const LOGOUT = 'Logout';
   static const SEARCH = 'Search';
+  static const SETTINGS = 'Settings';
 }

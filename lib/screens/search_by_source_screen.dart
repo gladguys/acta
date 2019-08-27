@@ -27,11 +27,14 @@ class SearchBySourceScreen extends StatelessWidget {
   }
 
   Widget _buildSearchBySourceScreen() {
-    return StreamBuilder(
-      stream: _bloc.newsObservable,
-      initialData: true,
-      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) =>
-          _buildScreenFromStream(context, snapshot),
+    return Padding(
+      padding: const EdgeInsets.only(top: 12.0),
+      child: StreamBuilder(
+        stream: _bloc.newsObservable,
+        initialData: true,
+        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) =>
+            _buildScreenFromStream(context, snapshot),
+      ),
     );
   }
 
