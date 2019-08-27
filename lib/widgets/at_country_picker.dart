@@ -1,11 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:global_configuration/global_configuration.dart';
+import 'package:acta/blocs/news_bloc.dart';
+import 'package:acta/utils/supported_countries.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:country_pickers/country.dart';
 import 'package:country_pickers/country_picker_dropdown.dart';
 import 'package:country_pickers/country_pickers.dart';
-import 'package:acta/blocs/news_bloc.dart';
-import 'package:acta/utils/supported_countries.dart';
+import 'package:flutter/material.dart';
+import 'package:global_configuration/global_configuration.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ATCountryPicker extends StatelessWidget {
   final _bloc = BlocProvider.getBloc<NewsBloc>();
@@ -21,7 +22,11 @@ class ATCountryPicker extends StatelessWidget {
   }
 
   Future<void> _updateCountry(BuildContext context, Country country) async {
-    GlobalConfiguration().setValue('country', country.isoCode.toLowerCase());
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    final String countryCode = country.isoCode.toLowerCase();
+    await sharedPreferences.setString('country', countryCode);
+    GlobalConfiguration().setValue('country', countryCode);
     _bloc.updateCountry();
   }
 

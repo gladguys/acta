@@ -1,4 +1,5 @@
 import 'package:acta/enums/source_logos.dart';
+import 'package:acta/i18n/at_labels.dart';
 import 'package:acta/models/news_response.dart';
 import 'package:acta/providers/news_provider.dart';
 import 'package:acta/widgets/at_waiting.dart';
@@ -18,7 +19,7 @@ class NewsBySourceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ATBaseScreen(
-      title: 'Acta',
+      title: ATLabels.ACTA,
       subtitle: name,
       actions: <Widget>[
         Hero(

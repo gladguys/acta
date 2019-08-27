@@ -1,10 +1,11 @@
 import 'package:acta/blocs/at_blocs.dart';
 import 'package:acta/i18n/at_labels.dart';
-import 'package:flutter/material.dart';
-import 'package:global_configuration/global_configuration.dart';
+import 'package:acta/main_app.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:catcher/catcher_plugin.dart';
-import 'package:acta/main_app.dart';
+import 'package:flutter/material.dart';
+import 'package:global_configuration/global_configuration.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() => _loadApp();
 
@@ -32,8 +33,11 @@ Future<void> _loadApp() async {
 }
 
 Future<void> _loadConfig() async {
+  final SharedPreferences sharedPreferences =
+      await SharedPreferences.getInstance();
   await GlobalConfiguration().loadFromAsset('app_settings');
-  GlobalConfiguration().setValue('country', 'us');
+  GlobalConfiguration()
+      .setValue('country', sharedPreferences.get('country') ?? 'us');
 }
 
 class MyApp extends StatelessWidget {

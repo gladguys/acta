@@ -1,3 +1,8 @@
+import 'package:acta/enums/view_type.dart';
+import 'package:acta/models/article_response.dart';
+import 'package:acta/models/news_response.dart';
+import 'package:acta/utils/navigation.dart';
+import 'package:acta/widgets/at_network_image.dart';
 import 'package:animated_card/animated_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,16 +11,11 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
-import 'package:acta/models/news_response.dart';
-import 'package:acta/models/article_response.dart';
-import 'package:acta/enums/view_type.dart';
-import 'package:acta/widgets/at_network_image.dart';
-import 'package:acta/utils/navigation.dart';
-import 'package:acta/screens/news_info_screen.dart';
+
+import 'at_webview_container.dart';
 
 class NewsCardsList extends StatelessWidget {
-  NewsCardsList(
-      {@required this.news, this.viewType, this.newsRefresher});
+  NewsCardsList({@required this.news, this.viewType, this.newsRefresher});
 
   final NewsResponse news;
   final ViewType viewType;
@@ -98,7 +98,7 @@ class NewsCardsList extends StatelessWidget {
 
   Widget _actionsClickCard(BuildContext context, ArticleResponse article) {
     return GestureDetector(
-      onTap: () => _navigateToNewsInfo(context, article),
+      onTap: () => _openNews(context, article),
       child: Column(
         children: <Widget>[
           _buildImageOfCard(article),
@@ -112,10 +112,7 @@ class NewsCardsList extends StatelessWidget {
     Widget _widget;
 
     if (article.urlToImage != null) {
-      _widget = Hero(
-        tag: '${article.publishedAt.toString() ?? ''}${article.author ?? article.title}',
-        child: _buildShimmerImage(article),
-      );
+      _widget = _buildShimmerImage(article);
     } else {
       _widget = Container();
     }
@@ -160,8 +157,9 @@ class NewsCardsList extends StatelessWidget {
     return _widget;
   }
 
-  void _navigateToNewsInfo(BuildContext context, ArticleResponse article) {
+  void _openNews(BuildContext context, ArticleResponse article) {
+    final String url = article.url;
     Navigation.navigateFromInside(
-        context: context, screen: NewsInfoScreen(article: article));
+        context: context, screen: ATWebViewContainer(url: url));
   }
 }
