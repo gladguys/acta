@@ -4,6 +4,7 @@ import 'package:acta/models/news_response.dart';
 import 'package:acta/providers/news_provider.dart';
 import 'package:acta/widgets/at_waiting.dart';
 import 'package:acta/widgets/news_cards_list.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'at_base_screen.dart';
@@ -24,10 +25,23 @@ class NewsBySourceScreen extends StatelessWidget {
         Hero(
           tag: id,
           child: Container(
-            padding: EdgeInsets.only(top: 12.0),
-            width: 100,
-            height: 100,
-            child: Image.network(SourcesLogo.getUrlById(id)),
+            margin: const EdgeInsets.only(right: 16.0),
+            width: 60.0,
+            height: 48.0,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(color: Colors.brown[100]),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(12.0),
+                bottomRight: Radius.circular(12.0),
+              ),
+              image: DecorationImage(
+                image: CachedNetworkImageProvider(
+                  SourcesLogo.getUrlById(id),
+                ),
+                fit: BoxFit.contain,
+              ),
+            ),
           ),
         ),
       ],
@@ -37,16 +51,19 @@ class NewsBySourceScreen extends StatelessWidget {
   }
 
   Widget _buildNewsBySourceScreen() {
-    return FutureBuilder<NewsResponse>(
-      future: _provider.getTopHeadlinesFromSource(id),
-      builder: (BuildContext context, AsyncSnapshot<NewsResponse> snapshot) {
-        if (snapshot.hasData) {
-          return NewsCardsList(news: snapshot.data);
-        } else if (snapshot.hasError) {
-          return Text('${snapshot.error}');
-        }
-        return ATWaiting();
-      },
+    return Padding(
+      padding: const EdgeInsets.only(top: 12.0),
+      child: FutureBuilder<NewsResponse>(
+        future: _provider.getTopHeadlinesFromSource(id),
+        builder: (BuildContext context, AsyncSnapshot<NewsResponse> snapshot) {
+          if (snapshot.hasData) {
+            return NewsCardsList(news: snapshot.data);
+          } else if (snapshot.hasError) {
+            return Text('${snapshot.error}');
+          }
+          return ATWaiting();
+        },
+      ),
     );
   }
 }

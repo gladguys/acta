@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return IconButton(
       icon: Icon(
           _viewType == ViewType.grid ? Icons.view_agenda : Icons.dashboard),
-      color: Colors.brown[200],
+      color: Colors.brown[300],
       onPressed: _changeViewType,
     );
   }
@@ -60,6 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildSettingsIcon() {
     return IconButton(
       icon: Icon(Icons.settings),
+      color: Colors.brown[300],
       onPressed: () => Navigation.navigateFromInside(
         context: context,
         screen: SettingsScreen(),
