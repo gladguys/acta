@@ -29,22 +29,22 @@ final page = PageViewModel(
     mainAxisSize: MainAxisSize.max,
     children: <Widget>[
       Image.asset(
-        'assets/images/taxi.png',
-        height: 250.0,
-        width: 250.0,
+        'assets/images/sources.png',
+        height: 350.0,
+        width: 350.0,
         fit: BoxFit.contain,
         alignment: Alignment.center,
       ),
     ],
   ),
   body: Text(
-    'Easy cab booking at your doorstep with cashless payment system',
+    'View the breaking news from different sources around the world in one place.',
   ),
-  iconImageAssetPath: 'assets/images/taxi.png',
+  iconImageAssetPath: 'assets/images/sources.png',
 );
 
 final page2 = PageViewModel(
-  pageColor: Colors.brown[700],
+  pageColor: Colors.brown[900],
   bubbleBackgroundColor: Colors.brown[200],
   textStyle: TextStyle(color: Colors.brown[50]),
   iconColor: null,
@@ -65,55 +65,21 @@ final page2 = PageViewModel(
     mainAxisSize: MainAxisSize.max,
     children: <Widget>[
       Image.asset(
-        'assets/images/taxi.png',
-        height: 250.0,
-        width: 250.0,
+        'assets/images/countries.png',
+        height: 350.0,
+        width: 350.0,
         fit: BoxFit.contain,
         alignment: Alignment.center,
       ),
     ],
   ),
   body: Text(
-    'Easy cab booking at your doorstep with cashless payment system',
+    'And set the country you might want to read news from.',
   ),
-  iconImageAssetPath: 'assets/images/taxi.png',
+  iconImageAssetPath: 'assets/images/countries.png',
 );
 
-final page3 = PageViewModel(
-  pageColor: Colors.brown[600],
-  bubbleBackgroundColor: Colors.brown[200],
-  textStyle: TextStyle(color: Colors.brown[50]),
-  iconColor: null,
-  title: Container(
-    padding: const EdgeInsets.only(top: 12.0),
-    child: Text(
-      ATLabels.ACTA,
-      textAlign: TextAlign.center,
-      style: TextStyle(
-        fontFamily: 'Italianno',
-        fontSize: 64.0,
-        fontWeight: FontWeight.bold,
-        color: Colors.brown[50],
-      ),
-    ),
-  ),
-  mainImage: Column(
-    mainAxisSize: MainAxisSize.max,
-    children: <Widget>[
-      Image.asset(
-        'assets/images/taxi.png',
-        height: 250.0,
-        width: 250.0,
-        fit: BoxFit.contain,
-        alignment: Alignment.center,
-      ),
-    ],
-  ),
-  body: Text(
-    'Easy cab booking at your doorstep with cashless payment system',
-  ),
-  iconImageAssetPath: 'assets/images/taxi.png',
-);
+
 
 class IntroScreen extends StatelessWidget {
   final _preferencesBloc = BlocProvider.getBloc<PreferencesBloc>();
@@ -123,7 +89,7 @@ class IntroScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.brown[800],
       body: IntroViewsFlutter(
-        [page, page2, page3],
+        [page, page2],
         onTapDoneButton: () => _goToHomeScreen(context),
         showSkipButton: true,
         pageButtonTextStyles: TextStyle(
