@@ -37,7 +37,7 @@ Future<void> _loadConfig() async {
       await SharedPreferences.getInstance();
   await GlobalConfiguration().loadFromAsset('app_settings')
     ..setValue('country', sharedPreferences.get('country') ?? 'us')
-    ..setValue('viewType', sharedPreferences.get('viewType') ?? '0');
+    ..setValue('viewType', sharedPreferences.get('viewType') ?? 0);
 }
 
 class MyApp extends StatelessWidget {
