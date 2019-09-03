@@ -17,4 +17,9 @@ final List<Widget> navigationBarItems = [
     size: 32,
     color: Colors.white,
   ),
+  Icon(
+    Icons.settings,
+    size: 32,
+    color: Colors.white,
+  ),
 ];

@@ -1,12 +1,12 @@
+import 'package:acta/screens/home_screen.dart';
+import 'package:acta/screens/search_by_category_screen.dart';
+import 'package:acta/screens/search_by_source_screen.dart';
+import 'package:acta/screens/settings_screen.dart';
+import 'package:acta/utils/navigation.dart';
+import 'package:acta/widgets/bottomNavigation/navigation_items.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-
-import 'package:acta/widgets/bottomNavigation/navigation_items.dart';
-import 'package:acta/screens/home_screen.dart';
-import 'package:acta/screens/search_by_source_screen.dart';
-import 'package:acta/screens/search_by_category_screen.dart';
-import 'package:acta/utils/navigation.dart';
 
 @immutable
 class MainBottomNavigator extends StatelessWidget {
@@ -42,6 +42,8 @@ class MainBottomNavigator extends StatelessWidget {
         return SearchBySourceScreen();
       case 2:
         return SearchByCategoryScreen();
+      case 3:
+        return SettingsScreen();
       default:
         return HomeScreen();
     }
