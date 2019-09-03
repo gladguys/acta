@@ -1,0 +1,111 @@
+{
+  "@@last_modified": "2019-09-02T23:52:19.853113",
+  "sources": "Sources",
+  "@sources": {
+    "description": "The sources of the news",
+    "type": "text",
+    "placeholders": {}
+  },
+  "category": "Category",
+  "@category": {
+    "description": "The category of the news",
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "The settings of the app",
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseCountry": "Choose country of the news",
+  "@chooseCountry": {
+    "description": "The message to choose the country of the news",
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseViewType": "Choose news view type",
+  "@chooseViewType": {
+    "description": "The message to choose between the view types",
+    "type": "text",
+    "placeholders": {}
+  },
+  "createAccount": "Create an account",
+  "@createAccount": {
+    "description": "Create an account label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "registerAccount": "Register an account",
+  "@registerAccount": {
+    "description": "Register an account label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "haveAccount": "I have an account",
+  "@haveAccount": {
+    "description": "I have an account label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "create": "Create",
+  "@create": {
+    "description": "Create label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "Password",
+  "@password": {
+    "description": "Password label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "logout": "Logout",
+  "@logout": {
+    "description": "Logout label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "business": "Business",
+  "@business": {
+    "description": "Business label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "entertainment": "Entertainment",
+  "@entertainment": {
+    "description": "Entertainment label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "general": "General",
+  "@general": {
+    "description": "General label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "health": "Health",
+  "@health": {
+    "description": "Health label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "science": "Science",
+  "@science": {
+    "description": "Science label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "sports": "Sports",
+  "@sports": {
+    "description": "Sports label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "technology": "Technology",
+  "@technology": {
+    "description": "Technology label",
+    "type": "text",
+    "placeholders": {}
+  }
+}

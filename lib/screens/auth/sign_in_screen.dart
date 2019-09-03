@@ -1,7 +1,7 @@
 import 'package:acta/blocs/configs_bloc.dart';
 import 'package:acta/blocs/sign_in_screen_bloc.dart';
+import 'package:acta/i18n/app_localizations.dart';
 import 'package:acta/i18n/at_labels.dart';
-import 'package:acta/i18n/at_messages.dart';
 import 'package:acta/screens/auth/auth_validations.dart';
 import 'package:acta/screens/home_screen.dart';
 import 'package:acta/screens/intro_screen.dart';
@@ -129,7 +129,7 @@ class _SignInScreenState extends State<SignInScreen> {
         ),
         FlatButton(
           textColor: Colors.brown[800],
-          child: Text(ATMessages.CREATE_ACCOUNT),
+          child: Text(AppLocalizations.of(context).createAccount),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(24.0),
           ),

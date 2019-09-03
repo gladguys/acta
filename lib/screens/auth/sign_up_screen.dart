@@ -1,6 +1,5 @@
 import 'package:acta/blocs/sign_up_screen_bloc.dart';
-import 'package:acta/i18n/at_labels.dart';
-import 'package:acta/i18n/at_messages.dart';
+import 'package:acta/i18n/app_localizations.dart';
 import 'package:acta/screens/auth/auth_validations.dart';
 import 'package:acta/utils/firebase_errors_helper.dart';
 import 'package:acta/widgets/at_alert.dart';
@@ -114,7 +113,7 @@ class _SignUpScreen extends State<SignUpScreen> {
           width: 200.0,
           height: 40.0,
           child: RaisedButton(
-            child: Text(ATLabels.CREATE),
+            child: Text(AppLocalizations.of(context).create),
             color: Colors.brown[800],
             textColor: Colors.brown[50],
             shape: RoundedRectangleBorder(
@@ -125,7 +124,7 @@ class _SignUpScreen extends State<SignUpScreen> {
         ),
         FlatButton(
           textColor: Colors.brown[800],
-          child: Text(ATMessages.HAVE_ACCOUNT),
+          child: Text(AppLocalizations.of(context).haveAccount),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(24.0),
           ),
