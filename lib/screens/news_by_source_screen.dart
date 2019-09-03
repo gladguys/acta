@@ -59,7 +59,7 @@ class NewsBySourceScreen extends StatelessWidget {
           if (snapshot.hasData) {
             return NewsCardsList(
               news: snapshot.data,
-              newsRefresher: _getTopHeadlines,
+              newsRefresher: () => _provider.getTopHeadlinesFromSource(id),
             );
           } else if (snapshot.hasError) {
             return Text('${snapshot.error}');
@@ -68,9 +68,5 @@ class NewsBySourceScreen extends StatelessWidget {
         },
       ),
     );
-  }
-
-  Future<NewsResponse> _getTopHeadlines() {
-    return _provider.getTopHeadlinesFromSource(id);
   }
 }

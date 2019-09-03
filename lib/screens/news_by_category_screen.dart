@@ -31,7 +31,8 @@ class NewsByCategoryScreen extends StatelessWidget {
         if (snapshot.hasData) {
           return NewsCardsList(
             news: snapshot.data,
-            newsRefresher: _getTopHeadlines,);
+            newsRefresher: () => _provider.getNewsByCategory(id),
+          );
         } else if (snapshot.hasError) {
           return Text('${snapshot.error}');
         }
@@ -39,9 +40,4 @@ class NewsByCategoryScreen extends StatelessWidget {
       },
     );
   }
-
-   Future<NewsResponse> _getTopHeadlines() {
-    return _provider.getNewsByCategory(id);
-  }
-  
 }
