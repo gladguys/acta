@@ -29,7 +29,6 @@ class NewsByCategoryScreen extends StatelessWidget {
       future: _provider.getNewsByCategory(id),
       builder: (BuildContext context, AsyncSnapshot<NewsResponse> snapshot) {
         if (snapshot.hasData) {
-          print(snapshot.data);
           return NewsCardsList(
             news: snapshot.data,
             newsRefresher: _getTopHeadlines,);
