@@ -30,7 +30,9 @@ class NewsByCategoryScreen extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot<NewsResponse> snapshot) {
         if (snapshot.hasData) {
           print(snapshot.data);
-          return NewsCardsList(news: snapshot.data);
+          return NewsCardsList(
+            news: snapshot.data,
+            newsRefresher: _getTopHeadlines,);
         } else if (snapshot.hasError) {
           return Text('${snapshot.error}');
         }
@@ -38,4 +40,9 @@ class NewsByCategoryScreen extends StatelessWidget {
       },
     );
   }
+
+   Future<NewsResponse> _getTopHeadlines() {
+    return _provider.getNewsByCategory(id);
+  }
+  
 }
