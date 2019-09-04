@@ -62,6 +62,7 @@ class NewsBySourceScreen extends StatelessWidget {
           return NewsCardsList(
             news: snapshot.data,
             viewType: _configsBloc.currentViewType,
+            newsRefresher: () => _provider.getTopHeadlinesFromSource(id),
           );
         } else if (snapshot.hasError) {
           return Text('${snapshot.error}');

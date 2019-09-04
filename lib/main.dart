@@ -19,7 +19,7 @@ Future<void> _loadApp() async {
       'actaflutter@gmail.com',
       ATLabels.ACTA_CATCHER,
       'acta1234',
-      ['rodrigobastosv@gmail.com'],
+      ['actaflutter@gmail.com'],
     )
   ]);
 
