@@ -67,28 +67,37 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   Widget _buildViewTypePicker() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(right: 8.0),
-          child: Text(ATMessages.CHANGE_VIEW_TYPE + ':'),
-        ),
-        InkWell(
-          onTap: () => _updateViewType(ViewType.list),
-          child: Icon(
-            Icons.view_agenda,
-            color: pickedViewType == ViewType.list ? Colors.green : Colors.grey,
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: Text(ATMessages.CHANGE_VIEW_TYPE + ':'),
           ),
-        ),
-        InkWell(
-          onTap: () => _updateViewType(ViewType.grid),
-          child: Icon(
-            Icons.dashboard,
-            color: pickedViewType == ViewType.grid ? Colors.green : Colors.grey,
+          InkWell(
+            onTap: () => _updateViewType(ViewType.list),
+            child: Icon(
+              Icons.view_agenda,
+              size: 32.0,
+              color: pickedViewType == ViewType.list
+                  ? Colors.brown[700]
+                  : Colors.brown[100],
+            ),
           ),
-        ),
-      ],
+          InkWell(
+            onTap: () => _updateViewType(ViewType.grid),
+            child: Icon(
+              Icons.dashboard,
+              size: 32.0,
+              color: pickedViewType == ViewType.grid
+                  ? Colors.brown[700]
+                  : Colors.brown[100],
+            ),
+          ),
+        ],
+      ),
     );
   }
 

@@ -55,23 +55,20 @@ class NewsBySourceScreen extends StatelessWidget {
   }
 
   Widget _buildNewsBySourceScreen() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 12.0),
-      child: FutureBuilder<NewsResponse>(
-        future: _provider.getTopHeadlinesFromSource(id),
-        builder: (BuildContext context, AsyncSnapshot<NewsResponse> snapshot) {
-          if (snapshot.hasData) {
-            return NewsCardsList(
-              news: snapshot.data,
-              viewType: _configsBloc.currentViewType,
-              newsRefresher: () => _provider.getTopHeadlinesFromSource(id),
-            );
-          } else if (snapshot.hasError) {
-            return Text('${snapshot.error}');
-          }
-          return ATWaiting();
-        },
-      ),
+    return FutureBuilder<NewsResponse>(
+      future: _provider.getTopHeadlinesFromSource(id),
+      builder: (BuildContext context, AsyncSnapshot<NewsResponse> snapshot) {
+        if (snapshot.hasData) {
+          return NewsCardsList(
+            news: snapshot.data,
+            viewType: _configsBloc.currentViewType,
+            newsRefresher: () => _provider.getTopHeadlinesFromSource(id),
+          );
+        } else if (snapshot.hasError) {
+          return Text('${snapshot.error}');
+        }
+        return ATWaiting();
+      },
     );
   }
 }
