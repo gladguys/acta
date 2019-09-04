@@ -27,7 +27,7 @@ final page0 = PageViewModel(
       ),
       Image.asset(
         'assets/images/news.png',
-        height: 250.0,
+        height: 220.0,
         width: 270.0,
         fit: BoxFit.contain,
         alignment: Alignment.center,
@@ -37,7 +37,7 @@ final page0 = PageViewModel(
   body: Column(
     children: <Widget>[
       Text(
-        'As mais recentes notícias do mundo em um só app. Nossa fonte de notícias é o Google.',
+        'As mais recentes notícias do mundo em um só app. Nossa fonte de notícias é o News API.',
         style: TextStyle(
           fontSize: 20.0,
           color: Colors.brown[900],
@@ -46,7 +46,6 @@ final page0 = PageViewModel(
     ],
   ),
 );
-
 
 final page = PageViewModel(
   pageColor: Colors.brown[100],
@@ -170,7 +169,7 @@ final page3 = PageViewModel(
       ),
       Image.asset(
         'assets/images/categories.png',
-        height: 250.0,
+        height: 220.0,
         width: 270.0,
         fit: BoxFit.contain,
         alignment: Alignment.center,
