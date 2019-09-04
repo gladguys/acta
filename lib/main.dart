@@ -19,7 +19,7 @@ Future<void> _loadApp() async {
       'actaflutter@gmail.com',
       ATLabels.ACTA_CATCHER,
       'acta1234',
-      ['rodrigobastosv@gmail.com'],
+      ['actaflutter@gmail.com'],
     )
   ]);
 
@@ -35,9 +35,9 @@ Future<void> _loadApp() async {
 Future<void> _loadConfig() async {
   final SharedPreferences sharedPreferences =
       await SharedPreferences.getInstance();
-  await GlobalConfiguration().loadFromAsset('app_settings');
-  GlobalConfiguration()
-      .setValue('country', sharedPreferences.get('country') ?? 'us');
+  await GlobalConfiguration().loadFromAsset('app_settings')
+    ..setValue('country', sharedPreferences.get('country') ?? 'us')
+    ..setValue('viewType', sharedPreferences.get('viewType') ?? '0');
 }
 
 class MyApp extends StatelessWidget {
