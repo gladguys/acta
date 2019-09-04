@@ -25,12 +25,12 @@ final page0 = PageViewModel(
           color: Colors.brown[900],
         ),
       ),
-      Image.asset(
-        'assets/images/news.png',
-        height: 220.0,
-        width: 270.0,
-        fit: BoxFit.contain,
-        alignment: Alignment.center,
+      Expanded(
+        child: Image.asset(
+          'assets/images/news.png',
+          fit: BoxFit.contain,
+          alignment: Alignment.center,
+        ),
       ),
     ],
   ),
@@ -65,12 +65,12 @@ final page = PageViewModel(
           color: Colors.brown[900],
         ),
       ),
-      Image.asset(
-        'assets/images/sources.png',
-        height: 220.0,
-        width: 270.0,
-        fit: BoxFit.contain,
-        alignment: Alignment.center,
+      Expanded(
+        child: Image.asset(
+          'assets/images/sources.png',
+          fit: BoxFit.contain,
+          alignment: Alignment.center,
+        ),
       ),
     ],
   ),
@@ -116,12 +116,12 @@ final page2 = PageViewModel(
           color: Colors.brown[900],
         ),
       ),
-      Image.asset(
-        'assets/images/countries.png',
-        height: 220.0,
-        width: 270.0,
-        fit: BoxFit.contain,
-        alignment: Alignment.center,
+      Expanded(
+        child: Image.asset(
+          'assets/images/countries.png',
+          fit: BoxFit.contain,
+          alignment: Alignment.center,
+        ),
       ),
     ],
   ),
@@ -167,12 +167,12 @@ final page3 = PageViewModel(
           color: Colors.brown[900],
         ),
       ),
-      Image.asset(
-        'assets/images/categories.png',
-        height: 220.0,
-        width: 270.0,
-        fit: BoxFit.contain,
-        alignment: Alignment.center,
+      Expanded(
+        child: Image.asset(
+          'assets/images/categories.png',
+          fit: BoxFit.contain,
+          alignment: Alignment.center,
+        ),
       ),
     ],
   ),
