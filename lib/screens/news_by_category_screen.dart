@@ -30,7 +30,10 @@ class NewsByCategoryScreen extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot<NewsResponse> snapshot) {
         if (snapshot.hasData) {
           print(snapshot.data);
-          return NewsCardsList(news: snapshot.data);
+          return NewsCardsList(
+            news: snapshot.data,
+            newsRefresher: () => _provider.getNewsByCategory(id),
+          );
         } else if (snapshot.hasError) {
           return Text('${snapshot.error}');
         }

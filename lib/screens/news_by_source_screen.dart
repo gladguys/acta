@@ -57,7 +57,10 @@ class NewsBySourceScreen extends StatelessWidget {
         future: _provider.getTopHeadlinesFromSource(id),
         builder: (BuildContext context, AsyncSnapshot<NewsResponse> snapshot) {
           if (snapshot.hasData) {
-            return NewsCardsList(news: snapshot.data);
+            return NewsCardsList(
+              news: snapshot.data,
+              newsRefresher: () => _provider.getTopHeadlinesFromSource(id),
+            );
           } else if (snapshot.hasError) {
             return Text('${snapshot.error}');
           }
