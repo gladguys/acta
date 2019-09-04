@@ -23,7 +23,10 @@ class NewsCardsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _buildNews(context);
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0),
+      child: _buildNews(context),
+    );
   }
 
   Widget _buildNews(BuildContext context) {

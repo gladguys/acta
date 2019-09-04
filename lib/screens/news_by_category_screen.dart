@@ -37,6 +37,7 @@ class NewsByCategoryScreen extends StatelessWidget {
           return NewsCardsList(
             news: snapshot.data,
             viewType: _configsBloc.currentViewType,
+            newsRefresher: () => _provider.getNewsByCategory(id),
           );
         } else if (snapshot.hasError) {
           return Text('${snapshot.error}');
