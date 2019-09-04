@@ -1,8 +1,8 @@
 import 'package:acta/blocs/configs_bloc.dart';
 import 'package:acta/blocs/user_bloc.dart';
 import 'package:acta/enums/view_type.dart';
+import 'package:acta/i18n/app_localizations.dart';
 import 'package:acta/i18n/at_labels.dart';
-import 'package:acta/i18n/at_messages.dart';
 import 'package:acta/screens/at_base_screen.dart';
 import 'package:acta/utils/navigation.dart';
 import 'package:acta/widgets/at_country_picker.dart';
@@ -29,7 +29,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return ATBaseScreen(
       title: ATLabels.ACTA,
-      subtitle: ATLabels.SETTINGS,
+      subtitle: AppLocalizations.of(context).settings,
       body: _buildBody(context),
       initialTab: 3,
     );
@@ -59,7 +59,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(right: 8.0),
-          child: Text(ATMessages.CHANGE_COUNTRY_NEWS + ':'),
+          child: Text(AppLocalizations.of(context).chooseCountry + ':'),
         ),
         ATCountryPicker(),
       ],
@@ -74,7 +74,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
-            child: Text(ATMessages.CHANGE_VIEW_TYPE + ':'),
+            child: Text(AppLocalizations.of(context).chooseViewType + ':'),
           ),
           InkWell(
             onTap: () => _updateViewType(ViewType.list),
@@ -109,7 +109,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         borderRadius: BorderRadius.all(Radius.circular(8.0)),
       ),
       icon: Icon(Icons.exit_to_app),
-      label: Text(ATLabels.LOGOUT),
+      label: Text(AppLocalizations.of(context).logout),
       onPressed: () => _logoutApp(),
     );
   }

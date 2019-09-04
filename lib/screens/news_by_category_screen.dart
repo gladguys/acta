@@ -1,4 +1,5 @@
 import 'package:acta/blocs/configs_bloc.dart';
+import 'package:acta/i18n/app_localizations.dart';
 import 'package:acta/i18n/at_labels.dart';
 import 'package:acta/models/news_response.dart';
 import 'package:acta/providers/news_provider.dart';
@@ -22,7 +23,7 @@ class NewsByCategoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ATBaseScreen(
       title: ATLabels.ACTA,
-      subtitle: '${ATLabels.CATEGORY}: $name',
+      subtitle: '${AppLocalizations.of(context).category}: $name',
       body: _buildNewsByCategoryScreen(),
       initialTab: 2,
     );

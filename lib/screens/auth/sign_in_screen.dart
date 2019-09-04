@@ -1,7 +1,7 @@
 import 'package:acta/blocs/configs_bloc.dart';
 import 'package:acta/blocs/sign_in_screen_bloc.dart';
+import 'package:acta/i18n/app_localizations.dart';
 import 'package:acta/i18n/at_labels.dart';
-import 'package:acta/i18n/at_messages.dart';
 import 'package:acta/screens/auth/auth_validations.dart';
 import 'package:acta/screens/home_screen.dart';
 import 'package:acta/screens/intro_screen.dart';
@@ -97,7 +97,7 @@ class _SignInScreenState extends State<SignInScreen> {
         ),
         SizedBox(height: 16.0),
         ATTextFormField(
-          hintText: 'Password',
+          hintText: AppLocalizations.of(context).password,
           prefixIcon: Icons.lock,
           isRequired: true,
           onSaved: (String password) => _signInInfo['password'] = password,
@@ -105,7 +105,7 @@ class _SignInScreenState extends State<SignInScreen> {
           obscureText: true,
           focusNode: passwordFocusNode,
           textInputAction: TextInputAction.done,
-          onEditingComplete: () => _signInUser(context),
+          onEditingComplete: () => _signInUser(),
         ),
       ],
     );
@@ -124,12 +124,12 @@ class _SignInScreenState extends State<SignInScreen> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(24.0),
             ),
-            onPressed: () => _signInUser(context),
+            onPressed: () => _signInUser(),
           ),
         ),
         FlatButton(
           textColor: Colors.brown[800],
-          child: Text(ATMessages.CREATE_ACCOUNT),
+          child: Text(AppLocalizations.of(context).createAccount),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(24.0),
           ),
@@ -139,7 +139,7 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 
-  Future<void> _signInUser(BuildContext context) async {
+  Future<void> _signInUser() async {
     final FormState form = _formKey.currentState;
     if (form.validate()) {
       form.save();
@@ -159,7 +159,7 @@ class _SignInScreenState extends State<SignInScreen> {
         }
       } else {
         ATAlert.failure(
-            FirebaseSignInErrorsHelper.getMessage(userData['code']));
+            FirebaseSignInErrorsHelper.getMessage(context, userData['code']));
         setState(() => isAuthenticating = false);
       }
     }

@@ -1,0 +1,140 @@
+{
+  "@@last_modified": "2019-09-02T23:19:55.349950",
+
+  "invalidEmail": "Email invalide",
+      "@invalidEmail": {
+        "description": "Invalid email message",
+        "type": "text",
+        "placeholders": {}
+      },
+
+  "emailAlreadyUsed": "Email déjà utilisé",
+      "@emailAlreadyUsed": {
+        "description": "Email in use message",
+        "type": "text",
+        "placeholders": {}
+      },
+
+  "userNotFound": "Utilisateur non trouvé",
+      "@userNotFound": {
+        "description": "User not found email message",
+        "type": "text",
+        "placeholders": {}
+      },
+
+  "wrongPassword": "Mauvais mot de passe",
+      "@wrongPassword": {
+        "description": "Wrong password message",
+        "type": "text",
+        "placeholders": {}
+      },
+
+  "sources": "Sources",
+  "@sources": {
+    "description": "Les sources de l'actualité",
+    "type": "text",
+    "placeholders": {}
+  },
+  "category": "Catégories",
+  "@category": {
+    "description": "Les nouvelles catégories",
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings": "Paramètres",
+  "@settings": {
+    "description": "App Paramètres",
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseCountry": "Choisissez un pays pour les nouvelles",
+  "@chooseCountry": {
+    "description": "Choisissez un pays pour les nouvelles",
+    "type": "text",
+    "placeholders": {}
+  },
+  "chooseViewType": "Choisissez un type de vue",
+  "@chooseViewType": {
+    "description": "Choisissez un type de vue",
+    "type": "text",
+    "placeholders": {}
+  },
+  "createAccount": "Créer un compte",
+  "@createAccount": {
+    "description": "Créer un compte",
+    "type": "text",
+    "placeholders": {}
+  },
+  "registerAccount": "Enregistrer un compte",
+  "@registerAccount": {
+    "description": "Enregistrer un compte",
+    "type": "text",
+    "placeholders": {}
+  },
+  "haveAccount": "J'ai déjà un compte",
+  "@haveAccount": {
+    "description": "J'ai déjà un compte label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "create": "Créer",
+  "@create": {
+    "description": "Créer label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "password": "Mot de passe",
+  "@password": {
+    "description": "Mot de passe label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "logout": "Partir",
+  "@logout": {
+    "description": "Partir label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "business": "Entreprise",
+    "@business": {
+      "description": "Entreprise label",
+      "type": "text",
+      "placeholders": {}
+    },
+    "entertainment": "Divertissement",
+    "@entertainment": {
+      "description": "Divertissement label",
+      "type": "text",
+      "placeholders": {}
+    },
+    "general": "Général",
+    "@general": {
+      "description": "Général label",
+      "type": "text",
+      "placeholders": {}
+    },
+    "health": "Santé",
+    "@health": {
+      "description": "Santé label",
+      "type": "text",
+      "placeholders": {}
+    },
+    "science": "Scientifique",
+    "@science": {
+      "description": "Scientifique label",
+      "type": "text",
+      "placeholders": {}
+    },
+    "sports": "Des sports",
+    "@sports": {
+      "description": "Des sports label",
+      "type": "text",
+      "placeholders": {}
+    },
+    "technology": "La technologie",
+    "@technology": {
+      "description": "La technologie label",
+      "type": "text",
+      "placeholders": {}
+    }
+}
