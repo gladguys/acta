@@ -7,112 +7,197 @@ import 'package:flutter/material.dart';
 import 'package:intro_views_flutter/Models/page_view_model.dart';
 import 'package:intro_views_flutter/intro_views_flutter.dart';
 
-final page = PageViewModel(
-  pageColor: Colors.brown[900],
-  bubbleBackgroundColor: Colors.brown[200],
-  textStyle: TextStyle(color: Colors.brown[50]),
+final page0 = PageViewModel(
+  pageColor: Colors.brown[100],
+  bubbleBackgroundColor: Colors.brown[700],
+  textStyle: TextStyle(color: Colors.brown[900]),
   iconColor: null,
-  title: Container(
-    padding: const EdgeInsets.only(top: 12.0),
-    child: Text(
-      ATLabels.ACTA,
-      textAlign: TextAlign.center,
-      style: TextStyle(
-        fontFamily: 'Italianno',
-        fontSize: 64.0,
-        fontWeight: FontWeight.bold,
-        color: Colors.brown[50],
-      ),
-    ),
-  ),
+  title: Container(),
   mainImage: Column(
-    mainAxisSize: MainAxisSize.max,
     children: <Widget>[
-      Image.asset(
-        'assets/images/taxi.png',
-        height: 250.0,
-        width: 250.0,
-        fit: BoxFit.contain,
-        alignment: Alignment.center,
+      Text(
+        ATLabels.ACTA,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontFamily: 'Italianno',
+          fontSize: 64.0,
+          fontWeight: FontWeight.bold,
+          color: Colors.brown[900],
+        ),
+      ),
+      Expanded(
+        child: Image.asset(
+          'assets/images/news.png',
+          fit: BoxFit.contain,
+          alignment: Alignment.center,
+        ),
       ),
     ],
   ),
-  body: Text(
-    'Easy cab booking at your doorstep with cashless payment system',
+  body: Column(
+    children: <Widget>[
+      Text(
+        'As mais recentes notícias do mundo em um só app. Nossa fonte de notícias é o News API.',
+        style: TextStyle(
+          fontSize: 20.0,
+          color: Colors.brown[900],
+        ),
+      ),
+    ],
   ),
-  iconImageAssetPath: 'assets/images/taxi.png',
+);
+
+final page = PageViewModel(
+  pageColor: Colors.brown[100],
+  bubbleBackgroundColor: Colors.brown[700],
+  textStyle: TextStyle(color: Colors.brown[900]),
+  iconColor: null,
+  title: Container(),
+  mainImage: Column(
+    children: <Widget>[
+      Text(
+        ATLabels.ACTA,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontFamily: 'Italianno',
+          fontSize: 64.0,
+          fontWeight: FontWeight.bold,
+          color: Colors.brown[900],
+        ),
+      ),
+      Expanded(
+        child: Image.asset(
+          'assets/images/sources.png',
+          fit: BoxFit.contain,
+          alignment: Alignment.center,
+        ),
+      ),
+    ],
+  ),
+  body: Column(
+    children: <Widget>[
+      Padding(
+        padding: const EdgeInsets.only(bottom: 8.0),
+        child: Text(
+          'Sources',
+          style: TextStyle(
+            fontSize: 24.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.brown[900],
+          ),
+        ),
+      ),
+      Text(
+        'View the breaking news from different sources around the world in one place.',
+        style: TextStyle(
+          fontSize: 20.0,
+          color: Colors.brown[900],
+        ),
+      ),
+    ],
+  ),
 );
 
 final page2 = PageViewModel(
-  pageColor: Colors.brown[700],
-  bubbleBackgroundColor: Colors.brown[200],
-  textStyle: TextStyle(color: Colors.brown[50]),
+  pageColor: Colors.brown[100],
+  bubbleBackgroundColor: Colors.brown[700],
+  textStyle: TextStyle(color: Colors.brown[900]),
   iconColor: null,
-  title: Container(
-    padding: const EdgeInsets.only(top: 12.0),
-    child: Text(
-      ATLabels.ACTA,
-      textAlign: TextAlign.center,
-      style: TextStyle(
-        fontFamily: 'Italianno',
-        fontSize: 64.0,
-        fontWeight: FontWeight.bold,
-        color: Colors.brown[50],
-      ),
-    ),
-  ),
+  title: Container(),
   mainImage: Column(
-    mainAxisSize: MainAxisSize.max,
     children: <Widget>[
-      Image.asset(
-        'assets/images/taxi.png',
-        height: 250.0,
-        width: 250.0,
-        fit: BoxFit.contain,
-        alignment: Alignment.center,
+      Text(
+        ATLabels.ACTA,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontFamily: 'Italianno',
+          fontSize: 64.0,
+          fontWeight: FontWeight.bold,
+          color: Colors.brown[900],
+        ),
+      ),
+      Expanded(
+        child: Image.asset(
+          'assets/images/countries.png',
+          fit: BoxFit.contain,
+          alignment: Alignment.center,
+        ),
       ),
     ],
   ),
-  body: Text(
-    'Easy cab booking at your doorstep with cashless payment system',
+  body: Column(
+    children: <Widget>[
+      Padding(
+        padding: const EdgeInsets.only(bottom: 8.0),
+        child: Text(
+          'Countries',
+          style: TextStyle(
+            fontSize: 24.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.brown[900],
+          ),
+        ),
+      ),
+      Text(
+        'And set the country you might want to read news from.',
+        style: TextStyle(
+          fontSize: 20.0,
+          color: Colors.brown[900],
+        ),
+      ),
+    ],
   ),
-  iconImageAssetPath: 'assets/images/taxi.png',
 );
 
 final page3 = PageViewModel(
-  pageColor: Colors.brown[600],
-  bubbleBackgroundColor: Colors.brown[200],
-  textStyle: TextStyle(color: Colors.brown[50]),
+  pageColor: Colors.brown[100],
+  bubbleBackgroundColor: Colors.brown[700],
+  textStyle: TextStyle(color: Colors.brown[900]),
   iconColor: null,
-  title: Container(
-    padding: const EdgeInsets.only(top: 12.0),
-    child: Text(
-      ATLabels.ACTA,
-      textAlign: TextAlign.center,
-      style: TextStyle(
-        fontFamily: 'Italianno',
-        fontSize: 64.0,
-        fontWeight: FontWeight.bold,
-        color: Colors.brown[50],
-      ),
-    ),
-  ),
+  title: Container(),
   mainImage: Column(
-    mainAxisSize: MainAxisSize.max,
     children: <Widget>[
-      Image.asset(
-        'assets/images/taxi.png',
-        height: 250.0,
-        width: 250.0,
-        fit: BoxFit.contain,
-        alignment: Alignment.center,
+      Text(
+        ATLabels.ACTA,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontFamily: 'Italianno',
+          fontSize: 64.0,
+          fontWeight: FontWeight.bold,
+          color: Colors.brown[900],
+        ),
+      ),
+      Expanded(
+        child: Image.asset(
+          'assets/images/categories.png',
+          fit: BoxFit.contain,
+          alignment: Alignment.center,
+        ),
       ),
     ],
   ),
-  body: Text(
-    'Easy cab booking at your doorstep with cashless payment system',
+  body: Column(
+    children: <Widget>[
+      Padding(
+        padding: const EdgeInsets.only(bottom: 8.0),
+        child: Text(
+          'Categories',
+          style: TextStyle(
+            fontSize: 24.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.brown[900],
+          ),
+        ),
+      ),
+      Text(
+        'View the breaking news from different categories!',
+        style: TextStyle(
+          fontSize: 20.0,
+          color: Colors.brown[900],
+        ),
+      ),
+    ],
   ),
-  iconImageAssetPath: 'assets/images/taxi.png',
 );
 
 class IntroScreen extends StatelessWidget {
@@ -123,11 +208,11 @@ class IntroScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.brown[800],
       body: IntroViewsFlutter(
-        [page, page2, page3],
+        [page0, page, page2, page3],
         onTapDoneButton: () => _goToHomeScreen(context),
         showSkipButton: true,
         pageButtonTextStyles: TextStyle(
-          color: Colors.brown[50],
+          color: Colors.brown[900],
           fontSize: 18.0,
         ),
       ),
@@ -137,6 +222,9 @@ class IntroScreen extends StatelessWidget {
   void _goToHomeScreen(BuildContext context) {
     _preferencesBloc.setIsFirstLoginDone();
     Navigation.navigateFromInside(
-        context: context, screen: HomeScreen(), replace: true);
+      context: context,
+      screen: HomeScreen(),
+      replace: true,
+    );
   }
 }
