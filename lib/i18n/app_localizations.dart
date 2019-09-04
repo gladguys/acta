@@ -20,6 +20,38 @@ class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
+  String get invalidEmail {
+    return Intl.message(
+      'Invalid email',
+      name: 'invalidEmail',
+      desc: 'Invalid email message',
+    );
+  }
+
+  String get emailAlreadyUsed {
+    return Intl.message(
+      'Email already in use',
+      name: 'emailAlreadyUsed',
+      desc: 'Email in use message',
+    );
+  }
+
+  String get userNotFound {
+    return Intl.message(
+      'User not found',
+      name: 'userNotFound',
+      desc: 'User not found email message',
+    );
+  }
+
+  String get wrongPassword {
+    return Intl.message(
+      'Wrong password',
+      name: 'wrongPassword',
+      desc: 'Wrong password message',
+    );
+  }
+
   String get sources {
     return Intl.message(
       'Sources',

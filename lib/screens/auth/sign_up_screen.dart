@@ -97,7 +97,7 @@ class _SignUpScreen extends State<SignUpScreen> {
           isRequired: true,
           focusNode: passwordFocusNode,
           textInputAction: TextInputAction.done,
-          onEditingComplete: () => _createUser(context),
+          onEditingComplete: () => _createUser(),
           obscureText: true,
           onSaved: (String email) => _signUpInfo['password'] = email,
           validator: AuthValidations.passwordValidator,
@@ -119,7 +119,7 @@ class _SignUpScreen extends State<SignUpScreen> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(24.0),
             ),
-            onPressed: () => _createUser(context),
+            onPressed: () => _createUser(),
           ),
         ),
         FlatButton(
@@ -135,7 +135,7 @@ class _SignUpScreen extends State<SignUpScreen> {
     );
   }
 
-  Future<void> _createUser(BuildContext context) async {
+  Future<void> _createUser() async {
     final FormState form = _formKey.currentState;
     if (form.validate()) {
       form.save();
@@ -151,7 +151,7 @@ class _SignUpScreen extends State<SignUpScreen> {
         widget.toggler();
       } else {
         ATAlert.failure(
-            FirebaseSignInErrorsHelper.getMessage(userData['code']));
+            FirebaseSignInErrorsHelper.getMessage(context, userData['code']));
         setState(() => isCreatingUser = false);
       }
     }

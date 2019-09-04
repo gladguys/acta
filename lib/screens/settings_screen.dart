@@ -74,7 +74,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
-            child: Text(ATMessages.CHANGE_VIEW_TYPE + ':'),
+            child: Text(AppLocalizations.of(context).chooseViewType + ':'),
           ),
           InkWell(
             onTap: () => _updateViewType(ViewType.list),

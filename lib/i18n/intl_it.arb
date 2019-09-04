@@ -1,5 +1,34 @@
 {
   "@@last_modified": "2019-09-02T23:19:55.349950",
+
+  "invalidEmail": "Email non valido",
+      "@invalidEmail": {
+        "description": "Invalid email message",
+        "type": "text",
+        "placeholders": {}
+      },
+
+  "emailAlreadyUsed": "Email già in uso",
+      "@emailAlreadyUsed": {
+        "description": "Email in use message",
+        "type": "text",
+        "placeholders": {}
+      },
+
+  "userNotFound": "Utente non trovato",
+      "@userNotFound": {
+        "description": "User not found email message",
+        "type": "text",
+        "placeholders": {}
+      },
+
+  "wrongPassword": "Password errata",
+      "@wrongPassword": {
+        "description": "Wrong password message",
+        "type": "text",
+        "placeholders": {}
+      },
+
   "sources": "Fonti",
   "@sources": {
     "description": "Le fonti delle notizie",

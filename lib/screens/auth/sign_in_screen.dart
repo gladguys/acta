@@ -97,7 +97,7 @@ class _SignInScreenState extends State<SignInScreen> {
         ),
         SizedBox(height: 16.0),
         ATTextFormField(
-          hintText: 'Password',
+          hintText: AppLocalizations.of(context).password,
           prefixIcon: Icons.lock,
           isRequired: true,
           onSaved: (String password) => _signInInfo['password'] = password,
@@ -105,7 +105,7 @@ class _SignInScreenState extends State<SignInScreen> {
           obscureText: true,
           focusNode: passwordFocusNode,
           textInputAction: TextInputAction.done,
-          onEditingComplete: () => _signInUser(context),
+          onEditingComplete: () => _signInUser(),
         ),
       ],
     );
@@ -124,7 +124,7 @@ class _SignInScreenState extends State<SignInScreen> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(24.0),
             ),
-            onPressed: () => _signInUser(context),
+            onPressed: () => _signInUser(),
           ),
         ),
         FlatButton(
@@ -139,7 +139,7 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 
-  Future<void> _signInUser(BuildContext context) async {
+  Future<void> _signInUser() async {
     final FormState form = _formKey.currentState;
     if (form.validate()) {
       form.save();
@@ -159,7 +159,7 @@ class _SignInScreenState extends State<SignInScreen> {
         }
       } else {
         ATAlert.failure(
-            FirebaseSignInErrorsHelper.getMessage(userData['code']));
+            FirebaseSignInErrorsHelper.getMessage(context, userData['code']));
         setState(() => isAuthenticating = false);
       }
     }

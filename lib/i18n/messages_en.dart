@@ -20,24 +20,34 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static _notInlinedMessages(_) => <String, Function> {
-    "business" : MessageLookupByLibrary.simpleMessage("Business"),
-    "category" : MessageLookupByLibrary.simpleMessage("Category"),
-    "chooseCountry" : MessageLookupByLibrary.simpleMessage("Choose country of the news"),
-    "chooseViewType" : MessageLookupByLibrary.simpleMessage("Choose news view type"),
-    "create" : MessageLookupByLibrary.simpleMessage("Create"),
-    "createAccount" : MessageLookupByLibrary.simpleMessage("Create an account"),
-    "entertainment" : MessageLookupByLibrary.simpleMessage("Entertainment"),
-    "general" : MessageLookupByLibrary.simpleMessage("General"),
-    "haveAccount" : MessageLookupByLibrary.simpleMessage("I have an account"),
-    "health" : MessageLookupByLibrary.simpleMessage("Health"),
-    "logout" : MessageLookupByLibrary.simpleMessage("Logout"),
-    "password" : MessageLookupByLibrary.simpleMessage("Password"),
-    "registerAccount" : MessageLookupByLibrary.simpleMessage("Register an account"),
-    "science" : MessageLookupByLibrary.simpleMessage("Science"),
-    "settings" : MessageLookupByLibrary.simpleMessage("Settings"),
-    "sources" : MessageLookupByLibrary.simpleMessage("Sources"),
-    "sports" : MessageLookupByLibrary.simpleMessage("Sports"),
-    "technology" : MessageLookupByLibrary.simpleMessage("Technology")
-  };
+  static _notInlinedMessages(_) => <String, Function>{
+        "invalidEmail": MessageLookupByLibrary.simpleMessage("Invalid email"),
+        "emailAlreadyUsed":
+            MessageLookupByLibrary.simpleMessage("Email already in use"),
+        "userNotFound": MessageLookupByLibrary.simpleMessage("User not found"),
+        "wrongPassword": MessageLookupByLibrary.simpleMessage("Wrong password"),
+        "business": MessageLookupByLibrary.simpleMessage("Business"),
+        "category": MessageLookupByLibrary.simpleMessage("Category"),
+        "chooseCountry":
+            MessageLookupByLibrary.simpleMessage("Choose country of the news"),
+        "chooseViewType":
+            MessageLookupByLibrary.simpleMessage("Choose news view type"),
+        "create": MessageLookupByLibrary.simpleMessage("Create"),
+        "createAccount":
+            MessageLookupByLibrary.simpleMessage("Create an account"),
+        "entertainment": MessageLookupByLibrary.simpleMessage("Entertainment"),
+        "general": MessageLookupByLibrary.simpleMessage("General"),
+        "haveAccount":
+            MessageLookupByLibrary.simpleMessage("I have an account"),
+        "health": MessageLookupByLibrary.simpleMessage("Health"),
+        "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+        "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "registerAccount":
+            MessageLookupByLibrary.simpleMessage("Register an account"),
+        "science": MessageLookupByLibrary.simpleMessage("Science"),
+        "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "sources": MessageLookupByLibrary.simpleMessage("Sources"),
+        "sports": MessageLookupByLibrary.simpleMessage("Sports"),
+        "technology": MessageLookupByLibrary.simpleMessage("Technology")
+      };
 }
