@@ -1,7 +1,9 @@
 import 'package:acta/blocs/preferences_bloc.dart';
+import 'package:acta/i18n/app_localizations.dart';
 import 'package:acta/i18n/at_labels.dart';
 import 'package:acta/screens/home_screen.dart';
 import 'package:acta/utils/navigation.dart';
+import 'package:acta/widgets/at_country_picker.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:intro_views_flutter/Models/page_view_model.dart';
@@ -225,6 +227,59 @@ class IntroScreen extends StatelessWidget {
       context: context,
       screen: HomeScreen(),
       replace: true,
+    );
+    _showSettingsDialog(context);
+  }
+
+  void _showSettingsDialog(BuildContext context) {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        backgroundColor: Colors.brown[50],
+        title: Text(
+          'Basic settings',
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.brown[900]),
+        ),
+        content: _buildCountryPickerInfo(context),
+        actions: <Widget>[
+          FlatButton(
+            child: Text('DONE'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCountryPickerInfo(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Text(
+          AppLocalizations.of(context).chooseCountry + ':',
+          style: TextStyle(
+            color: Colors.brown[700],
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              margin: const EdgeInsets.only(top: 8.0),
+              padding: const EdgeInsets.all(4.0),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.brown[700]),
+                borderRadius: BorderRadius.circular(4.0),
+              ),
+              child: ATCountryPicker(),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
