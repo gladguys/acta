@@ -61,7 +61,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
           padding: const EdgeInsets.only(right: 8.0),
           child: Text(AppLocalizations.of(context).chooseCountry + ':'),
         ),
-        ATCountryPicker(),
+        Container(
+          padding: const EdgeInsets.all(4.0),
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.brown[700]),
+            borderRadius: BorderRadius.circular(4.0),
+          ),
+          child: ATCountryPicker(),
+        ),
       ],
     );
   }
@@ -76,24 +83,35 @@ class _SettingsScreenState extends State<SettingsScreen> {
             padding: const EdgeInsets.only(right: 8.0),
             child: Text(AppLocalizations.of(context).chooseViewType + ':'),
           ),
-          InkWell(
-            onTap: () => _updateViewType(ViewType.list),
-            child: Icon(
-              Icons.view_agenda,
-              size: 32.0,
-              color: pickedViewType == ViewType.list
-                  ? Colors.brown[700]
-                  : Colors.brown[100],
+          Container(
+            padding: const EdgeInsets.all(2.0),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.brown[700]),
+              borderRadius: BorderRadius.circular(4.0),
             ),
-          ),
-          InkWell(
-            onTap: () => _updateViewType(ViewType.grid),
-            child: Icon(
-              Icons.dashboard,
-              size: 32.0,
-              color: pickedViewType == ViewType.grid
-                  ? Colors.brown[700]
-                  : Colors.brown[100],
+            child: Row(
+              children: <Widget>[
+                InkWell(
+                  onTap: () => _updateViewType(ViewType.list),
+                  child: Icon(
+                    Icons.view_agenda,
+                    size: 32.0,
+                    color: pickedViewType == ViewType.list
+                        ? Colors.brown[700]
+                        : Colors.brown[100],
+                  ),
+                ),
+                InkWell(
+                  onTap: () => _updateViewType(ViewType.grid),
+                  child: Icon(
+                    Icons.dashboard,
+                    size: 32.0,
+                    color: pickedViewType == ViewType.grid
+                        ? Colors.brown[700]
+                        : Colors.brown[100],
+                  ),
+                ),
+              ],
             ),
           ),
         ],
