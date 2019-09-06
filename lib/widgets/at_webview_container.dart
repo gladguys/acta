@@ -1,6 +1,7 @@
 import 'package:acta/i18n/at_labels.dart';
 import 'package:acta/screens/at_base_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:share/share.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class ATWebViewContainer extends StatefulWidget {
@@ -29,6 +30,10 @@ class _ATWebViewContainerState extends State<ATWebViewContainer> {
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Share.share('${widget.url}'),
+        child: Icon(Icons.share),
       ),
     );
   }

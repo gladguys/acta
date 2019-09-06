@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
 import '../widgets/bottomNavigation/main_bottom_navigator.dart';
 
 class ATBaseScreen extends StatelessWidget {
@@ -10,6 +11,7 @@ class ATBaseScreen extends StatelessWidget {
     this.actions,
     this.initialTab = 0,
     this.withbBottomNavigationBar = true,
+    this.floatingActionButton,
   });
 
   final String title;
@@ -18,6 +20,7 @@ class ATBaseScreen extends StatelessWidget {
   final List<Widget> actions;
   final int initialTab;
   final bool withbBottomNavigationBar;
+  final Widget floatingActionButton;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +35,7 @@ class ATBaseScreen extends StatelessWidget {
               initialIndex: initialTab,
             )
           : null,
+      floatingActionButton: floatingActionButton,
     );
   }
 
