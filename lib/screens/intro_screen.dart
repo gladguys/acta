@@ -231,26 +231,24 @@ class CountryIcon extends StatelessWidget {
       onTap: _pickCountry,
       child: Container(
         margin: const EdgeInsets.only(top: 8.0),
-        padding: const EdgeInsets.all(4.0),
-        height: 30,
-        width: 50,
+        height: 32.0,
+        width: 48.0,
         decoration: BoxDecoration(
-          boxShadow: [
-            isSelected
-                ? BoxShadow(
-                    color: Colors.brown[700],
-                    blurRadius: 20.0,
-                    spreadRadius: 5.0,
-                  )
-                : BoxShadow()
-          ],
-          border: Border.all(color: Colors.brown[700]),
           borderRadius: BorderRadius.circular(4.0),
           image: DecorationImage(
             image: AssetImage(icon, package: 'country_icons'),
             fit: BoxFit.cover,
           ),
         ),
+        foregroundDecoration: isSelected
+            ? BoxDecoration(
+              borderRadius: BorderRadius.circular(4.0),
+            )
+            : BoxDecoration(
+                color: Colors.grey,
+                backgroundBlendMode: BlendMode.modulate,
+                borderRadius: BorderRadius.circular(4.0),
+              ),
       ),
     );
   }
@@ -274,47 +272,40 @@ class CountryPicker extends StatelessWidget {
   Widget build(BuildContext context) {
     final pickedCountry = GlobalConfiguration().getString('country');
 
-    return Column(
+    return Wrap(
+      spacing: 16.0,
+      runSpacing: 4.0,
+      alignment: WrapAlignment.center,
       children: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            CountryIcon(
-              icon: 'icons/flags/png/us.png',
-              isoCode: 'us',
-              updateCountryFunc: updateCountryFunc,
-              isSelected: pickedCountry == 'us',
-            ),
-            CountryIcon(
-              icon: 'icons/flags/png/gb.png',
-              isoCode: 'gb',
-              updateCountryFunc: updateCountryFunc,
-              isSelected: pickedCountry == 'gb',
-            ),
-            CountryIcon(
-              icon: 'icons/flags/png/it.png',
-              isoCode: 'it',
-              updateCountryFunc: updateCountryFunc,
-              isSelected: pickedCountry == 'it',
-            ),
-          ],
+        CountryIcon(
+          icon: 'icons/flags/png/br.png',
+          isoCode: 'br',
+          updateCountryFunc: updateCountryFunc,
+          isSelected: pickedCountry == 'br',
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            CountryIcon(
-              icon: 'icons/flags/png/br.png',
-              isoCode: 'br',
-              updateCountryFunc: updateCountryFunc,
-              isSelected: pickedCountry == 'br',
-            ),
-            CountryIcon(
-              icon: 'icons/flags/png/fr.png',
-              isoCode: 'fr',
-              updateCountryFunc: updateCountryFunc,
-              isSelected: pickedCountry == 'fr',
-            ),
-          ],
+        CountryIcon(
+          icon: 'icons/flags/png/us.png',
+          isoCode: 'us',
+          updateCountryFunc: updateCountryFunc,
+          isSelected: pickedCountry == 'us',
+        ),
+        CountryIcon(
+          icon: 'icons/flags/png/gb.png',
+          isoCode: 'gb',
+          updateCountryFunc: updateCountryFunc,
+          isSelected: pickedCountry == 'gb',
+        ),
+        CountryIcon(
+          icon: 'icons/flags/png/it.png',
+          isoCode: 'it',
+          updateCountryFunc: updateCountryFunc,
+          isSelected: pickedCountry == 'it',
+        ),
+        CountryIcon(
+          icon: 'icons/flags/png/fr.png',
+          isoCode: 'fr',
+          updateCountryFunc: updateCountryFunc,
+          isSelected: pickedCountry == 'fr',
         ),
       ],
     );
