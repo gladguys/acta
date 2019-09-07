@@ -21,6 +21,20 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function>{
+        "categories": MessageLookupByLibrary.simpleMessage("Les catégories"),
+        "countries": MessageLookupByLibrary.simpleMessage("Des pays"),
+        "introMessage": MessageLookupByLibrary.simpleMessage(
+            "Trouvez les dernières nouvelles dans le monde entier dans cette application. Les nouvelles trouvées ici sont alimentées par l'API News."),
+        "introSourcesMessage": MessageLookupByLibrary.simpleMessage(
+            "Consultez les dernières nouvelles de différentes sources du monde entier en un seul endroit."),
+        "introCountriesMessage": MessageLookupByLibrary.simpleMessage(
+            "Et définissez le pays dont vous souhaitez lire les nouvelles."),
+        "introCategoriesMessage": MessageLookupByLibrary.simpleMessage(
+            "Voir les dernières nouvelles de différentes catégories."),
+        "oneLastThing": MessageLookupByLibrary.simpleMessage(
+            "Une dernière chose avant de commencer..."),
+        "begin": MessageLookupByLibrary.simpleMessage("COMMENCER"),
+        "skip": MessageLookupByLibrary.simpleMessage("SAUTER"),
         "invalidEmail": MessageLookupByLibrary.simpleMessage("Email invalide"),
         "emailAlreadyUsed":
             MessageLookupByLibrary.simpleMessage("Email déjà utilisé"),

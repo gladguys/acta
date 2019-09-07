@@ -20,6 +20,62 @@ class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
+  String get introMessage {
+    return Intl.message(
+      'Find the newest news around the world in this app. The news found here are powered by the News API.',
+      name: 'introMessage',
+      desc: 'Intro message',
+    );
+  }
+
+  String get introSourcesMessage {
+    return Intl.message(
+      'View the breaking news from different sources around the world in one place.',
+      name: 'introSourcesMessage',
+      desc: 'Intro sources email message',
+    );
+  }
+
+  String get introCountriesMessage {
+    return Intl.message(
+      'And set the country you might want to read news from.',
+      name: 'introCountriesMessage',
+      desc: 'Intro countries message',
+    );
+  }
+
+  String get introCategoriesMessage {
+    return Intl.message(
+      'View the breaking news from different categories.',
+      name: 'introCategoriesMessage',
+      desc: 'Intro categories message',
+    );
+  }
+
+  String get oneLastThing {
+    return Intl.message(
+      'One last thing before you begin...',
+      name: 'oneLastThing',
+      desc: 'One last thing message',
+    );
+  }
+
+  String get begin {
+    return Intl.message(
+      'BEGIN',
+      name: 'begin',
+      desc: 'Begin message',
+    );
+  }
+
+  String get skip {
+    return Intl.message(
+      'SKIP',
+      name: 'skip',
+      desc: 'Skip message',
+    );
+  }
+
   String get invalidEmail {
     return Intl.message(
       'Invalid email',
@@ -65,6 +121,22 @@ class AppLocalizations {
       'Category',
       name: 'category',
       desc: 'The category of the news',
+    );
+  }
+
+  String get categories {
+    return Intl.message(
+      'Categories',
+      name: 'categories',
+      desc: 'The categories',
+    );
+  }
+
+  String get countries {
+    return Intl.message(
+      'Countries',
+      name: 'countries',
+      desc: 'The countries',
     );
   }
 
