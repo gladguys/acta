@@ -142,7 +142,7 @@ class NewsCardsList extends StatelessWidget {
         child: Text(
           article.title != null ? article.title : '',
           textAlign:
-              viewType == ViewType.grid ? TextAlign.justify : TextAlign.center,
+              viewType == ViewType.grid ? TextAlign.start : TextAlign.center,
           style: TextStyle(fontSize: viewType == ViewType.grid ? 14.0 : 16.0),
         ),
       );
