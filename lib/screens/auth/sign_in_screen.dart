@@ -85,27 +85,33 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget _buildFields() {
     return Column(
       children: <Widget>[
-        ATTextFormField(
-          hintText: 'E-mail',
-          prefixIcon: Icons.mail,
-          isRequired: true,
-          textInputType: TextInputType.emailAddress,
-          onSaved: (String email) => _signInInfo['email'] = email,
-          validator: AuthValidations.emailValidator,
-          onEditingComplete: () =>
-              FocusScope.of(context).requestFocus(passwordFocusNode),
+        Container(
+          constraints: BoxConstraints(maxWidth: 400.0),
+          child: ATTextFormField(
+            hintText: 'E-mail',
+            prefixIcon: Icons.mail,
+            isRequired: true,
+            textInputType: TextInputType.emailAddress,
+            onSaved: (String email) => _signInInfo['email'] = email,
+            validator: AuthValidations.emailValidator,
+            onEditingComplete: () =>
+                FocusScope.of(context).requestFocus(passwordFocusNode),
+          ),
         ),
         SizedBox(height: 16.0),
-        ATTextFormField(
-          hintText: AppLocalizations.of(context).password,
-          prefixIcon: Icons.lock,
-          isRequired: true,
-          onSaved: (String password) => _signInInfo['password'] = password,
-          validator: AuthValidations.passwordValidator,
-          obscureText: true,
-          focusNode: passwordFocusNode,
-          textInputAction: TextInputAction.done,
-          onEditingComplete: () => _signInUser(),
+        Container(
+          constraints: BoxConstraints(maxWidth: 400.0),
+          child: ATTextFormField(
+            hintText: AppLocalizations.of(context).password,
+            prefixIcon: Icons.lock,
+            isRequired: true,
+            onSaved: (String password) => _signInInfo['password'] = password,
+            validator: AuthValidations.passwordValidator,
+            obscureText: true,
+            focusNode: passwordFocusNode,
+            textInputAction: TextInputAction.done,
+            onEditingComplete: () => _signInUser(),
+          ),
         ),
       ],
     );

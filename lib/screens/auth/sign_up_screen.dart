@@ -1,5 +1,6 @@
 import 'package:acta/blocs/sign_up_screen_bloc.dart';
 import 'package:acta/i18n/app_localizations.dart';
+import 'package:acta/i18n/at_labels.dart';
 import 'package:acta/screens/auth/auth_validations.dart';
 import 'package:acta/utils/firebase_errors_helper.dart';
 import 'package:acta/widgets/at_alert.dart';
@@ -59,11 +60,20 @@ class _SignUpScreen extends State<SignUpScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     ATSimpleTextLogo(
-                      text: 'Register an account',
-                      duration: Duration(seconds: 1),
+                      text: ATLabels.ACTA,
+                      duration: Duration(seconds: 3),
                       isRepeatingAnimation: false,
-                      fontSize: 60.0,
+                      fontSize: 80.0,
                     ),
+                    Text(
+                      ATLabels.REGISTER_ACCOUNT,
+                      style: TextStyle(
+                        color: Colors.brown[800],
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 24.0),
                     _buildFields(),
                     SizedBox(height: 24.0),
                     _buildButtons(),
@@ -77,30 +87,36 @@ class _SignUpScreen extends State<SignUpScreen> {
   Widget _buildFields() {
     return Column(
       children: <Widget>[
-        ATTextFormField(
-          hintText: 'E-mail',
-          prefixIcon: Icons.mail,
-          isRequired: true,
-          textInputType: TextInputType.emailAddress,
-          onSaved: (String email) => _signUpInfo['email'] = email,
-          validator: AuthValidations.emailValidator,
-          textInputAction: TextInputAction.next,
-          onEditingComplete: () =>
-              FocusScope.of(context).requestFocus(passwordFocusNode),
+        Container(
+          constraints: BoxConstraints(maxWidth: 400.0),
+          child: ATTextFormField(
+            hintText: 'E-mail',
+            prefixIcon: Icons.mail,
+            isRequired: true,
+            textInputType: TextInputType.emailAddress,
+            onSaved: (String email) => _signUpInfo['email'] = email,
+            validator: AuthValidations.emailValidator,
+            textInputAction: TextInputAction.next,
+            onEditingComplete: () =>
+                FocusScope.of(context).requestFocus(passwordFocusNode),
+          ),
         ),
         SizedBox(
           height: 16.0,
         ),
-        ATTextFormField(
-          hintText: 'Password',
-          prefixIcon: Icons.lock,
-          isRequired: true,
-          focusNode: passwordFocusNode,
-          textInputAction: TextInputAction.done,
-          onEditingComplete: () => _createUser(),
-          obscureText: true,
-          onSaved: (String email) => _signUpInfo['password'] = email,
-          validator: AuthValidations.passwordValidator,
+        Container(
+          constraints: BoxConstraints(maxWidth: 400.0),
+          child: ATTextFormField(
+            hintText: 'Password',
+            prefixIcon: Icons.lock,
+            isRequired: true,
+            focusNode: passwordFocusNode,
+            textInputAction: TextInputAction.done,
+            onEditingComplete: () => _createUser(),
+            obscureText: true,
+            onSaved: (String email) => _signUpInfo['password'] = email,
+            validator: AuthValidations.passwordValidator,
+          ),
         ),
       ],
     );

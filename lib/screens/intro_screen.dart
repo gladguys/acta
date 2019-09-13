@@ -39,8 +39,8 @@ class _IntroScreenState extends State<IntroScreen> {
 
   List<PageViewModel> _getPages(BuildContext context) {
     final page0 = createPage(
-        withTitle: false,
         image: 'assets/images/news.png',
+        title: ATLabels.WELCOME,
         text: AppLocalizations.of(context).introMessage);
 
     final page1 = createPage(
@@ -61,98 +61,40 @@ class _IntroScreenState extends State<IntroScreen> {
     return [page0, page1, page2, page3];
   }
 
-  PageViewModel createPage(
-      {bool withTitle = true, String image, String title, String text}) {
-    return withTitle
-        ? PageViewModel(
-            pageColor: Colors.brown[100],
-            bubbleBackgroundColor: Colors.brown[700],
-            textStyle: TextStyle(color: Colors.brown[900]),
-            iconColor: null,
-            title: Container(),
-            mainImage: Column(
-              children: <Widget>[
-                Text(
-                  ATLabels.ACTA,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: 'Italianno',
-                    fontSize: 64.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.brown[900],
-                  ),
-                ),
-                Expanded(
-                  child: Image.asset(
-                    image,
-                    fit: BoxFit.contain,
-                    alignment: Alignment.center,
-                  ),
-                ),
-              ],
-            ),
-            body: Column(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0),
-                  child: Text(
-                    title,
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.brown[900],
-                    ),
-                  ),
-                ),
-                Text(
-                  text,
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    color: Colors.brown[900],
-                  ),
-                ),
-              ],
-            ),
-          )
-        : PageViewModel(
-            pageColor: Colors.brown[100],
-            bubbleBackgroundColor: Colors.brown[700],
-            textStyle: TextStyle(color: Colors.brown[900]),
-            iconColor: null,
-            title: Container(),
-            mainImage: Column(
-              children: <Widget>[
-                Text(
-                  ATLabels.ACTA,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: 'Italianno',
-                    fontSize: 64.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.brown[900],
-                  ),
-                ),
-                Expanded(
-                  child: Image.asset(
-                    image,
-                    fit: BoxFit.contain,
-                    alignment: Alignment.center,
-                  ),
-                ),
-              ],
-            ),
-            body: Column(
-              children: <Widget>[
-                Text(
-                  text,
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    color: Colors.brown[900],
-                  ),
-                ),
-              ],
-            ),
-          );
+  PageViewModel createPage({String image, String title, String text}) {
+    return PageViewModel(
+      pageColor: Colors.brown[100],
+      bubbleBackgroundColor: Colors.brown[700],
+      textStyle: TextStyle(color: Colors.brown[900]),
+      iconColor: null,
+      title: Text(
+        title,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          color: Colors.brown[900],
+          fontSize: 32.0,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      mainImage: Container(
+        constraints: BoxConstraints(
+          maxWidth: 230.0,
+          maxHeight: 230.0,
+        ),
+        child: Image.asset(
+          image,
+          fit: BoxFit.contain,
+          alignment: Alignment.center,
+        ),
+      ),
+      body: Text(
+        text,
+        style: TextStyle(
+          fontSize: 24.0,
+          color: Colors.brown[900],
+        ),
+      ),
+    );
   }
 
   void _goToHomeScreen(BuildContext context) {
@@ -242,8 +184,8 @@ class CountryIcon extends StatelessWidget {
         ),
         foregroundDecoration: isSelected
             ? BoxDecoration(
-              borderRadius: BorderRadius.circular(4.0),
-            )
+                borderRadius: BorderRadius.circular(4.0),
+              )
             : BoxDecoration(
                 color: Colors.grey,
                 backgroundBlendMode: BlendMode.modulate,
