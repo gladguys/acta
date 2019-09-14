@@ -25,7 +25,6 @@ dependencies:
   dio: ^2.1.0
   intl: ^0.15.8
   global_configuration: ^1.1.0
-  intro_views_flutter: ^2.6.0
   shared_preferences: ^0.5.3+4
   curved_navigation_bar: ^0.2.20
   cached_network_image: ^1.0.0
@@ -44,6 +43,8 @@ dependencies:
   catcher: ^0.0.8
   share: ^0.6.2+1
   animated_text_kit: ^1.3.1
+  introduction_screen: ^1.0.6
+  dots_indicator: ^0.0.5+1
 
   firebase_auth: ^0.14.0+2
   country_icons: ^1.1.0

@@ -7,8 +7,7 @@ import 'package:acta/utils/navigation.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:global_configuration/global_configuration.dart';
-import 'package:intro_views_flutter/Models/page_view_model.dart';
-import 'package:intro_views_flutter/intro_views_flutter.dart';
+import 'package:introduction_screen/introduction_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class IntroScreen extends StatefulWidget {
@@ -23,16 +22,21 @@ class _IntroScreenState extends State<IntroScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.brown[800],
-      body: IntroViewsFlutter(
-        _getPages(context),
-        onTapDoneButton: () => _showSettingsDialog(context),
-        doneText: Text(AppLocalizations.of(context).begin),
+      body: IntroductionScreen(
+        pages: _getPages(context),
         showSkipButton: true,
-        skipText: Text(AppLocalizations.of(context).skip),
-        pageButtonTextStyles: TextStyle(
-          color: Colors.brown[900],
-          fontSize: 18.0,
+        skip: Text(
+          AppLocalizations.of(context).skip,
+          style: TextStyle(color: Colors.brown[700]),
         ),
+        done: Text(
+          AppLocalizations.of(context).begin,
+          style: TextStyle(
+            color: Colors.brown[700],
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        onDone: () => _showSettingsDialog(context),
       ),
     );
   }
@@ -63,35 +67,53 @@ class _IntroScreenState extends State<IntroScreen> {
 
   PageViewModel createPage({String image, String title, String text}) {
     return PageViewModel(
-      pageColor: Colors.brown[100],
-      bubbleBackgroundColor: Colors.brown[700],
-      textStyle: TextStyle(color: Colors.brown[900]),
-      iconColor: null,
-      title: Text(
-        title,
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          color: Colors.brown[900],
-          fontSize: 32.0,
+      title: title,
+      body: text,
+      image: Padding(
+        padding: const EdgeInsets.only(top: 60.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text(
+              ATLabels.ACTA,
+              style: TextStyle(
+                fontFamily: 'Italianno',
+                fontSize: 56.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.brown[900],
+              ),
+            ),
+            Expanded(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxHeight: 235.0,
+                  maxWidth: 235.0,
+                ),
+                child: Image.asset(
+                  image,
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      decoration: PageDecoration(
+        imageFlex: 6,
+        bodyFlex: 4,
+        pageColor: Colors.brown[100],
+        titleTextStyle: TextStyle(
+          fontSize: 20.0,
           fontWeight: FontWeight.bold,
-        ),
-      ),
-      mainImage: Container(
-        constraints: BoxConstraints(
-          maxWidth: 230.0,
-          maxHeight: 230.0,
-        ),
-        child: Image.asset(
-          image,
-          fit: BoxFit.contain,
-          alignment: Alignment.center,
-        ),
-      ),
-      body: Text(
-        text,
-        style: TextStyle(
-          fontSize: 24.0,
           color: Colors.brown[900],
+        ),
+        bodyTextStyle: TextStyle(
+          fontSize: 18.0,
+          color: Colors.brown[900],
+        ),
+        dotsDecorator: DotsDecorator(
+          activeColor: Colors.brown[700],
+          color: Colors.brown[300],
         ),
       ),
     );

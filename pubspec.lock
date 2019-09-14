@@ -171,6 +171,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  dots_indicator:
+    dependency: "direct main"
+    description:
+      name: dots_indicator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.5+1"
   firebase_auth:
     dependency: "direct main"
     description:
@@ -319,13 +326,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.17.6"
-  intro_views_flutter:
+  introduction_screen:
     dependency: "direct main"
     description:
-      name: intro_views_flutter
+      name: introduction_screen
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.6.0"
+    version: "1.0.6"
   kernel:
     dependency: transitive
     description:
