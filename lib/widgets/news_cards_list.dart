@@ -115,7 +115,7 @@ class NewsCardsList extends StatelessWidget {
     Widget _widget;
 
     if (article.urlToImage != null) {
-      _widget = _buildShimmerImage(article);
+      _widget = Center(child: _buildShimmerImage(article));
     } else {
       _widget = Container();
     }
@@ -126,10 +126,16 @@ class NewsCardsList extends StatelessWidget {
   Widget _buildShimmerImage(ArticleResponse article) {
     return viewType == ViewType.grid
         ? ATNetworkImage(imageUrl: article.urlToImage)
-        : ATNetworkImage(
-            imageUrl: article.urlToImage,
-            width: 380,
-            height: 180,
+        : ConstrainedBox(
+            constraints: BoxConstraints(
+              maxWidth: 500.0,
+              maxHeight: 500.0,
+            ),
+            child: ATNetworkImage(
+              imageUrl: article.urlToImage,
+              width: 380,
+              height: 180,
+            ),
           );
   }
 

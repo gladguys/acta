@@ -14,6 +14,7 @@ class ATNetworkImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CachedNetworkImage(
       imageUrl: imageUrl,
+      fit: BoxFit.contain,
       placeholder: (context, url) => _buildNetworkImagePlaceholder(),
       errorWidget: (context, url, error) => Icon(Icons.error),
     );
